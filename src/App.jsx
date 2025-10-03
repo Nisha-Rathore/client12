@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Route, Router, Routes } from 'react-router-dom'
 import Home from './views/Home'
+import MemberManagement from './views/Management/MemberManagement'
+
 
 function App() {
  
@@ -10,7 +12,7 @@ function App() {
       <div>
             <Routes>
               <Route path='/' element={<Home/>}></Route>
-              <Route></Route>
+              <Route path ="/members" element = {<MemberManagement/>}></Route>
             </Routes>
       
         

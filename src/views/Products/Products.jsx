@@ -44,7 +44,7 @@ const products = [
  
 ];
 
-export default function ProductsPage() {
+export default function Products() {
   return (
     <div className="min-h-screen bg-gray-50 py-10">
       <h1 className="text-4xl font-extrabold mb-10 text-center text-blue-700">Featured Products</h1>
