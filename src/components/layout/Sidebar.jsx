@@ -119,14 +119,14 @@ const Sidebar = () => {
                   <TbReportAnalytics size={18} />
                   <span>Custom Diet Plans </span>
                 </a></Link>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                <Link to = "/progressTracking"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <GiProgression size={18} />
                   <span>Progress Tracking</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to ="/analyticsReports"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <TbReportSearch size={18} />
                   <span>Reports / Analytics</span>
-                </a>
+                </a></Link>
               </div>
             )}
           </div>
@@ -154,22 +154,22 @@ const Sidebar = () => {
             </button>
             {serviceOpen && sidebarOpen && (
               <div className="ml-7 flex flex-col gap-1 max-h-48 overflow-y-auto">
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                <Link to = "/classes&schedules"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <SiGoogleclassroom size={18} />
                   <span>Classes & Schedules</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to = "/courses"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <AiOutlineAudit size={18} />
                   <span>Courses</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to = "/franchiseMembership"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <GiGymBag size={18} />
                   <span>Franchise & Memberships</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to = "/security"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <MdOutlineSecurity size={18} />
                   <span>Security</span>
-                </a>
+                </a></Link>
               </div>
             )}
           </div>
@@ -197,18 +197,18 @@ const Sidebar = () => {
             </button>
             {authenticationOpen && sidebarOpen && (
               <div className="ml-7 flex flex-col gap-1 max-h-48 overflow-y-auto">
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+               <Link to = "/signUp"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <FaSignInAlt size={18} />
                   <span>Sign Up</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                 <Link to ="/signIn"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <GoPasskeyFill size={18} />
                   <span>Sign In</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to = "/forgotResetPassword"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <TbClockExclamation size={18} />
                   <span>Forgot & Reset Password</span>
-                </a>
+                </a></Link>
               </div>
             )}
           </div>
@@ -237,48 +237,48 @@ const Sidebar = () => {
             </button>
             {productOpen && sidebarOpen && (
               <div className="ml-7 flex flex-col gap-1 max-h-48 overflow-y-auto">
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                <Link to ="/protiens"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <GiFruitBowl size={18} />
                   <span>Protein</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to ="/suppliments"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <Dumbbell size={20} />
                   <span>Pre, Intra & Post-Workout Suppliments</span>
-                </a>
-                <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                <Link to="/aminoAcideSuppliments"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <AiTwotoneRest size={18} />
                   <span>Amino Acids Suppliments</span>
-                </a>
-                 <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                </a></Link>
+                 <Link to = "/multivitamins"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <FaCapsules size={18} />
                   <span>Multivitamins & Minerals</span>
-                </a>
+                </a></Link>
               </div>
             )}
           </div>
-          <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+          <Link to = "/notificationCommunication"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
             <MdNotificationAdd size={18} />
             {sidebarOpen && <span>Notification & Communication</span>}
-          </a>
-          <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+          </a></Link>
+          <Link to = "/gymblog"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
             <FaBlog size={18} />
             {sidebarOpen && <span>GYM Blog</span>}
-          </a>
-          <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+          </a></Link>
+          <Link to = "/supportTickets"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
             <MdSupportAgent size={18} />
             {sidebarOpen && <span>Support Tickets</span>}
-          </a>
-          <a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+          </a></Link>
+          <Link to = "/settings"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
             <SlSettings size={18} />
             {sidebarOpen && <span>Settings</span>}
-          </a>
+          </a></Link>
         </nav>
 
         <div className="mt-auto p-3 flex-shrink-0">
-          <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100">
+         <Link to = "/logOut" ><button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100">
             <LogOut size={18} />
             {sidebarOpen && <span>Logout</span>}
-          </button>
+          </button></Link>
         </div>
       </aside>
     </div>

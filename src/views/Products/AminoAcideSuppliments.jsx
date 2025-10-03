@@ -1,0 +1,207 @@
+import React, { useMemo, useState } from "react"
+import Layout from "../../components/Layout";
+
+// Amino Acid Supplements Catalog - React + Tailwind, no TypeScript
+// Matches a dark, dashboard-like look with rounded cards and subtle glow
+// Drop this component into your app and route to it. Tailwind must be configured.
+
+const CATEGORIES = ["All", "BCAA", "EAA", "Glutamine", "Citrulline", "Arginine"]
+const FLAVORS = ["Blue Raspberry", "Watermelon", "Lemon Lime", "Mango", "Grape", "Unflavoured"]
+
+const IMG = {
+  BCAA: "https://images.unsplash.com/photo-1599050751795-5b2281aef707?q=80&w=1200&auto=format&fit=crop",
+  EAA: "https://images.unsplash.com/photo-1596357395104-5b99f04b1e8f?q=80&w=1200&auto=format&fit=crop",
+  Glutamine: "https://images.unsplash.com/photo-1585238342028-4bbc5a6c9a73?q=80&w=1200&auto=format&fit=crop",
+  Citrulline: "https://images.unsplash.com/photo-1551024709-8f23befc6cf7?q=80&w=1200&auto=format&fit=crop",
+  Arginine: "https://images.unsplash.com/photo-1560807707-8cc77767d783?q=80&w=1200&auto=format&fit=crop",
+}
+
+// 20 demo products
+const PRODUCTS = Array.from({ length: 20 }).map((_, i) => {
+  const cat = CATEGORIES.slice(1)[i % (CATEGORIES.length - 1)] // skip All
+  const flavor = FLAVORS[i % FLAVORS.length]
+  const price = 899 + (i % 6) * 150
+  const rating = 4 + ((i * 7) % 10) / 10
+  const grams = 250 + (i % 3) * 100
+  const servings = Math.round(grams / 5)
+  const actives = {
+    BCAA: { label: "BCAAs", value: 7 + (i % 3) },
+    EAA: { label: "EAAs", value: 9 + (i % 4) },
+    Glutamine: { label: "Glutamine", value: 5 + (i % 3) },
+    Citrulline: { label: "Citrulline", value: 6 + (i % 3) },
+    Arginine: { label: "Arginine", value: 5 + (i % 3) },
+  }[cat]
+
+  return {
+    id: `aa-${i + 1}`,
+    name: `${cat} ${i + 1}`,
+    category: cat,
+    flavor,
+    grams,
+    servings,
+    activeLabel: actives.label,
+    activeValue: actives.value,
+    rating: Math.min(5, Number(rating.toFixed(1))),
+    reviews: 30 + (i * 11) % 180,
+    price,
+    mrp: price + 300,
+    image: IMG[cat],
+    tags: [i % 2 === 0 ? "Sugar Free" : "Vegan Friendly", grams >= 350 ? "Value Pack" : ""].filter(Boolean),
+  }
+})
+
+function Badge({ children }) {
+  return <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/10 ring-1 ring-white/10">{children}</span>
+}
+
+function Rating({ value }) {
+  const full = Math.floor(value)
+  const half = value - full >= 0.5
+  const stars = new Array(5).fill(0).map((_, i) => {
+    if (i < full) return "★"
+    if (i === full && half) return "⯪"
+    return "☆"
+  })
+  return <span className="text-amber-400">{stars.join(" ")}</span>
+}
+
+export default function AminoAcidSupplements() {
+  const [tab, setTab] = useState("All")
+  const [search, setSearch] = useState("")
+  const [sortBy, setSortBy] = useState("popular")
+  const [quick, setQuick] = useState(null)
+
+  const list = useMemo(() => {
+    let l = PRODUCTS.filter(p => (tab === "All" || p.category === tab) && p.name.toLowerCase().includes(search.toLowerCase()))
+    if (sortBy === "priceLow") l = [...l].sort((a, b) => a.price - b.price)
+    if (sortBy === "priceHigh") l = [...l].sort((a, b) => b.price - a.price)
+    if (sortBy === "rating") l = [...l].sort((a, b) => b.rating - a.rating)
+    return l
+  }, [tab, search, sortBy])
+
+  return (
+    <Layout>
+        <div className="min-h-screen bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100">
+      {/* halo */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-[-12rem] -translate-x-1/2 h-[28rem] w-[28rem] rounded-full bg-indigo-600/20 blur-3xl" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 md:px-8 py-6 md:py-10">
+        <header className="mb-6">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight">Amino Acid Supplements</h1>
+          <p className="text-zinc-400 mt-1">Bold cards. Smooth filters. Clean visuals like your dashboard.</p>
+        </header>
+
+        {/* controls */}
+        <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+          <div className="flex gap-2 bg-zinc-900 p-1 rounded-xl ring-1 ring-white/10 w-fit">
+            {CATEGORIES.map(c => (
+              <button key={c} onClick={() => setTab(c)} className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${tab === c ? "bg-indigo-600" : "hover:bg-zinc-800"}`}>{c}</button>
+            ))}
+          </div>
+          <div className="md:ml-auto grid grid-cols-1 sm:grid-cols-3 gap-3 w-full md:w-auto">
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products" className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="popular">Sort by popular</option>
+              <option value="priceLow">Price: Low to High</option>
+              <option value="priceHigh">Price: High to Low</option>
+              <option value="rating">Top rated</option>
+            </select>
+            <button className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-4 py-2 text-sm hover:bg-zinc-800">Export list</button>
+          </div>
+        </div>
+
+        {/* grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {list.map(p => (
+            <div key={p.id} className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900 ring-1 ring-white/10 hover:ring-indigo-500/60 transition shadow-lg hover:shadow-indigo-900/30">
+              <div className="relative aspect-square overflow-hidden">
+                <img src={p.image} alt={p.name} className="h-full w-full object-cover group-hover:scale-[1.03] transition" />
+                <div className="absolute left-3 top-3 flex gap-2">{p.tags.map(t => <Badge key={t}>{t}</Badge>)}</div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-bold text-lg leading-tight">{p.name}</h3>
+                    <div className="text-xs text-zinc-400">{p.category} · {p.flavor}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm"><Rating value={p.rating} /></div>
+                    <div className="text-[11px] text-zinc-400">{p.reviews} reviews</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
+                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2"><div className="text-zinc-300">Net wt</div><div className="font-semibold">{p.grams} g</div></div>
+                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2"><div className="text-zinc-300">Servings</div><div className="font-semibold">{p.servings}</div></div>
+                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2"><div className="text-zinc-300">{p.activeLabel}</div><div className="font-semibold">{p.activeValue} g</div></div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-2xl font-extrabold">₹{p.price.toLocaleString()}</div>
+                    <div className="text-xs text-zinc-400 line-through">₹{p.mrp.toLocaleString()}</div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={() => setQuick(p)} className="px-3 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-sm">View</button>
+                    <button className="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold text-sm">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Quick view */}
+      <div className={`fixed inset-0 z-50 ${quick ? "" : "pointer-events-none"}`}>
+        <div onClick={() => setQuick(null)} className={`absolute inset-0 bg-black/50 transition-opacity ${quick ? "opacity-100" : "opacity-0"}`} />
+        <div className={`absolute right-0 top-0 h-full w-full sm:w-[32rem] bg-zinc-950 ring-1 ring-white/10 transition-transform ${quick ? "translate-x-0" : "translate-x-full"}`}>
+          {quick && (
+            <div className="h-full flex flex-col">
+              <div className="p-4 flex items-center justify-between border-b border-white/10">
+                <div>
+                  <div className="text-xs text-zinc-400">{quick.category} · {quick.flavor}</div>
+                  <h3 className="text-xl font-bold">{quick.name}</h3>
+                </div>
+                <button onClick={() => setQuick(null)} className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700">Close</button>
+              </div>
+
+              <div className="p-4 overflow-auto space-y-4">
+                <img src={quick.image} alt={quick.name} className="w-full h-56 object-cover rounded-xl ring-1 ring-white/10" />
+
+                <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
+                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2"><div className="text-zinc-300">Net wt</div><div className="font-semibold">{quick.grams} g</div></div>
+                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2"><div className="text-zinc-300">Servings</div><div className="font-semibold">{quick.servings}</div></div>
+                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2"><div className="text-zinc-300">{quick.activeLabel}</div><div className="font-semibold">{quick.activeValue} g</div></div>
+                </div>
+
+                <div className="rounded-xl bg-zinc-900 ring-1 ring-white/10 p-4">
+                  <h4 className="font-semibold mb-2">Highlights</h4>
+                  <ul className="text-sm text-zinc-300 list-disc list-inside space-y-1">
+                    <li>Batch tested and clean label</li>
+                    <li>Great mixability and taste</li>
+                    <li>Designed for performance and recovery</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-auto p-4 border-t border-white/10 flex items-center justify-between">
+                <div>
+                  <div className="text-2xl font-extrabold">₹{quick.price.toLocaleString()}</div>
+                  <div className="text-xs text-zinc-400 line-through">₹{quick.mrp.toLocaleString()}</div>
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700">Add to wishlist</button>
+                  <button className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold">Add to cart</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+    </Layout>
+  )
+}
