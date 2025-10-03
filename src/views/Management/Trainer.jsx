@@ -1,96 +1,92 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout"
 
-const MemberManagement = () => {
-  const [members, setMembers] = useState([
-    { id: 1, name: "John Doe", email: "john@example.com", membership: "Gold", status: "Active" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", membership: "Silver", status: "Expired" },
+const Trainer = () => {
+  const [trainers, setTrainers] = useState([
+    { id: 1, name: "Rahul Mehta", specialty: "Strength Training", experience: "5 Years", status: "Active" },
+    { id: 2, name: "Priya Sharma", specialty: "Yoga Instructor", experience: "3 Years", status: "Inactive" },
   ]);
 
   const [showForm, setShowForm] = useState(false);
-  const [editingMember, setEditingMember] = useState(null);
-  const [formData, setFormData] = useState({ name: "", email: "", membership: "Silver", status: "Active" });
+  const [editingTrainer, setEditingTrainer] = useState(null);
+  const [formData, setFormData] = useState({ name: "", specialty: "", experience: "", status: "Active" });
 
   // Handle Input Change
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // Add or Update Member
+  // Add or Update Trainer
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editingMember) {
-      setMembers(members.map((m) => (m.id === editingMember.id ? { ...formData, id: m.id } : m)));
-      setEditingMember(null);
+    if (editingTrainer) {
+      setTrainers(trainers.map((t) => (t.id === editingTrainer.id ? { ...formData, id: t.id } : t)));
+      setEditingTrainer(null);
     } else {
-      setMembers([...members, { ...formData, id: Date.now() }]);
+      setTrainers([...trainers, { ...formData, id: Date.now() }]);
     }
-    setFormData({ name: "", email: "", membership: "Silver", status: "Active" });
+    setFormData({ name: "", specialty: "", experience: "", status: "Active" });
     setShowForm(false);
   };
 
-  // Edit Member
-  const handleEdit = (member) => {
-    setEditingMember(member);
-    setFormData(member);
+  // Edit Trainer
+  const handleEdit = (trainer) => {
+    setEditingTrainer(trainer);
+    setFormData(trainer);
     setShowForm(true);
   };
 
-  // Delete Member
-  const handleDelete = (id) => {
-    setMembers(members.filter((m) => m.id !== id));
-  };
+  // Delete Trainer
+  const handleDelete = (id) => setTrainers(trainers.filter((t) => t.id !== id));
 
   return (
    <Layout>
      <div className="p-6 bg-gray-100 min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Member Management</h1>
+        <h1 className="text-2xl font-bold text-gray-800">Trainer Management</h1>
         <button
           onClick={() => setShowForm(true)}
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
         >
-          + Add Member
+          + Add Trainer
         </button>
       </div>
 
-      {/* Member Table */}
+      {/* Trainer Table */}
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-gray-200 text-gray-700">
               <th className="px-6 py-3">Name</th>
-              <th className="px-6 py-3">Email</th>
-              <th className="px-6 py-3">Membership</th>
+              <th className="px-6 py-3">Specialty</th>
+              <th className="px-6 py-3">Experience</th>
               <th className="px-6 py-3">Status</th>
               <th className="px-6 py-3 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={member.id} className="border-b hover:bg-gray-50 transition">
-                <td className="px-6 py-4 font-medium">{member.name}</td>
-                <td className="px-6 py-4">{member.email}</td>
-                <td className="px-6 py-4">{member.membership}</td>
+            {trainers.map((trainer) => (
+              <tr key={trainer.id} className="border-b hover:bg-gray-50 transition">
+                <td className="px-6 py-4 font-medium">{trainer.name}</td>
+                <td className="px-6 py-4">{trainer.specialty}</td>
+                <td className="px-6 py-4">{trainer.experience}</td>
                 <td className="px-6 py-4">
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      member.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                      trainer.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                     }`}
                   >
-                    {member.status}
+                    {trainer.status}
                   </span>
                 </td>
                 <td className="px-6 py-4 flex justify-center gap-3">
                   <button
-                    onClick={() => handleEdit(member)}
+                    onClick={() => handleEdit(trainer)}
                     className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(member.id)}
+                    onClick={() => handleDelete(trainer.id)}
                     className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
                   >
                     Delete
@@ -98,10 +94,10 @@ const MemberManagement = () => {
                 </td>
               </tr>
             ))}
-            {members.length === 0 && (
+            {trainers.length === 0 && (
               <tr>
                 <td colSpan="5" className="text-center text-gray-500 py-6">
-                  No members found.
+                  No trainers found.
                 </td>
               </tr>
             )}
@@ -113,36 +109,35 @@ const MemberManagement = () => {
       {showForm && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-lg font-bold mb-4">{editingMember ? "Edit Member" : "Add Member"}</h2>
+            <h2 className="text-lg font-bold mb-4">{editingTrainer ? "Edit Trainer" : "Add Trainer"}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 name="name"
-                placeholder="Full Name"
+                placeholder="Trainer Name"
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full border px-3 py-2 rounded-md"
                 required
               />
               <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
+                type="text"
+                name="specialty"
+                placeholder="Specialty (e.g., Yoga, Strength)"
+                value={formData.specialty}
                 onChange={handleChange}
                 className="w-full border px-3 py-2 rounded-md"
                 required
               />
-              <select
-                name="membership"
-                value={formData.membership}
+              <input
+                type="text"
+                name="experience"
+                placeholder="Experience (e.g., 5 Years)"
+                value={formData.experience}
                 onChange={handleChange}
                 className="w-full border px-3 py-2 rounded-md"
-              >
-                <option>Silver</option>
-                <option>Gold</option>
-                <option>Platinum</option>
-              </select>
+                required
+              />
               <select
                 name="status"
                 value={formData.status}
@@ -150,14 +145,14 @@ const MemberManagement = () => {
                 className="w-full border px-3 py-2 rounded-md"
               >
                 <option>Active</option>
-                <option>Expired</option>
+                <option>Inactive</option>
               </select>
               <div className="flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => {
                     setShowForm(false);
-                    setEditingMember(null);
+                    setEditingTrainer(null);
                   }}
                   className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
                 >
@@ -167,7 +162,7 @@ const MemberManagement = () => {
                   type="submit"
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                 >
-                  {editingMember ? "Update" : "Add"}
+                  {editingTrainer ? "Update" : "Add"}
                 </button>
               </div>
             </form>
@@ -179,4 +174,4 @@ const MemberManagement = () => {
   );
 };
 
-export default MemberManagement;
+export default Trainer;
