@@ -78,6 +78,137 @@ export default function SupportTickets() {
   const base = highContrast ? "from-slate-900 via-slate-900 to-slate-900" : "from-slate-950 via-slate-900 to-slate-950";
 
   return (
+    <Layout>
+       <div className={`min-h-screen w-full bg-gradient-to-b ${base} text-slate-100`}>
+      <div className="mx-auto max-w-7xl px-4 py-6">
+        {/* Header */}
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-extrabold tracking-tight">Support Tickets</h1>
+            <p className="mt-1 text-sm text-slate-300">Fast triage, clean visuals, real time updates.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <label className="flex items-center gap-2 text-xs">
+              <span>High contrast</span>
+              <input type="checkbox" checked={highContrast} onChange={e=>setHighContrast(e.target.checked)} />
+            </label>
+            <select value={range} onChange={e=>setRange(e.target.value)} className="rounded-xl bg-slate-800/70 px-3 py-2 text-xs ring-1 ring-white/10 focus:outline-none">
+              <option value="7">Last 7 days</option>
+              <option value="30">Last 30 days</option>
+              <option value="90">Last 90 days</option>
+            </select>
+            <button onClick={()=>setComposeOpen(true)} className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 hover:brightness-110">New ticket</button>
+          </div>
+        </div>
+
+        {/* KPI cards */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(s => (
+            <div key={s.label} className="rounded-2xl border border-white/10 bg-slate-800/60 p-4 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <p className="text-xs uppercase tracking-wide text-slate-400">{s.label}</p>
+                <svg className="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12h3l3 7 4-14 3 7h5"/></svg>
+              </div>
+              <div className="mt-2 text-2xl font-bold">{s.value}</div>
+              <div className="text-xs text-slate-400">Updated {new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Filters */}
+        <div className="mt-6 rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+          <div className="grid gap-3 md:grid-cols-6">
+            <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search tickets, members, assignees" className="md:col-span-2 rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10 focus:outline-none" />
+            <select value={status} onChange={e=>setStatus(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10"><option value="all">All status</option><option>Open</option><option>Pending</option><option>Resolved</option></select>
+            <select value={priority} onChange={e=>setPriority(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10"><option value="all">All priority</option><option>Urgent</option><option>High</option><option>Medium</option><option>Low</option></select>
+            <select value={category} onChange={e=>setCategory(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10"><option value="all">All categories</option><option>Billing</option><option>App</option><option>Facilities</option><option>Training</option></select>
+            <select value={sort} onChange={e=>setSort(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10"><option value="updated-desc">Newest updated</option><option value="updated-asc">Oldest updated</option><option value="priority">Priority</option></select>
+          </div>
+          {selected.length>0 && (
+            <div className="mt-3 flex items-center justify-between rounded-xl bg-slate-900/60 px-3 py-2 text-sm">
+              <div>{selected.length} selected</div>
+              <div className="flex items-center gap-2">
+                <button onClick={()=>bulkUpdate('status','Resolved')} className="rounded-lg bg-emerald-500 px-3 py-1 text-emerald-950">Mark resolved</button>
+                <button onClick={()=>bulkUpdate('assignee','—')} className="rounded-lg bg-slate-700 px-3 py-1">Unassign</button>
+                <button onClick={()=>setSelected([])} className="rounded-lg bg-slate-700 px-3 py-1">Clear</button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Table */}
+        <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-800/60">
+          <div className="grid grid-cols-12 gap-3 border-b border-white/10 p-3 text-xs text-slate-400">
+            <div className="col-span-1">Select</div>
+            <div className="col-span-2">Ticket</div>
+            <div className="col-span-3">Subject</div>
+            <div className="col-span-2">Member</div>
+            <div className="col-span-1">Priority</div>
+            <div className="col-span-1">Status</div>
+            <div className="col-span-2">Updated</div>
+          </div>
+          <ul className="divide-y divide-white/10">
+            {filtered.map(t => (
+              <li key={t.id} className="grid grid-cols-12 items-center gap-3 px-3 py-3 hover:bg-slate-900/40">
+                <div className="col-span-1">
+                  <input type="checkbox" checked={selected.includes(t.id)} onChange={()=>toggleSelect(t.id)} />
+                </div>
+                <div className="col-span-2">
+                  <button onClick={()=>setDrawer(t.id)} className="rounded bg-slate-700/60 px-2 py-1 text-xs hover:underline">{t.id}</button>
+                  <div className="text-[11px] text-slate-400">{t.category} • {t.club}</div>
+                </div>
+                <div className="col-span-3">
+                  <div className="text-sm font-medium">{t.subject}</div>
+                  <div className="text-xs text-slate-400">Assignee: {t.assignee}</div>
+                </div>
+                <div className="col-span-2 text-sm">{t.member}</div>
+                <div className="col-span-1">
+                  <span className={`rounded px-2 py-1 text-xs ${
+                    t.priority==='Urgent'?'bg-red-500/20 text-red-300':
+                    t.priority==='High'?'bg-orange-500/20 text-orange-300':
+                    t.priority==='Medium'?'bg-yellow-500/20 text-yellow-300':'bg-slate-500/20 text-slate-300'}`}>{t.priority}</span>
+                </div>
+                <div className="col-span-1">
+                  <span className={`rounded px-2 py-1 text-xs ${t.status==='Resolved'?'bg-emerald-500/20 text-emerald-300':t.status==='Pending'?'bg-cyan-500/20 text-cyan-300':'bg-indigo-500/20 text-indigo-300'}`}>{t.status}</span>
+                </div>
+                <div className="col-span-2 text-xs text-slate-400">{t.updated}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Footer actions */}
+        <div className="mt-6 flex items-center justify-between text-sm">
+          <div className="text-slate-400">{filtered.length} tickets</div>
+          <div className="flex items-center gap-2">
+            <button className="rounded-xl bg-slate-700 px-3 py-2">Export</button>
+            <button className="rounded-xl bg-slate-700 px-3 py-2">Automation</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Drawer */}
+      {drawer && (
+        <TicketDrawer ticket={tickets.find(x=>x.id===drawer)} onClose={()=>setDrawer(null)} onUpdate={(patch)=>{
+          setTickets(ts=>ts.map(t=> t.id===drawer? { ...t, ...patch, updated: new Date().toISOString().slice(0,16).replace('T',' ') }: t));
+        }} />
+      )}
+
+      {/* Compose */}
+      {composeOpen && (
+        <ComposeModal onClose={()=>setComposeOpen(false)} onCreate={createTicket} />
+      )}
+    </div>
+    </Layout>
+  );
+}
+
+function TicketDrawer({ ticket, onClose, onUpdate }) {
+  const [reply, setReply] = useState("");
+  const [nextStatus, setNextStatus] = useState(ticket.status);
+  const [nextAssignee, setNextAssignee] = useState(ticket.assignee);
+
+  return (
     <div className={`min-h-screen w-full bg-gradient-to-b ${base} text-slate-100`}>
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
@@ -198,58 +329,6 @@ export default function SupportTickets() {
         <ComposeModal onClose={()=>setComposeOpen(false)} onCreate={createTicket} />
       )}
     </div>
-  );
-}
-
-function TicketDrawer({ ticket, onClose, onUpdate }) {
-  const [reply, setReply] = useState("");
-  const [nextStatus, setNextStatus] = useState(ticket.status);
-  const [nextAssignee, setNextAssignee] = useState(ticket.assignee);
-
-  return (
-   <Layout>
-     <div className="fixed inset-0 z-50 grid grid-cols-12 bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100">
-      <div className="col-span-12 md:col-span-7 lg:col-span-8" onClick={onClose} />
-      <div className="col-span-12 md:col-span-5 lg:col-span-4 overflow-y-auto border-l border-white/10 bg-slate-900 p-5">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">{ticket.id} • {ticket.subject}</h3>
-          <button onClick={onClose} className="rounded-lg bg-slate-700 px-3 py-1 text-xs">Close</button>
-        </div>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          <Info label="Member" value={ticket.member} />
-          <Info label="Club" value={ticket.club} />
-          <Info label="Priority" value={ticket.priority} />
-          <Info label="Status" value={ticket.status} />
-          <Info label="Assignee" value={ticket.assignee} />
-          <Info label="Category" value={ticket.category} />
-          <Info label="Created" value={ticket.created} />
-          <Info label="Updated" value={ticket.updated} />
-        </div>
-
-        <div className="mt-4 rounded-2xl border border-white/10 bg-slate-800 p-3">
-          <h4 className="font-semibold">Timeline</h4>
-          <ul className="mt-2 space-y-2 text-sm">
-            <li className="rounded-lg bg-slate-900/60 p-2">Ticket created by {ticket.member}</li>
-            <li className="rounded-lg bg-slate-900/60 p-2">Assigned to {ticket.assignee}</li>
-            <li className="rounded-lg bg-slate-900/60 p-2">{ticket.replies} replies</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 rounded-2xl border border-white/10 bg-slate-800 p-3">
-          <h4 className="font-semibold">Update</h4>
-          <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
-            <select value={nextStatus} onChange={e=>setNextStatus(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 ring-1 ring-white/10"><option>Open</option><option>Pending</option><option>Resolved</option></select>
-            <input value={nextAssignee} onChange={e=>setNextAssignee(e.target.value)} placeholder="Assignee" className="rounded-xl bg-slate-900/70 px-3 py-2 ring-1 ring-white/10" />
-          </div>
-          <textarea value={reply} onChange={e=>setReply(e.target.value)} rows={4} placeholder="Write a reply for the member" className="mt-2 w-full rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" />
-          <div className="mt-2 flex items-center justify-end gap-2">
-            <button onClick={()=>{ onUpdate({ status: nextStatus, assignee: nextAssignee }); }} className="rounded-xl bg-slate-700 px-4 py-2 text-sm">Save</button>
-            <button onClick={()=>{ onUpdate({ status: nextStatus, assignee: nextAssignee }); setReply(""); alert("Reply sent"); }} className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30">Send reply</button>
-          </div>
-        </div>
-      </div>
-    </div>
-   </Layout>
   );
 }
 

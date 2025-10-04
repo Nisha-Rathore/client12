@@ -139,39 +139,7 @@ export default function LogoutScreen() {
       </div>
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 md:grid-cols-12">
-        {/* Sidebar preview */}
-        <aside className="hidden md:col-span-3 md:block">
-          <Card className="rounded-3xl border-white/10 bg-white/5">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between text-base text-slate-200">
-                StoreAdmin <span className="text-xs text-slate-400">v1.0</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {[
-                "Dashboard",
-                "Management",
-                "Workout & Diet Plans",
-                "Our Services",
-                "Authentication",
-                "Products",
-                "Notification & Communication",
-                "Gym Blog",
-                "Support Tickets",
-                "Settings",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center justify-between rounded-xl px-3 py-2 text-sm text-slate-300 hover:bg-white/5"
-                >
-                  <span>{item}</span>
-                  <span className="text-xs text-slate-500">›</span>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </aside>
-
+        
         {/* Main */}
         <main className="relative md:col-span-9">
           <div className="mb-4 flex items-center justify-between">
