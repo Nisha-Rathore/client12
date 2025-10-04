@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Menu,LogOut,LayoutDashboardIcon,Dumbbell, Laptop2} from "lucide-react";
 import { MdGroup, MdNotificationAdd, MdOutlineSecurity, MdSupportAgent } from 'react-icons/md';
 import { TfiWallet } from 'react-icons/tfi';
-import { BsClockHistory, BsFillBox2HeartFill } from 'react-icons/bs';
+import { BsClockHistory, BsFillBox2HeartFill, BsSafe2 } from 'react-icons/bs';
 import { FaBlog, FaCapsules, FaCartPlus, FaSignInAlt, FaUserTie } from 'react-icons/fa';
 import { LuFolderCog } from 'react-icons/lu';
 import { TbClockExclamation, TbReportAnalytics, TbReportSearch } from 'react-icons/tb';
@@ -80,9 +80,9 @@ const Sidebar = () => {
                   <TfiWallet size={18} />
                   <span>Finance</span>
                 </a></Link>
-                 <Link to = "/facilities"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
-                  <BsFillBox2HeartFill size={18} />
-                  <span>Facilities</span>
+                 <Link to = "/security"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                  <BsSafe2 size={18} />
+                  <span>Security</span>
                 </a></Link>
               </div>
             )}
@@ -165,10 +165,6 @@ const Sidebar = () => {
                 <Link to = "/franchiseMembership"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <GiGymBag size={18} />
                   <span>Franchise & Memberships</span>
-                </a></Link>
-                <Link to = "/security"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
-                  <MdOutlineSecurity size={18} />
-                  <span>Security</span>
                 </a></Link>
               </div>
             )}

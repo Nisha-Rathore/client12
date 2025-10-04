@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import Layout from "../../components/Layout"
+import { useState } from "react";
+import Layout from "../../components/Layout";
+
+
 
 const Finance = () => {
   const [transactions, setTransactions] = useState([

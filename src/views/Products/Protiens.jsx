@@ -1,13 +1,68 @@
 import React, { useState } from "react"
 import Layout from "../../components/Layout";
-const products = Array.from({ length: 20 }).map((_, i) => ({
-  id: i + 1,
-  name: `Whey Protein ${i + 1}`,
-  price: 2499 + i * 100,
-  image: `https://images.unsplash.com/photo-1585238342028-4bbc5a6c9a73?q=80&w=600&auto=format&fit=crop`,
-  flavor: i % 2 === 0 ? "Chocolate" : "Vanilla",
-  rating: (4 + Math.random()).toFixed(1),
-}))
+const products = [
+  {
+    id: 1,
+    name: "Whey Protein Isolate",
+    price: "₹3,199",
+    image: "https://m.media-amazon.com/images/I/61j1JiaFLlL._SY450_.jpg",
+  },
+  {
+    id: 2,
+    name: "Mass Gainer Pro",
+    price: "₹2,899",
+    image: "https://m.media-amazon.com/images/I/61DQLVMdwsL._SX679_.jpg",
+  },
+  {
+    id: 3,
+    name: "BCAA Recovery Fuel",
+    price: "₹1,499",
+    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSypNEfAvIC1EUqM47UGCnYVCypP7-sVJxvY0NtFxd2Ng05FgJUwCzuLZQU5gGWj0-bTLAxWzOsUto7E200xaUipKPc1uKwTHjq6teU9cJMeVnFVTVx_IYUG9dc9doQQpVi3cYSxw&usqp=CAc",
+  },
+  {
+    id: 4,
+    name: "Creatine Monohydrate",
+    price: "₹999",
+    image: "https://i0.wp.com/promptnutrition.com/wp-content/uploads/2023/12/img_0974.png?w=414&ssl=1",
+  },
+  {
+    id: 5,
+    name: "Vegan Protein Blend",
+    price: "₹3,299",
+    image: "https://nutrabox.in/cdn/shop/files/Vegan_Banner_M.jpg?crop=center&height=1200&v=1748589953&width=1200",
+  },
+  {
+    id: 6,
+    name: "Pre-Workout Energy",
+    price: "₹1,799",
+    image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRnPRZjPJRJCvGcKIei09s6if3PuULmnCFmMk8IxCfg_fEXnKwXL_YQy33drsOp4H3UMAi_CUlTTaf4KqaNbWhXZ-0_DgCTG4wVVy_b6ubJclQxGNbB1hIyolZHng0tfiEBWtcpKWXu&usqp=CAc",
+  },
+  {
+    id: 7,
+    name: "Casein Protein",
+    price: "₹2,599",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlZNCQ3DXLPzV5opN9WZjKvKLIMoY48taB2g&s",
+  },
+  {
+    id: 8,
+    name: "Hydrolyzed Whey",
+    price: "₹3,499",
+    image: "https://images-cdn.ubuy.co.in/678c657ddd32e911176e3409-optimum-nutrition-platinum-hydrowhey.jpg",
+  },
+  {
+    id: 9,
+    name: "Protein Energy Bar (Pack of 6)",
+    price: "₹899",
+    image: "https://proathlix.com/cdn/shop/files/2NewProteinBarSlides.png?v=1755581600&width=720",
+  },
+  {
+    id: 10,
+    name: "Glutamine Recovery Powder",
+    price: "₹1,299",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2fMHotvoeI8unfvLiqZDiiLtVfNHL0c2z4g&s",
+  },
+];
+
 
 export default function ProteinProductsPage() {
   const [search, setSearch] = useState("")

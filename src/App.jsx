@@ -4,7 +4,6 @@ import Home from './views/Home'
 import MemberManagement from './views/Management/MemberManagement'
 import Trainer from './views/Management/Trainer'
 import Finance from './views/Management/Finance'
-import Facilities from './views/Management/Facilities'
 import WorkoutRoutine from './views/Workout & Diet plans/WorkoutRoutines'
 import DietPlan from './views/Workout & Diet plans/DietPlan'
 import ProgressTracking from './views/Workout & Diet plans/ProgressTracking'
@@ -12,7 +11,6 @@ import AnalyticsReports from './views/Workout & Diet plans/AnalyticsReports'
 import ClassesSchedules from './views/Our Services/Classes&Schedules'
 import Courses from './views/Our Services/Courses'
 import FranchiseMembership from './views/Our Services/FranchiseMembership'
-import Security from './views/Our Services/Security'
 import SignInGym from './views/Authentication/SignIn'
 import SignUpGym from './views/Authentication/SignUp'
 import ForgotResetPasswordGym from './views/Authentication/ForgotResetPassword'
@@ -25,6 +23,7 @@ import GymBlog from './views/GymBlog'
 import SupportTickets from './views/SupportTickets'
 import Settings from './views/Settings'
 import LogoutScreen from './views/LogOut'
+import Security from './views/Management/Security'
 
 
 
@@ -39,7 +38,7 @@ function App() {
               <Route path ="/members" element = {<MemberManagement/>}></Route>
               <Route path='/trainer' element={<Trainer/>}></Route>
               <Route path="/finance" element={<Finance/>}></Route>
-              <Route path='/facilities' element={<Facilities/>}></Route>
+              <Route path='/security' element={<Security/>}></Route>
               <Route path='/workoutRoutines' element={<WorkoutRoutine/>}></Route>
               <Route path='/dietPlan' element={<DietPlan/>}></Route>
               <Route path='/progressTracking' element={<ProgressTracking/>}></Route>

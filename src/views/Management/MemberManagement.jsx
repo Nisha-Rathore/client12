@@ -1,106 +1,117 @@
 import React, { useState } from "react";
-import Layout from "../../components/Layout"
+import Layout from "../../components/Layout";
 
-const MemberManagement = () => {
+
+export default function Member() {
   const [members, setMembers] = useState([
-    { id: 1, name: "John Doe", email: "john@example.com", membership: "Gold", status: "Active" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", membership: "Silver", status: "Expired" },
+    { id: 1, name: "Aadi Singh", email: "aadi@example.com", plan: "Gold" },
+    { id: 2, name: "Rohit Sharma", email: "rohit@example.com", plan: "Silver" },
   ]);
+  const [newMember, setNewMember] = useState({ name: "", email: "", plan: "Basic" });
+  const [search, setSearch] = useState("");
 
-  const [showForm, setShowForm] = useState(false);
-  const [editingMember, setEditingMember] = useState(null);
-  const [formData, setFormData] = useState({ name: "", email: "", membership: "Silver", status: "Active" });
-
-  // Handle Input Change
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const addMember = () => {
+    if (!newMember.name || !newMember.email) return;
+    setMembers([
+      ...members,
+      { ...newMember, id: Date.now() }
+    ]);
+    setNewMember({ name: "", email: "", plan: "Basic" });
   };
 
-  // Add or Update Member
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editingMember) {
-      setMembers(members.map((m) => (m.id === editingMember.id ? { ...formData, id: m.id } : m)));
-      setEditingMember(null);
-    } else {
-      setMembers([...members, { ...formData, id: Date.now() }]);
-    }
-    setFormData({ name: "", email: "", membership: "Silver", status: "Active" });
-    setShowForm(false);
-  };
-
-  // Edit Member
-  const handleEdit = (member) => {
-    setEditingMember(member);
-    setFormData(member);
-    setShowForm(true);
-  };
-
-  // Delete Member
-  const handleDelete = (id) => {
+  const deleteMember = (id) => {
     setMembers(members.filter((m) => m.id !== id));
   };
 
+  const filteredMembers = members.filter((m) =>
+    m.name.toLowerCase().includes(search.toLowerCase()) ||
+    m.email.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-   <Layout>
-     <div className="p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Member Management</h1>
-        <button
-          onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
-        >
-          + Add Member
-        </button>
+    <Layout>
+        <div className="p-6">
+      {/* Title */}
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">Member Management</h1>
+
+      {/* Add Member Form */}
+      <div className="bg-white shadow-md rounded-lg p-4 mb-6">
+        <h2 className="text-lg font-semibold mb-3">Add New Member</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={newMember.name}
+            onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
+            className="p-2 border rounded-lg"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={newMember.email}
+            onChange={(e) => setNewMember({ ...newMember, email: e.target.value })}
+            className="p-2 border rounded-lg"
+          />
+          <select
+            value={newMember.plan}
+            onChange={(e) => setNewMember({ ...newMember, plan: e.target.value })}
+            className="p-2 border rounded-lg"
+          >
+            <option>Basic</option>
+            <option>Silver</option>
+            <option>Gold</option>
+          </select>
+          <button
+            onClick={addMember}
+            className="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700"
+          >
+            Add
+          </button>
+        </div>
       </div>
 
-      {/* Member Table */}
-      <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-gray-200 text-gray-700">
-              <th className="px-6 py-3">Name</th>
-              <th className="px-6 py-3">Email</th>
-              <th className="px-6 py-3">Membership</th>
-              <th className="px-6 py-3">Status</th>
-              <th className="px-6 py-3 text-center">Actions</th>
+      {/* Search */}
+      <div className="flex justify-between items-center mb-3">
+        <input
+          type="text"
+          placeholder="Search members..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="p-2 border rounded-lg w-full md:w-1/3"
+        />
+      </div>
+
+      {/* Members Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border rounded-lg overflow-hidden">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-4 py-2 text-left">Name</th>
+              <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Plan</th>
+              <th className="px-4 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={member.id} className="border-b hover:bg-gray-50 transition">
-                <td className="px-6 py-4 font-medium">{member.name}</td>
-                <td className="px-6 py-4">{member.email}</td>
-                <td className="px-6 py-4">{member.membership}</td>
-                <td className="px-6 py-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      member.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {member.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 flex justify-center gap-3">
-                  <button
-                    onClick={() => handleEdit(member)}
-                    className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(member.id)}
-                    className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {members.length === 0 && (
+            {filteredMembers.length > 0 ? (
+              filteredMembers.map((member) => (
+                <tr key={member.id} className="border-t">
+                  <td className="px-4 py-2">{member.name}</td>
+                  <td className="px-4 py-2">{member.email}</td>
+                  <td className="px-4 py-2">{member.plan}</td>
+                  <td className="px-4 py-2">
+                    <button
+                      onClick={() => deleteMember(member.id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <td colSpan="5" className="text-center text-gray-500 py-6">
+                <td colSpan="4" className="px-4 py-3 text-center text-gray-500">
                   No members found.
                 </td>
               </tr>
@@ -108,75 +119,7 @@ const MemberManagement = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Modal Form */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-lg font-bold mb-4">{editingMember ? "Edit Member" : "Add Member"}</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-                required
-              />
-              <select
-                name="membership"
-                value={formData.membership}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              >
-                <option>Silver</option>
-                <option>Gold</option>
-                <option>Platinum</option>
-              </select>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              >
-                <option>Active</option>
-                <option>Expired</option>
-              </select>
-              <div className="flex justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowForm(false);
-                    setEditingMember(null);
-                  }}
-                  className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                >
-                  {editingMember ? "Update" : "Add"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
-   </Layout>
+    </Layout>
   );
-};
-
-export default MemberManagement;
+}

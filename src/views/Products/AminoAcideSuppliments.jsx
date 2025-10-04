@@ -80,7 +80,7 @@ export default function AminoAcidSupplements() {
   }, [tab, search, sortBy])
 
   return (
-    <Layout>
+  <Layout>
         <div className="min-h-screen bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100">
       {/* halo */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -202,6 +202,6 @@ export default function AminoAcidSupplements() {
         </div>
       </div>
     </div>
-    </Layout>
+  </Layout>
   )
 }
