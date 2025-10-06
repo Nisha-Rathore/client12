@@ -237,7 +237,7 @@ const Sidebar = () => {
                   <GiFruitBowl size={18} />
                   <span>Protein</span>
                 </a></Link>
-                <Link to ="/suppliments"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
+                <Link to ="/supplements"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 cursor-pointer text-sm" href="#">
                   <Dumbbell size={20} />
                   <span>Pre, Intra & Post-Workout Suppliments</span>
                 </a></Link>

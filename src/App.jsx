@@ -15,7 +15,6 @@ import SignInGym from './views/Authentication/SignIn'
 import SignUpGym from './views/Authentication/SignUp'
 import ForgotResetPasswordGym from './views/Authentication/ForgotResetPassword'
 import Proteins from './views/Products/Protiens'
-import SupplementsCatalog from './views/Products/Suppliments'
 import AminoAcidSupplements from './views/Products/AminoAcideSuppliments'
 import MultivitaminsPage from './views/Products/Multivitamins'
 import NotificationsAndCommunication from './views/NotificationCommunication'
@@ -24,6 +23,7 @@ import SupportTickets from './views/SupportTickets'
 import Settings from './views/Settings'
 import LogoutScreen from './views/LogOut'
 import Security from './views/Management/Security'
+import Supplements from './views/Products/Supplements'
 
 
 
@@ -51,7 +51,7 @@ function App() {
               <Route path='/signIn' element = {<SignInGym/>}></Route>
               <Route path='/forgotResetPassword' element = {<ForgotResetPasswordGym/>}></Route>
                <Route path='/protiens' element = {<Proteins/>}></Route>
-               <Route path='/suppliments' element = {<SupplementsCatalog/>}></Route>
+               <Route path='/supplements' element = {<Supplements/>}></Route>
                <Route path='/aminoAcideSuppliments' element = {<AminoAcidSupplements/>}></Route>
                <Route path='/multivitamins' element = {<MultivitaminsPage/>}></Route>
                <Route path='/notificationCommunication' element = {<NotificationsAndCommunication/>}></Route>

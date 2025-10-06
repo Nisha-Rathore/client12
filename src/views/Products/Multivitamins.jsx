@@ -3,41 +3,290 @@ import Layout from "../../components/Layout";
 
 const CATEGORIES = ["All", "Men", "Women", "Unisex", "Immunity", "Performance"];
 const FORMS = ["Tablets", "Capsules", "Gummies", "Powder"];
-const IMG = {
-  Men: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop",
-  Women: "https://images.unsplash.com/photo-1588776814546-ec7f4f6e91b0?q=80&w=1200&auto=format&fit=crop",
-  Unisex: "https://images.unsplash.com/photo-1582719478146-e7f85c64b7c6?q=80&w=1200&auto=format&fit=crop",
-  Immunity: "https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=1200&auto=format&fit=crop",
-  Performance: "https://images.unsplash.com/photo-1620912189868-86b32a0ffb68?q=80&w=1200&auto=format&fit=crop",
-};
 
-const PRODUCTS = Array.from({ length: 20 }).map((_, i) => {
-  const cat = CATEGORIES.slice(1)[i % (CATEGORIES.length - 1)];
-  const form = FORMS[i % FORMS.length];
-  const name = `${cat} Multivitamin ${i + 1}`;
-  const price = 499 + (i % 5) * 100;
-  const rating = (4 + (i % 6) * 0.2).toFixed(1);
-  const servings = 30 + (i % 3) * 15;
-  const nutrients = 24 + (i % 5) * 2;
+const PRODUCTS=[
+  {
+    "id": "mv-1",
+    "name": "Men's Performance Multivitamin",
+    "category": "Men",
+    "form": "Tablets",
+    "servings": 30,
+    "nutrients": 25,
+    "rating": 4.6,
+    "reviews": 128,
+    "price": 699,
+    "mrp": 949,
+    "image": "https://www.garagegymreviews.com/wp-content/uploads/2024/10/perfoemance-lab-nutrigenesis-men-bottle-and-capsules.jpg",
+    "tags": ["Sugar Free", "Daily Use"]
+  },
+  {
+    "id": "mv-2",
+    "name": "Women's Immunity Booster",
+    "category": "Women",
+    "form": "Capsules",
+    "servings": 45,
+    "nutrients": 28,
+    "rating": 4.8,
+    "reviews": 212,
+    "price": 799,
+    "mrp": 1049,
+    "image": "https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/pgkk25vpxlu8ehf6yotb.jpg",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  },
+  {
+    "id": "mv-3",
+    "name": "Unisex Daily Multivitamin",
+    "category": "Unisex",
+    "form": "Tablets",
+    "servings": 60,
+    "nutrients": 24,
+    "rating": 4.5,
+    "reviews": 175,
+    "price": 599,
+    "mrp": 849,
+    "image": "https://m.media-amazon.com/images/I/71b9NZfGewL._UF1000,1000_QL80_.jpg",
+    "tags": ["Sugar Free", "Daily Use"]
+  },
+  {
+    "id": "mv-4",
+    "name": "Immunity Shield Complex",
+    "category": "Immunity",
+    "form": "Gummies",
+    "servings": 30,
+    "nutrients": 30,
+    "rating": 4.7,
+    "reviews": 95,
+    "price": 749,
+    "mrp": 999,
+    "image": "https://m.media-amazon.com/images/I/6139SmDT+TL._UF1000,1000_QL80_.jpg",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  },
+  {
+    "id": "mv-5",
+    "name": "Performance Max Multivitamin",
+    "category": "Performance",
+    "form": "Powder",
+    "servings": 30,
+    "nutrients": 32,
+    "rating": 4.9,
+    "reviews": 342,
+    "price": 999,
+    "mrp": 1249,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB1wW1oT4SJfQWvIWNPvUrEadRkPZV1SIL0A&s",
+    "tags": ["Sugar Free", "Complete Formula"]
+  },
+  {
+    "id": "mv-6",
+    "name": "Men's Daily Health Boost",
+    "category": "Men",
+    "form": "Capsules",
+    "servings": 30,
+    "nutrients": 22,
+    "rating": 4.3,
+    "reviews": 88,
+    "price": 549,
+    "mrp": 799,
+    "image": "https://5.imimg.com/data5/SELLER/Default/2025/1/481119866/CW/KW/KD/32319264/men-booster-capsule.jpg",
+    "tags": ["Natural Extracts", "Daily Use"]
+  },
+  {
+    "id": "mv-7",
+    "name": "Women's Energy Multivitamin",
+    "category": "Women",
+    "form": "Tablets",
+    "servings": 60,
+    "nutrients": 27,
+    "rating": 4.7,
+    "reviews": 180,
+    "price": 749,
+    "mrp": 999,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK1LLIh6SiNfS8LrMHaP2Gbn-00n6n2c-u5w&s",
+    "tags": ["Sugar Free", "Complete Formula"]
+  },
+  {
+    "id": "mv-8",
+    "name": "Unisex Active Formula",
+    "category": "Unisex",
+    "form": "Powder",
+    "servings": 45,
+    "nutrients": 29,
+    "rating": 4.6,
+    "reviews": 140,
+    "price": 799,
+    "mrp": 1049,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW0JhbUO223Vf-98OjMpdkVqTMYuHFTXUy3g&s",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  },
+  {
+    "id": "mv-9",
+    "name": "Immunity+ Gummies",
+    "category": "Immunity",
+    "form": "Gummies",
+    "servings": 30,
+    "nutrients": 26,
+    "rating": 4.4,
+    "reviews": 65,
+    "price": 699,
+    "mrp": 949,
+    "image": "https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/4fb8401ead2e43c9b930ca5cf1b1cb91.jpg?dpr=3&format=auto",
+    "tags": ["Sugar Free", "Daily Use"]
+  },
+  {
+    "id": "mv-10",
+    "name": "Performance X Pro Mix",
+    "category": "Performance",
+    "form": "Powder",
+    "servings": 60,
+    "nutrients": 34,
+    "rating": 4.9,
+    "reviews": 400,
+    "price": 1199,
+    "mrp": 1449,
+    "image": "https://m.media-amazon.com/images/I/71XcJmeXZpL._UF350,350_QL80_.jpg",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  },
+  {
+    "id": "mv-11",
+    "name": "Men's Muscle Support",
+    "category": "Men",
+    "form": "Tablets",
+    "servings": 45,
+    "nutrients": 29,
+    "rating": 4.7,
+    "reviews": 155,
+    "price": 799,
+    "mrp": 1049,
+    "image": "https://www.jiomart.com/images/product/original/rvoc0ytk2s/nature-sure-muscle-charge-tablets-for-men-1-pack-60-tablets-product-images-orvoc0ytk2s-p595115570-0-202303271436.jpg?im=Resize=(420,420)",
+    "tags": ["Sugar Free", "Complete Formula"]
+  },
+  {
+    "id": "mv-12",
+    "name": "Women's Wellness Complex",
+    "category": "Women",
+    "form": "Capsules",
+    "servings": 30,
+    "nutrients": 24,
+    "rating": 4.5,
+    "reviews": 98,
+    "price": 649,
+    "mrp": 899,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIvApUYx0kQHMbsZtrJkU4f-P7zRuxwCVfnQ&s",
+    "tags": ["Natural Extracts", "Daily Use"]
+  },
+  {
+    "id": "mv-13",
+    "name": "Unisex Recovery Boost",
+    "category": "Unisex",
+    "form": "Powder",
+    "servings": 60,
+    "nutrients": 30,
+    "rating": 4.8,
+    "reviews": 260,
+    "price": 899,
+    "mrp": 1149,
+    "image": "https://m.media-amazon.com/images/I/71xv4Baj8qL._UF350,350_QL50_.jpg",
+    "tags": ["Sugar Free", "Complete Formula"]
+  },
+  {
+    "id": "mv-14",
+    "name": "Daily Immunity Tablets",
+    "category": "Immunity",
+    "form": "Tablets",
+    "servings": 30,
+    "nutrients": 25,
+    "rating": 4.3,
+    "reviews": 75,
+    "price": 599,
+    "mrp": 849,
+    "image": "https://m.media-amazon.com/images/I/71P+jwR0abL._UF350,350_QL80_.jpg",
+    "tags": ["Natural Extracts", "Daily Use"]
+  },
+  {
+    "id": "mv-15",
+    "name": "Performance Strength Mix",
+    "category": "Performance",
+    "form": "Powder",
+    "servings": 45,
+    "nutrients": 33,
+    "rating": 4.8,
+    "reviews": 320,
+    "price": 1099,
+    "mrp": 1349,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_y9A-Sz-fXCFoI5FXI7vT93gHsBQF6rmRHg&s",
+    "tags": ["Sugar Free", "Complete Formula"]
+  },
+  {
+    "id": "mv-16",
+    "name": "Men's Daily Gummies",
+    "category": "Men",
+    "form": "Gummies",
+    "servings": 30,
+    "nutrients": 24,
+    "rating": 4.2,
+    "reviews": 60,
+    "price": 549,
+    "mrp": 799,
+    "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR1-XpPHPyJnHWSXNrUfoeXvbS88ftvo3ygwdZWzgj0TZUmmErKWCEdlK2CpZbxNmv4borN6Qsz_FVNowbSUrdzcaSab5JR5Y-joikNy0QkIuMyK7-IFhpi9A",
+    "tags": ["Natural Extracts", "Daily Use"]
+  },
+  {
+    "id": "mv-17",
+    "name": "Women's Iron & B-Complex",
+    "category": "Women",
+    "form": "Tablets",
+    "servings": 30,
+    "nutrients": 26,
+    "rating": 4.6,
+    "reviews": 112,
+    "price": 699,
+    "mrp": 949,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJWp3tGzLkbWubCEdXsfU7R7w9JnE1LsnitA&s",
+    "tags": ["Sugar Free", "Daily Use"]
+  },
+  {
+    "id": "mv-18",
+    "name": "Unisex Multivitamin Pro",
+    "category": "Unisex",
+    "form": "Capsules",
+    "servings": 45,
+    "nutrients": 28,
+    "rating": 4.7,
+    "reviews": 190,
+    "price": 799,
+    "mrp": 1049,
+    "image": "https://m.media-amazon.com/images/I/71sMSe1zCLL._UF1000,1000_QL80_.jpg",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  },
+  {
+    "id": "mv-19",
+    "name": "Immunity Zinc Gummies",
+    "category": "Immunity",
+    "form": "Gummies",
+    "servings": 30,
+    "nutrients": 27,
+    "rating": 4.5,
+    "reviews": 85,
+    "price": 649,
+    "mrp": 899,
+    "image": "https://m.media-amazon.com/images/I/71Vqd9pS2wL._UF894,1000_QL80_.jpg",
+    "tags": ["Sugar Free", "Daily Use"]
+  },
+  {
+    "id": "mv-20",
+    "name": "Performance Ultra Boost",
+    "category": "Performance",
+    "form": "Powder",
+    "servings": 60,
+    "nutrients": 35,
+    "rating": 5.0,
+    "reviews": 480,
+    "price": 1299,
+    "mrp": 1549,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMHQqLSfOeq771l2dZhSyEh45kz0YhL5sp3Q&s",
+    "tags": ["Natural Extracts", "Complete Formula"]
+  }
+]
 
-  return {
-    id: `mv-${i + 1}`,
-    name,
-    category: cat,
-    form,
-    servings,
-    nutrients,
-    rating: Math.min(5, Number(rating)),
-    reviews: 30 + (i * 11) % 180,
-    price,
-    mrp: price + 250,
-    image: IMG[cat],
-    tags: [
-      i % 2 === 0 ? "Sugar Free" : "Natural Extracts",
-      nutrients > 25 ? "Complete Formula" : "Daily Use",
-    ],
-  };
-});
 
 function Badge({ children }) {
   return (
@@ -78,7 +327,7 @@ export default function MultivitaminsPage() {
 
   return (
    <Layout>
-     <div className="min-h-screen bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100">
+     <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-zinc-100">
       <div className="mx-auto max-w-7xl px-4 md:px-8 py-6 md:py-10">
         {/* Header */}
         <header className="mb-6">

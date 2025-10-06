@@ -76,7 +76,7 @@ export default function ProteinProductsPage() {
 
   return (
    <Layout>
-     <div className="min-h-screen bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100 px-4 py-6 md:px-8">
+     <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-zinc-100 px-4 py-6 md:px-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">

@@ -8,47 +8,333 @@ import Layout from "../../components/Layout";
 const CATEGORIES = ["All", "BCAA", "EAA", "Glutamine", "Citrulline", "Arginine"]
 const FLAVORS = ["Blue Raspberry", "Watermelon", "Lemon Lime", "Mango", "Grape", "Unflavoured"]
 
-const IMG = {
-  BCAA: "https://images.unsplash.com/photo-1599050751795-5b2281aef707?q=80&w=1200&auto=format&fit=crop",
-  EAA: "https://images.unsplash.com/photo-1596357395104-5b99f04b1e8f?q=80&w=1200&auto=format&fit=crop",
-  Glutamine: "https://images.unsplash.com/photo-1585238342028-4bbc5a6c9a73?q=80&w=1200&auto=format&fit=crop",
-  Citrulline: "https://images.unsplash.com/photo-1551024709-8f23befc6cf7?q=80&w=1200&auto=format&fit=crop",
-  Arginine: "https://images.unsplash.com/photo-1560807707-8cc77767d783?q=80&w=1200&auto=format&fit=crop",
-}
 
-// 20 demo products
-const PRODUCTS = Array.from({ length: 20 }).map((_, i) => {
-  const cat = CATEGORIES.slice(1)[i % (CATEGORIES.length - 1)] // skip All
-  const flavor = FLAVORS[i % FLAVORS.length]
-  const price = 899 + (i % 6) * 150
-  const rating = 4 + ((i * 7) % 10) / 10
-  const grams = 250 + (i % 3) * 100
-  const servings = Math.round(grams / 5)
-  const actives = {
-    BCAA: { label: "BCAAs", value: 7 + (i % 3) },
-    EAA: { label: "EAAs", value: 9 + (i % 4) },
-    Glutamine: { label: "Glutamine", value: 5 + (i % 3) },
-    Citrulline: { label: "Citrulline", value: 6 + (i % 3) },
-    Arginine: { label: "Arginine", value: 5 + (i % 3) },
-  }[cat]
 
-  return {
-    id: `aa-${i + 1}`,
-    name: `${cat} ${i + 1}`,
-    category: cat,
-    flavor,
-    grams,
-    servings,
-    activeLabel: actives.label,
-    activeValue: actives.value,
-    rating: Math.min(5, Number(rating.toFixed(1))),
-    reviews: 30 + (i * 11) % 180,
-    price,
-    mrp: price + 300,
-    image: IMG[cat],
-    tags: [i % 2 === 0 ? "Sugar Free" : "Vegan Friendly", grams >= 350 ? "Value Pack" : ""].filter(Boolean),
+
+// 20 explicit products with unique images
+const PRODUCTS = [
+  {
+    id: "aa-1",
+    name: "BCAA Surge 2:1:1",
+    category: "BCAA",
+    flavor: "Blue Raspberry",
+    grams: 300,
+    servings: 60,
+    activeLabel: "BCAAs",
+    activeValue: 7,
+    rating: 4.6,
+    reviews: 128,
+    price: 1199,
+    mrp: 1499,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabhw5EnGYgT7n58svRnYKqDF43baD-TWlrA&s",
+    tags: ["Sugar Free", "Value Pack"]
+  },
+  {
+    id: "aa-2",
+    name: "EAA Matrix 9",
+    category: "EAA",
+    flavor: "Watermelon",
+    grams: 250,
+    servings: 50,
+    activeLabel: "EAAs",
+    activeValue: 10,
+    rating: 4.5,
+    reviews: 102,
+    price: 1299,
+    mrp: 1599,
+    image: "https://m.media-amazon.com/images/I/61ujdXsg-BL._UF350,350_QL80_.jpg",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-3",
+    name: "Glutamine Micronized",
+    category: "Glutamine",
+    flavor: "Unflavoured",
+    grams: 300,
+    servings: 60,
+    activeLabel: "Glutamine",
+    activeValue: 5,
+    rating: 4.4,
+    reviews: 76,
+    price: 999,
+    mrp: 1299,
+    image: "https://m.media-amazon.com/images/I/61+oB5KMMUL._UF1000,1000_QL80_.jpg",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-4",
+    name: "Citrulline Malate 2:1",
+    category: "Citrulline",
+    flavor: "Lemon Lime",
+    grams: 250,
+    servings: 50,
+    activeLabel: "Citrulline",
+    activeValue: 6,
+    rating: 4.7,
+    reviews: 141,
+    price: 1099,
+    mrp: 1399,
+    image: "https://i5.walmartimages.com/seo/CON-CRET-Patented-Creatine-HCl-Lemon-Lime-Powder-Workout-Supplement-48-Servings_b29572d9-ec3e-420f-baa8-cae2f93fe261.4d6a31efe84d66d91dc5fdd86a0a44d3.png?odnHeight=320&odnWidth=320&odnBg=FFFFFF",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-5",
+    name: "Arginine AKG Pump",
+    category: "Arginine",
+    flavor: "Grape",
+    grams: 250,
+    servings: 50,
+    activeLabel: "Arginine",
+    activeValue: 5,
+    rating: 4.2,
+    reviews: 64,
+    price: 899,
+    mrp: 1199,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAQJU4CEbCuB6fG4Eu3RIl3w7D5zje0kKItA&s",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-6",
+    name: "BCAA + Electrolytes",
+    category: "BCAA",
+    flavor: "Mango",
+    grams: 350,
+    servings: 70,
+    activeLabel: "BCAAs",
+    activeValue: 8,
+    rating: 4.3,
+    reviews: 95,
+    price: 1399,
+    mrp: 1699,
+    image: "https://m.media-amazon.com/images/I/71oNq0vFStL._UF350,350_QL80_.jpg",
+    tags: ["Value Pack"]
+  },
+  {
+    id: "aa-7",
+    name: "EAA Zero Sugar",
+    category: "EAA",
+    flavor: "Blue Raspberry",
+    grams: 300,
+    servings: 60,
+    activeLabel: "EAAs",
+    activeValue: 9,
+    rating: 4.5,
+    reviews: 110,
+    price: 1349,
+    mrp: 1649,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-f5u1XsTyiuZjuWEKYAwndckEJBf1vylacvOCVepKpTulQTdkvfLuFpVeenCXtLSh_aY&usqp=CAU",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-8",
+    name: "Glutamine + Vitamin C",
+    category: "Glutamine",
+    flavor: "Lemon Lime",
+    grams: 350,
+    servings: 70,
+    activeLabel: "Glutamine",
+    activeValue: 5,
+    rating: 4.3,
+    reviews: 67,
+    price: 1099,
+    mrp: 1399,
+    image: "https://www.nutritionwarehouse.co.nz/cdn/shop/files/ehp-labs-oxyshred-hardcore-lemon-sherbet_500x500.png?v=1750979745",
+    tags: ["Value Pack"]
+  },
+  {
+    id: "aa-9",
+    name: "Citrulline Ultra",
+    category: "Citrulline",
+    flavor: "Watermelon",
+    grams: 300,
+    servings: 60,
+    activeLabel: "Citrulline",
+    activeValue: 8,
+    rating: 4.6,
+    reviews: 122,
+    price: 1249,
+    mrp: 1549,
+    image: "https://m.media-amazon.com/images/I/61hsR6y9X+L._UF1000,1000_QL80_.jpg",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-10",
+    name: "Arginine Pure",
+    category: "Arginine",
+    flavor: "Unflavoured",
+    grams: 300,
+    servings: 60,
+    activeLabel: "Arginine",
+    activeValue: 6,
+    rating: 4.1,
+    reviews: 58,
+    price: 949,
+    mrp: 1249,
+    image: "https://m.media-amazon.com/images/I/61q3FRFGX3L.jpg_BO30,255,255,255_UF800,800_SR1910,1000,0,C_PIRIOTHREEANDHALF-medium,TopLeft,30,880_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzU2NTk1OSIgZm9udD0iQW1hem9uRW1iZXIgNTAiID42NTwvc3Bhbj4=,500,883,420,420,0,0_PIin-overlay-frame,TopLeft,0,0_QL100_.jpg",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-11",
+    name: "BCAA Fermented 4:1:1",
+    category: "BCAA",
+    flavor: "Grape",
+    grams: 250,
+    servings: 50,
+    activeLabel: "BCAAs",
+    activeValue: 8,
+    rating: 4.4,
+    reviews: 84,
+    price: 1199,
+    mrp: 1499,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3lsPfR5ciLmVcjgymLdd2DP-Ff6EaOV_xQJCr2YqztbNQmd7JdNtBEV23cTCskmxGAdk&usqp=CAU",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-12",
+    name: "EAA Hydrate Advanced",
+    category: "EAA",
+    flavor: "Mango",
+    grams: 300,
+    servings: 60,
+    activeLabel: "EAAs",
+    activeValue: 10,
+    rating: 4.5,
+    reviews: 133,
+    price: 1399,
+    mrp: 1699,
+    image: "https://m.media-amazon.com/images/I/71zYaDycUFL._UF894,1000_QL80_.jpg",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-13",
+    name: "Glutamine Recovery",
+    category: "Glutamine",
+    flavor: "Unflavoured",
+    grams: 250,
+    servings: 50,
+    activeLabel: "Glutamine",
+    activeValue: 5,
+    rating: 4.2,
+    reviews: 60,
+    price: 899,
+    mrp: 1199,
+    image: "https://m.media-amazon.com/images/I/71HrvA+Eh+L._UF1000,1000_QL80_.jpg",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-14",
+    name: "Citrulline Max Endurance",
+    category: "Citrulline",
+    flavor: "Grape",
+    grams: 350,
+    servings: 70,
+    activeLabel: "Citrulline",
+    activeValue: 7,
+    rating: 4.6,
+    reviews: 97,
+    price: 1299,
+    mrp: 1599,
+    image: "https://www.gosupps.com/media/catalog/product/6/1/610TRWOKMzL.jpg",
+    tags: ["Value Pack"]
+  },
+  {
+    id: "aa-15",
+    name: "Arginine AKG Pro",
+    category: "Arginine",
+    flavor: "Lemon Lime",
+    grams: 250,
+    servings: 50,
+    activeLabel: "Arginine",
+    activeValue: 5,
+    rating: 4.0,
+    reviews: 52,
+    price: 899,
+    mrp: 1199,
+    image: "https://www.nutrabliss.in/cdn/shop/products/L-Arginine_LemonLime_Front.jpg?v=1716808820&width=1946",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-16",
+    name: "BCAA Energy",
+    category: "BCAA",
+    flavor: "Watermelon",
+    grams: 300,
+    servings: 60,
+    activeLabel: "BCAAs",
+    activeValue: 7,
+    rating: 4.3,
+    reviews: 71,
+    price: 1149,
+    mrp: 1449,
+    image: "https://d2crvu6tosum4d.cloudfront.net/media/listing/Prime-BCAA/gxn-prime-bcaa-60-servings-watermelon-1.jpg",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-17",
+    name: "EAA + Electrolytes",
+    category: "EAA",
+    flavor: "Blue Raspberry",
+    grams: 350,
+    servings: 70,
+    activeLabel: "EAAs",
+    activeValue: 9,
+    rating: 4.5,
+    reviews: 120,
+    price: 1449,
+    mrp: 1749,
+    image: "https://m.media-amazon.com/images/I/61OSADCK9NL._UF350,350_QL80_.jpg",
+    tags: ["Value Pack"]
+  },
+  {
+    id: "aa-18",
+    name: "Glutamine Clean",
+    category: "Glutamine",
+    flavor: "Unflavoured",
+    grams: 300,
+    servings: 60,
+    activeLabel: "Glutamine",
+    activeValue: 5,
+    rating: 4.3,
+    reviews: 66,
+    price: 1049,
+    mrp: 1349,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGG5m8m5wn6UTtlzGU_5h_4owl0jv1gDgfyA&s",
+    tags: ["Sugar Free"]
+  },
+  {
+    id: "aa-19",
+    name: "Citrulline Pump",
+    category: "Citrulline",
+    flavor: "Mango",
+    grams: 250,
+    servings: 50,
+    activeLabel: "Citrulline",
+    activeValue: 6,
+    rating: 4.4,
+    reviews: 81,
+    price: 1099,
+    mrp: 1399,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz2rWnZQRh9QHMfaClWecCsDSzs_EHaFoPig&s",
+    tags: ["Vegan Friendly"]
+  },
+  {
+    id: "aa-20",
+    name: "Arginine Performance",
+    category: "Arginine",
+    flavor: "Grape",
+    grams: 350,
+    servings: 70,
+    activeLabel: "Arginine",
+    activeValue: 6,
+    rating: 4.1,
+    reviews: 59,
+    price: 999,
+    mrp: 1299,
+    image: "https://m.media-amazon.com/images/I/71oLLgANBAL._UF350,350_QL80_.jpg",
+    tags: ["Value Pack"]
   }
-})
+];
+
 
 function Badge({ children }) {
   return <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/10 ring-1 ring-white/10">{children}</span>
@@ -81,7 +367,7 @@ export default function AminoAcidSupplements() {
 
   return (
   <Layout>
-        <div className="min-h-screen bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100">
+        <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-zinc-100">
       {/* halo */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-[-12rem] -translate-x-1/2 h-[28rem] w-[28rem] rounded-full bg-indigo-600/20 blur-3xl" />

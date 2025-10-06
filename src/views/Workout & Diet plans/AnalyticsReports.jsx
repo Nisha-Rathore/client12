@@ -59,7 +59,7 @@ import { cn } from "@/lib/utils";
  */
 
 const gradientBg =
-  "bg-[radial-gradient(1200px_600px_at_70%_-10%,rgba(74,222,128,0.25),transparent),radial-gradient(800px_400px_at_10%_10%,rgba(59,130,246,0.25),transparent)]";
+  "bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)]";
 
 // Demo data
 const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
