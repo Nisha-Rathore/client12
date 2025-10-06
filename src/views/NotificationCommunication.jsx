@@ -17,7 +17,7 @@ export default function NotificationsAndCommunication() {
   const [search, setSearch] = useState("");
   const [previewOpen, setPreviewOpen] = useState(false);
 
-  const base = highContrast ? "from-slate-900 via-slate-800 to-slate-900" : "from-slate-900 via-slate-800 to-slate-900";
+  const base = highContrast ? "from-gray-50 via-gray-100 to-gray-50" : "from-white via-gray-100 to-white";
 
   const stats = [
     { label: "Sent", value: "12.4k", sub: "+8% vs last week" },
@@ -55,38 +55,38 @@ export default function NotificationsAndCommunication() {
 
   return (
    <Layout>
-     <div className={`min-h-screen w-full bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100`}> 
+    <div className={`min-h-screen w-full bg-gradient-to-b ${base} text-gray-900`}> 
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight">Notifications & Communication</h1>
-            <p className="mt-1 text-sm text-slate-300">Live status, quick actions, and clean visuals.</p>
+            <p className="mt-1 text-sm text-gray-700">Live status, quick actions, and clean visuals.</p>
           </div>
           <div className="flex items-center gap-3">
             <label className="flex items-center gap-2 text-xs">
               <span>High contrast</span>
               <input type="checkbox" className="toggle toggle-sm" checked={highContrast} onChange={e=>setHighContrast(e.target.checked)} />
             </label>
-            <select value={range} onChange={e=>setRange(e.target.value)} className="rounded-xl bg-slate-800/70 px-3 py-2 text-xs ring-1 ring-white/10 focus:outline-none">
+            <select value={range} onChange={e=>setRange(e.target.value)} className="rounded-xl bg-gray-100 px-3 py-2 text-xs ring-1 ring-gray-300 focus:outline-none">
               <option value="7">Last 7 days</option>
               <option value="30">Last 30 days</option>
               <option value="90">Last 90 days</option>
             </select>
-            <button className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 hover:brightness-110">Export</button>
+            <button className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Export</button>
           </div>
         </div>
 
         {/* KPI cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="rounded-2xl border border-white/10 bg-slate-800/50 p-4 backdrop-blur-md hover:border-emerald-400/40">
+            <div key={s.label} className="rounded-2xl border border-gray-300/10 bg-white/50 p-4 backdrop-blur-md hover:border-blue-400/40">
               <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-wide text-slate-400">{s.label}</p>
+                <p className="text-xs uppercase tracking-wide text-gray-600">{s.label}</p>
                 <svg className="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12h3l3 7 4-14 3 7h5"/></svg>
               </div>
               <div className="mt-2 text-2xl font-bold">{s.value}</div>
-              <div className="text-xs text-slate-400">{s.sub}</div>
+              <div className="text-xs text-gray-600">{s.sub}</div>
             </div>
           ))}
         </div>
@@ -96,83 +96,83 @@ export default function NotificationsAndCommunication() {
           {/* Activity & Inbox */}
           <div className="lg:col-span-2 space-y-6">
             {/* Activity chart stub */}
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60 p-4">
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Channel performance</h3>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <span className="rounded bg-slate-700/60 px-2 py-1">Email</span>
-                  <span className="rounded bg-slate-700/60 px-2 py-1">SMS</span>
-                  <span className="rounded bg-slate-700/60 px-2 py-1">Push</span>
-                  <span className="rounded bg-slate-700/60 px-2 py-1">In‑app</span>
+                <div className="flex items-center gap-2 text-xs text-gray-700">
+                  <span className="rounded bg-gray-200 px-2 py-1">Email</span>
+                  <span className="rounded bg-gray-200 px-2 py-1">SMS</span>
+                  <span className="rounded bg-gray-200 px-2 py-1">Push</span>
+                  <span className="rounded bg-gray-200 px-2 py-1">In‑app</span>
                 </div>
               </div>
               {/* simple bars */}
               <div className="grid grid-cols-12 items-end gap-2 h-40">
                 {[48, 52, 61, 43, 70, 65, 58, 62, 73, 69, 76, 71].map((v, i) => (
                   <div key={i} className="group flex h-full items-end">
-                    <div style={{ height: `${v}%` }} className="w-full rounded-t-xl bg-emerald-500/80 group-hover:bg-emerald-400 transition-all"></div>
+                    <div style={{ height: `${v}%` }} className="w-full rounded-t-xl bg-blue-500/80 group-hover:bg-blue-400 transition-all"></div>
                   </div>
                 ))}
               </div>
-              <div className="mt-2 text-xs text-slate-400">Open and response trend over {range} days.</div>
+              <div className="mt-2 text-xs text-gray-600">Open and response trend over {range} days.</div>
             </div>
 
             {/* Live feed */}
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60">
-              <div className="flex items-center justify-between border-b border-white/10 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60">
+              <div className="flex items-center justify-between border-b border-gray-300/10 p-4">
                 <div>
                   <h3 className="text-lg font-semibold">Live activity</h3>
-                  <p className="text-xs text-slate-400">Real time opens, clicks, replies, and alerts.</p>
+                  <p className="text-xs text-gray-700">Real time opens, clicks, replies, and alerts.</p>
                 </div>
-                <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search feed" className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10 focus:outline-none"/>
+                <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search feed" className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300 focus:outline-none"/>
               </div>
-              <ul className="max-h-80 divide-y divide-white/10 overflow-auto">
+              <ul className="max-h-80 divide-y divide-gray-300/10 overflow-auto">
                 {filteredActivity.map((a) => (
-                  <li key={a.id} className="flex items-center justify-between px-4 py-3 hover:bg-slate-900/40">
+                  <li key={a.id} className="flex items-center justify-between px-4 py-3 hover:bg-gray-200">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-emerald-500 to-cyan-400 text-slate-900 font-bold">{a.who.slice(0,1)}</div>
+                      <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 text-white font-bold">{a.who.slice(0,1)}</div>
                       <div>
                         <p className="text-sm"><span className="font-semibold">{a.who}</span> • {a.what}</p>
-                        <p className="text-xs text-slate-400">{a.detail}</p>
+                        <p className="text-xs text-gray-600">{a.detail}</p>
                       </div>
                     </div>
-                    <span className="text-xs text-slate-400">{a.time}</span>
+                    <span className="text-xs text-gray-600">{a.time}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Quick log */}
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60 p-4">
               <h3 className="text-lg font-semibold">Quick announcement</h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                <input className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" placeholder="Title" />
-                <input className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" placeholder="Location or club" />
-                <input className="rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" placeholder="Starts at" />
-                <button className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-cyan-950 hover:brightness-110">Publish</button>
+                <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Title" />
+                <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Location or club" />
+                <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Starts at" />
+                <button className="rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:brightness-110">Publish</button>
               </div>
             </div>
           </div>
 
           {/* Composer */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60 p-4">
               <h3 className="text-lg font-semibold">Composer</h3>
               <div className="mt-3 space-y-3">
                 <div className="grid grid-cols-2 gap-3">
-                  <input value={subject} onChange={e=>setSubject(e.target.value)} className="col-span-2 rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" placeholder="Subject or title" />
-                  <textarea value={message} onChange={e=>setMessage(e.target.value)} rows={5} className="col-span-2 rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10" placeholder="Write your message" />
+                  <input value={subject} onChange={e=>setSubject(e.target.value)} className="col-span-2 rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Subject or title" />
+                  <textarea value={message} onChange={e=>setMessage(e.target.value)} rows={5} className="col-span-2 rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Write your message" />
                 </div>
 
                 {/* Channels */}
                 <div className="grid grid-cols-2 gap-3 text-sm">
-                  {[
+                  {[ 
                     { key: "email", label: "Email" },
                     { key: "sms", label: "SMS" },
                     { key: "push", label: "Push" },
                     { key: "inapp", label: "In‑app" },
                   ].map((c)=> (
-                    <label key={c.key} className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2">
+                    <label key={c.key} className="flex items-center justify-between rounded-xl border border-gray-300/10 bg-gray-100 px-3 py-2">
                       <span>{c.label}</span>
                       <input type="checkbox" checked={channel[c.key]} onChange={e=>setChannel({ ...channel, [c.key]: e.target.checked })} />
                     </label>
@@ -181,46 +181,46 @@ export default function NotificationsAndCommunication() {
 
                 {/* Targeting */}
                 <div className="grid grid-cols-2 gap-3 text-sm">
-                  <select value={segment} onChange={e=>setSegment(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 ring-1 ring-white/10">
+                  <select value={segment} onChange={e=>setSegment(e.target.value)} className="rounded-xl bg-gray-100 px-3 py-2 ring-1 ring-gray-300">
                     <option value="all">All members</option>
                     <option value="new">New joiners (30d)</option>
                     <option value="inactive">Inactive 7d</option>
                     <option value="trial">Trial users</option>
                     <option value="vip">PT clients</option>
                   </select>
-                  <select value={priority} onChange={e=>setPriority(e.target.value)} className="rounded-xl bg-slate-900/70 px-3 py-2 ring-1 ring-white/10">
+                  <select value={priority} onChange={e=>setPriority(e.target.value)} className="rounded-xl bg-gray-100 px-3 py-2 ring-1 ring-gray-300">
                     <option value="normal">Priority normal</option>
                     <option value="high">Priority high</option>
                     <option value="urgent">Urgent</option>
                   </select>
-                  <input value={schedule} onChange={e=>setSchedule(e.target.value)} type="datetime-local" className="col-span-2 rounded-xl bg-slate-900/70 px-3 py-2 ring-1 ring-white/10" />
+                  <input value={schedule} onChange={e=>setSchedule(e.target.value)} type="datetime-local" className="col-span-2 rounded-xl bg-gray-100 px-3 py-2 ring-1 ring-gray-300" />
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-slate-400">Compliance: opt out links auto added for SMS and email.</div>
-                  <div className="flex items-center gap-2">
-                    <button onClick={()=>setPreviewOpen(true)} className="rounded-xl bg-slate-700 px-4 py-2 text-sm hover:brightness-110">Preview</button>
-                    <button onClick={sendNow} className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 hover:brightness-110">{schedule ? "Schedule" : "Send now"}</button>
-                  </div>
+                <div className="text-xs text-gray-600">Compliance: opt out links auto added for SMS and email.</div>
+                <div className="flex items-center gap-2">
+                  <button onClick={()=>setPreviewOpen(true)} className="rounded-xl bg-gray-300 px-4 py-2 text-sm hover:brightness-110">Preview</button>
+                  <button onClick={sendNow} className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">{schedule ? "Schedule" : "Send now"}</button>
                 </div>
               </div>
             </div>
+            </div>
 
             {/* Templates */}
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60 p-4">
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Templates</h3>
-                <button className="rounded-lg bg-slate-700 px-3 py-1 text-xs">Create</button>
+                <button className="rounded-lg bg-gray-300 px-3 py-1 text-xs">Create</button>
               </div>
               <ul className="space-y-2">
                 {templates.map(t => (
-                  <li key={t.id} className="rounded-xl border border-white/10 bg-slate-900/50 p-3 hover:border-emerald-400/40">
+                  <li key={t.id} className="rounded-xl border border-gray-300/10 bg-gray-100 p-3 hover:border-blue-400/40">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-semibold">{t.name}</p>
-                        <p className="text-xs text-slate-400 line-clamp-2">{t.text}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">{t.text}</p>
                       </div>
-                      <button onClick={()=>quickFill(t)} className="rounded-lg bg-cyan-400 px-3 py-1 text-xs font-semibold text-cyan-950 hover:brightness-110">Use</button>
+                      <button onClick={()=>quickFill(t)} className="rounded-lg bg-cyan-500 px-3 py-1 text-xs font-semibold text-white hover:brightness-110">Use</button>
                     </div>
                   </li>
                 ))}
@@ -228,7 +228,7 @@ export default function NotificationsAndCommunication() {
             </div>
 
             {/* Health */}
-            <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+            <div className="rounded-2xl border border-gray-300/10 bg-white/60 p-4">
               <h3 className="text-lg font-semibold">System health</h3>
               <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
                 {[
@@ -236,9 +236,9 @@ export default function NotificationsAndCommunication() {
                   { k: "SMS gateway", v: "OK" },
                   { k: "Push service", v: "Degraded" },
                 ].map((r)=> (
-                  <div key={r.k} className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
-                    <div className="text-xs text-slate-400">{r.k}</div>
-                    <div className={`text-base font-semibold ${r.v === "OK" ? "text-emerald-400" : "text-yellow-400"}`}>{r.v}</div>
+                  <div key={r.k} className="rounded-xl border border-gray-300/10 bg-gray-100 p-3">
+                    <div className="text-xs text-gray-600">{r.k}</div>
+                    <div className={`text-base font-semibold ${r.v === "OK" ? "text-blue-500" : "text-yellow-500"}`}>{r.v}</div>
                   </div>
                 ))}
               </div>
@@ -249,26 +249,26 @@ export default function NotificationsAndCommunication() {
 
       {/* Preview modal */}
       {previewOpen && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-4">
-          <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-slate-900 p-5">
+        <div className="fixed inset-0 z-50 grid place-items-center bg-white/70 p-4">
+          <div className="w-full max-w-2xl rounded-2xl border border-gray-300/10 bg-white p-5">
             <div className="mb-3 flex items-center justify-between">
-              <h4 className="text-lg font-semibold">Message preview</h4>
-              <button onClick={()=>setPreviewOpen(false)} className="rounded-lg bg-slate-700 px-3 py-1 text-xs">Close</button>
+              <h4 className="text-lg font-semibold text-gray-900">Message preview</h4>
+              <button onClick={()=>setPreviewOpen(false)} className="rounded-lg bg-gray-300 px-3 py-1 text-xs">Close</button>
             </div>
-            <div className="rounded-xl border border-white/10 bg-slate-800 p-4">
-              <div className="text-xs text-slate-400">Subject</div>
-              <div className="text-base font-semibold">{subject}</div>
-              <div className="mt-3 whitespace-pre-line text-sm text-slate-200">{message}</div>
-              <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-slate-400">
-                <div>Segment: <span className="text-slate-200">{segment}</span></div>
-                <div>Priority: <span className="text-slate-200">{priority}</span></div>
-                <div>Channels: <span className="text-slate-200">{Object.entries(channel).filter(([,v])=>v).map(([k])=>k).join(", ")}</span></div>
-                <div>Schedule: <span className="text-slate-200">{schedule || "now"}</span></div>
+            <div className="rounded-xl border border-gray-300/10 bg-gray-100 p-4">
+              <div className="text-xs text-gray-600">Subject</div>
+              <div className="text-base font-semibold text-gray-900">{subject}</div>
+              <div className="mt-3 whitespace-pre-line text-sm text-gray-800">{message}</div>
+              <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-gray-600">
+                <div>Segment: <span className="text-gray-900">{segment}</span></div>
+                <div>Priority: <span className="text-gray-900">{priority}</span></div>
+                <div>Channels: <span className="text-gray-900">{Object.entries(channel).filter(([,v])=>v).map(([k])=>k).join(", ")}</span></div>
+                <div>Schedule: <span className="text-gray-900">{schedule || "now"}</span></div>
               </div>
             </div>
             <div className="mt-4 flex items-center justify-end gap-2">
-              <button onClick={()=>setPreviewOpen(false)} className="rounded-xl bg-slate-700 px-4 py-2 text-sm">Edit</button>
-              <button onClick={()=>{ setPreviewOpen(false); sendNow(); }} className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 hover:brightness-110">Confirm send</button>
+              <button onClick={()=>setPreviewOpen(false)} className="rounded-xl bg-gray-300 px-4 py-2 text-sm">Edit</button>
+              <button onClick={()=>{ setPreviewOpen(false); sendNow(); }} className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Confirm send</button>
             </div>
           </div>
         </div>

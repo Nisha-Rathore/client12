@@ -83,19 +83,19 @@ const defaultGoals = () => ([
 function StatCard({ icon: Icon, title, value, sub, burst = false }) {
   return (
     <Card className={cn(
-      "relative overflow-hidden border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5",
+      "relative overflow-hidden border-0 bg-gray-50 shadow-xl ring-1 ring-gray-300",
       burst && "ring-2 ring-emerald-400/50"
     )}>
-      <div className="absolute inset-0 opacity-50 bg-gradient-to-br from-white/10 to-transparent" />
+      <div className="absolute inset-0 opacity-50 bg-gradient-to-br from-gray-100 to-transparent" />
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-slate-300">{title}</CardTitle>
-        <div className="p-2 rounded-xl bg-white/10">
-          <Icon className="h-5 w-5 text-white" />
+        <CardTitle className="text-sm font-medium text-gray-600">{title}</CardTitle>
+        <div className="p-2 rounded-xl bg-gray-100">
+          <Icon className="h-5 w-5 text-gray-900" />
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-extrabold text-white tracking-tight">{value}</div>
-        {sub && <p className="text-xs text-slate-400 mt-1">{sub}</p>}
+        <div className="text-3xl font-extrabold text-gray-900 tracking-tight">{value}</div>
+        {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
       </CardContent>
     </Card>
   );
@@ -103,7 +103,7 @@ function StatCard({ icon: Icon, title, value, sub, burst = false }) {
 
 function ProgressBar({ value }) {
   return (
-    <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
+    <div className="w-full h-3 rounded-full bg-gray-200 overflow-hidden">
       <div
         className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-sky-500"
         style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
@@ -115,7 +115,7 @@ function ProgressBar({ value }) {
 function Field({ label, children }) {
   return (
     <div className="space-y-1">
-      <Label className="text-slate-300 text-xs">{label}</Label>
+      <Label className="text-gray-600 text-xs">{label}</Label>
       {children}
     </div>
   );
@@ -127,19 +127,19 @@ function QuickLog({ onAdd }) {
   const [calories, setCalories] = useState(450);
 
   return (
-    <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+    <Card className="border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
       <CardHeader>
-        <CardTitle className="text-lg">Quick log</CardTitle>
-        <CardDescription className="text-slate-400">Add a session and calories</CardDescription>
+        <CardTitle className="text-lg text-gray-900">Quick log</CardTitle>
+        <CardDescription className="text-gray-700">Add a session and calories</CardDescription>
       </CardHeader>
       <CardContent className="grid sm:grid-cols-4 gap-3">
         <div>
-          <Label className="text-slate-300 text-xs">Day</Label>
+          <Label className="text-gray-600 text-xs">Day</Label>
           <Select value={day} onValueChange={setDay}>
-            <SelectTrigger className="w-full bg-white/10 border-white/20 mt-1">
+            <SelectTrigger className="w-full bg-gray-100 border-gray-300 mt-1">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-slate-800 border-white/10">
+            <SelectContent className="bg-white border-gray-300">
               {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => (
                 <SelectItem key={d} value={d}>{d}</SelectItem>
               ))}
@@ -149,12 +149,12 @@ function QuickLog({ onAdd }) {
         <Field label="Workouts">
           <Input type="number" min={0} value={workouts}
                  onChange={e => setWorkouts(parseInt(e.target.value || "0"))}
-                 className="bg-white/10 border-white/20" />
+                 className="bg-gray-100 border-gray-300" />
         </Field>
         <Field label="Calories">
           <Input type="number" min={0} value={calories}
                  onChange={e => setCalories(parseInt(e.target.value || "0"))}
-                 className="bg-white/10 border-white/20" />
+                 className="bg-gray-100 border-gray-300" />
         </Field>
         <div className="flex items-end">
           <Button onClick={() => onAdd({ day, workouts, calories })}
@@ -175,34 +175,34 @@ function GoalsEditor({ goals, setGoals }) {
   };
 
   return (
-    <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+    <Card className="border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
       <CardHeader>
-        <CardTitle className="text-lg">Goals</CardTitle>
-        <CardDescription className="text-slate-400">Edit and track progress</CardDescription>
+        <CardTitle className="text-lg text-gray-900">Goals</CardTitle>
+        <CardDescription className="text-gray-700">Edit and track progress</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-5">
           {goals.map((g, idx) => (
             <div key={g.key} className="grid grid-cols-5 items-center gap-3">
               <div className="col-span-2">
-                <div className="text-sm text-slate-300">{g.label}</div>
-                <div className="text-xs text-slate-500">Target {g.target}{g.suffix}</div>
+                <div className="text-sm text-gray-700">{g.label}</div>
+                <div className="text-xs text-gray-600">Target {g.target}{g.suffix}</div>
               </div>
               <div className="col-span-3 space-y-2">
                 <ProgressBar value={g.value} />
                 <div className="grid grid-cols-2 gap-2">
                   <Input type="number" value={g.value}
                          onChange={e => update(idx, "value", parseInt(e.target.value || "0"))}
-                         className="bg-white/10 border-white/20" />
+                         className="bg-gray-100 border-gray-300" />
                   <Input type="number" value={g.target}
                          onChange={e => update(idx, "target", parseInt(e.target.value || "0"))}
-                         className="bg-white/10 border-white/20" />
+                         className="bg-gray-100 border-gray-300" />
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <Button className="w-full mt-6 bg-white/10 hover:bg-white/20">
+        <Button className="w-full mt-6 bg-gray-100 hover:bg-gray-200">
           <Save className="h-4 w-4 mr-2" /> Save goals
         </Button>
       </CardContent>
@@ -234,7 +234,7 @@ export default function ProgressTracking() {
 
   return (
    <Layout>
-     <div className={cn("min-h-screen bg-slate-900 text-white", gradientBg)}>
+     <div className={cn("min-h-screen bg-white text-gray-900")}>
       <div className="mx-auto max-w-7xl px-6 py-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -242,24 +242,24 @@ export default function ProgressTracking() {
             <motion.h1 initial="hidden" animate="show" variants={headerVariants} className="text-3xl md:text-4xl font-extrabold tracking-tight">
               Progress tracker
             </motion.h1>
-            <p className="text-slate-300 mt-2">Live goals, real-time logs, clean visuals.</p>
+            <p className="text-gray-600 mt-2">Live goals, real-time logs, clean visuals.</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 pr-3 border-r border-white/10">
+            <div className="flex items-center gap-2 pr-3 border-r border-gray-300">
               <Switch checked={emphasis} onCheckedChange={setEmphasis} />
-              <span className="text-xs text-slate-300">High contrast</span>
+              <span className="text-xs text-gray-600">High contrast</span>
             </div>
             <Select value={range} onValueChange={setRange}>
-              <SelectTrigger className="w-[140px] bg-white/10 border-white/20">
+              <SelectTrigger className="w-[140px] bg-gray-50 border-gray-300">
                 <SelectValue placeholder="Range" />
               </SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/10">
+              <SelectContent className="bg-white border-gray-300">
                 <SelectItem value="7d">Last 7 days</SelectItem>
                 <SelectItem value="30d">Last 30 days</SelectItem>
                 <SelectItem value="90d">Last 90 days</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="bg-gradient-to-r from-emerald-500 to-sky-500 hover:opacity-90 shadow-lg">
+            <Button className="bg-green-500 hover:bg-green-600 shadow-lg text-white">
               <Calendar className="h-4 w-4 mr-2" /> Export
             </Button>
           </div>
@@ -276,19 +276,19 @@ export default function ProgressTracking() {
         {/* Quick log + Goals */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
           <div className="col-span-2 space-y-6">
-            <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+            <Card className="border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
               <CardHeader>
-                <CardTitle className="text-lg">Weekly activity</CardTitle>
-                <CardDescription className="text-slate-400">Sessions and calories</CardDescription>
+                <CardTitle className="text-lg text-gray-900">Weekly activity</CardTitle>
+                <CardDescription className="text-gray-700">Sessions and calories</CardDescription>
               </CardHeader>
               <CardContent className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={byDay}>
-                    <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                    <XAxis dataKey="day" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                    <YAxis yAxisId="left" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                    <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                    <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
+                    <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#9ca3af" />
+                    <XAxis dataKey="day" stroke="#4b5563" tickLine={false} axisLine={false} />
+                    <YAxis yAxisId="left" stroke="#4b5563" tickLine={false} axisLine={false} />
+                    <YAxis yAxisId="right" orientation="right" stroke="#4b5563" tickLine={false} axisLine={false} />
+                    <Tooltip contentStyle={{ background: "#f9fafb", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
                     <Bar yAxisId="left" dataKey="workouts" radius={[6,6,0,0]} />
                     <Line yAxisId="right" type="monotone" dataKey="calories" strokeWidth={3} dot={false} />
                   </BarChart>
@@ -304,18 +304,18 @@ export default function ProgressTracking() {
 
         {/* PRs + Body metrics */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-          <Card className="col-span-2 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="col-span-2 border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
             <CardHeader>
-              <CardTitle className="text-lg">Personal Records</CardTitle>
-              <CardDescription className="text-slate-400">Tap to edit values</CardDescription>
+              <CardTitle className="text-lg text-gray-900">Personal Records</CardTitle>
+              <CardDescription className="text-gray-700">Tap to edit values</CardDescription>
             </CardHeader>
             <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={prs} barSize={28}>
-                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                  <XAxis dataKey="lift" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#9ca3af" />
+                  <XAxis dataKey="lift" stroke="#4b5563" tickLine={false} axisLine={false} />
+                  <YAxis stroke="#4b5563" tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ background: "#f9fafb", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
                   <Bar dataKey="kg" radius={[8,8,0,0]} onClick={(d) => {
                     const name = d && d.activeLabel;
                     const idx = prs.findIndex(p => p.lift === name);
@@ -332,31 +332,31 @@ export default function ProgressTracking() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
             <CardHeader>
-              <CardTitle className="text-lg">Body metrics</CardTitle>
-              <CardDescription className="text-slate-400">Last 30 days</CardDescription>
+              <CardTitle className="text-lg text-gray-900">Body metrics</CardTitle>
+              <CardDescription className="text-gray-700">Last 30 days</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-slate-300">Weight</span>
-                    <span className="text-sm font-semibold">74.6 kg</span>
+                    <span className="text-sm text-gray-700">Weight</span>
+                    <span className="text-sm font-semibold text-gray-900">74.6 kg</span>
                   </div>
                   <ProgressBar value={62} />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-slate-300">Body fat</span>
-                    <span className="text-sm font-semibold">19.8%</span>
+                    <span className="text-sm text-gray-700">Body fat</span>
+                    <span className="text-sm font-semibold text-gray-900">19.8%</span>
                   </div>
                   <ProgressBar value={38} />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-slate-300">Muscle mass</span>
-                    <span className="text-sm font-semibold">61.2 kg</span>
+                    <span className="text-sm text-gray-700">Muscle mass</span>
+                    <span className="text-sm font-semibold text-gray-900">61.2 kg</span>
                   </div>
                   <ProgressBar value={54} />
                 </div>
@@ -366,20 +366,20 @@ export default function ProgressTracking() {
         </div>
 
         {/* Milestones */}
-        <Card className="mt-8 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+        <Card className="mt-8 border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
           <CardHeader>
-            <CardTitle className="text-lg">Milestones</CardTitle>
-            <CardDescription className="text-slate-400">Wins worth noting</CardDescription>
+            <CardTitle className="text-lg text-gray-900">Milestones</CardTitle>
+            <CardDescription className="text-gray-700">Wins worth noting</CardDescription>
           </CardHeader>
           <CardContent>
-            <ol className="relative border-s border-white/10 ml-3">
+            <ol className="relative border-s border-gray-300 ml-3">
               {[{ date: "Aug 10", title: "5K run", detail: "26:40 PB" }, { date: "Sep 02", title: "Bench 100 kg", detail: "New 1RM" }, { date: "Sep 28", title: "12-day streak", detail: "Consistency" }].map((m, idx) => (
                 <li key={idx} className="mb-6 ml-6">
-                  <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 ring-2 ring-offset-2 ring-offset-slate-900 ring-white/10" />
-                  <div className="flex items-center gap-3 text-slate-300">
-                    <span className="text-xs bg-white/10 rounded px-2 py-1">{m.date}</span>
+                  <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 ring-2 ring-offset-2 ring-offset-white ring-gray-300" />
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <span className="text-xs bg-gray-100 rounded px-2 py-1">{m.date}</span>
                     <span className="font-semibold">{m.title}</span>
-                    <span className="text-slate-400 text-sm">{m.detail}</span>
+                    <span className="text-gray-500 text-sm">{m.detail}</span>
                   </div>
                 </li>
               ))}
@@ -389,14 +389,14 @@ export default function ProgressTracking() {
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10">
-          <div className="text-slate-300">
+          <div className="text-gray-700">
             Tip: log workouts right after you finish. Small habits compound.
           </div>
           <div className="flex gap-3">
             <Button className="bg-gradient-to-r from-emerald-500 to-sky-500 hover:opacity-90 shadow-lg">
               <Dumbbell className="h-4 w-4 mr-2" /> Log workout
             </Button>
-            <Button variant="outline" className="border-white/20 bg-white/5 hover:bg-white/10 text-white">
+            <Button variant="outline" className="border-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-900">
               <Trophy className="h-4 w-4 mr-2" /> Add PR
             </Button>
           </div>

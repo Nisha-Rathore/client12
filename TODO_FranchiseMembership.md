@@ -1,0 +1,6 @@
+- [ ] Change main section to bg-white text-slate-900
+- [ ] Update tab buttons to light styles (bg-gray-100, hover:bg-gray-200, active bg-yellow-400)
+- [ ] Update franchise cards to bg-white border border-gray-200 shadow-lg, text-slate-900
+- [ ] Update membership cards similarly
+- [ ] Adjust text colors to slate-600, slate-700, etc.
+- [ ] Update button styles to light variants

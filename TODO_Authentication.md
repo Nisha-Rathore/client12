@@ -1,0 +1,3 @@
+- [x] Update SignIn.jsx to light theme
+- [x] Update SignUp.jsx to light theme
+- [ ] Update ForgotResetPassword.jsx to light theme

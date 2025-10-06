@@ -76,13 +76,13 @@ export default function ProteinProductsPage() {
 
   return (
    <Layout>
-     <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-zinc-100 px-4 py-6 md:px-8">
+     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white text-gray-900 px-4 py-6 md:px-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
           Protein Store
         </h1>
-        <p className="text-zinc-400 mt-1">
+        <p className="text-gray-600 mt-1">
           Explore our premium selection of protein powders for your fitness goals.
         </p>
       </div>
@@ -93,12 +93,12 @@ export default function ProteinProductsPage() {
           <input
             type="text"
             placeholder="Search products..."
-            className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
           <select
-            className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             value={category}
             onChange={e => setCategory(e.target.value)}
           >
@@ -118,7 +118,7 @@ export default function ProteinProductsPage() {
         {filtered.map(product => (
           <div
             key={product.id}
-            className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl border border-white/10 overflow-hidden shadow-lg hover:shadow-indigo-900/30 hover:scale-[1.02] transition transform"
+            className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-indigo-500/30 hover:scale-[1.02] transition transform"
           >
             <div className="aspect-square w-full overflow-hidden">
               <img
@@ -131,19 +131,19 @@ export default function ProteinProductsPage() {
             <div className="p-4 flex flex-col justify-between h-[160px]">
               <div>
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-lg truncate">{product.name}</h3>
-                  <span className="text-sm text-amber-400">★ {product.rating}</span>
+                  <h3 className="font-bold text-lg truncate text-gray-900">{product.name}</h3>
+                  <span className="text-sm text-amber-500">★ {product.rating}</span>
                 </div>
-                <p className="text-zinc-400 text-sm">{product.flavor}</p>
+                <p className="text-gray-600 text-sm">{product.flavor}</p>
               </div>
 
               <div className="flex items-center justify-between mt-2">
-                <div className="text-xl font-extrabold">₹{product.price}</div>
+                <div className="text-xl font-extrabold text-gray-900">₹{product.price}</div>
                 <div className="flex gap-2">
-                  <button className="bg-indigo-600 hover:bg-indigo-500 text-sm px-3 py-1 rounded-lg font-semibold transition">
+                  <button className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-3 py-1 rounded-lg font-semibold transition">
                     Add
                   </button>
-                  <button className="bg-zinc-800 hover:bg-zinc-700 text-sm px-3 py-1 rounded-lg transition">
+                  <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm px-3 py-1 rounded-lg transition">
                     View
                   </button>
                 </div>

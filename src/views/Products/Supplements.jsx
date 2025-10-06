@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Layout from "../../components/Layout";
 
-// Dark dashboard-style catalog like your screenshot
+// Light dashboard-style catalog like your screenshot
 // TailwindCSS required. No TypeScript.
 
 const PRODUCTS = [
@@ -44,7 +44,7 @@ const CategoryPill = ({ value, active, onClick }) => (
   <button
     onClick={onClick}
     className={`px-4 py-2 rounded-xl text-sm font-medium border transition ${
-      active ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : "bg-white/5 text-gray-300 border-white/10 hover:border-white/20"
+      active ? "bg-emerald-500 text-white border-emerald-600" : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
     }`}
   >
     {value}
@@ -94,20 +94,20 @@ export default function Supplements() {
 
   return (
    <Layout>
-     <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-white">
+     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white text-gray-900">
       <div className="mx-auto max-w-7xl px-4 py-8">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Products</h1>
-            <p className="text-slate-300 text-sm mt-1">Pre, Intra, and Post workout supplements</p>
+            <p className="text-gray-600 text-sm mt-1">Pre, Intra, and Post workout supplements</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10">High contrast</button>
+            <button className="px-3 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm hover:bg-gray-200">High contrast</button>
             <select
               value={sort}
               onChange={(e)=>setSort(e.target.value)}
-              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm"
+              className="px-3 py-2 rounded-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm"
             >
               <option value="featured">Sort: Featured</option>
               <option value="price-asc">Price: Low to High</option>
@@ -115,27 +115,27 @@ export default function Supplements() {
               <option value="rating">Top Rated</option>
               <option value="stock">Stock: High to Low</option>
             </select>
-            <button onClick={()=>window.print()} className="px-3 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-200 text-sm hover:bg-emerald-500/30">Export</button>
+            <button onClick={()=>window.print()} className="px-3 py-2 rounded-lg bg-emerald-500 border border-emerald-600 text-white text-sm hover:bg-emerald-600">Export</button>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p className="text-slate-300 text-sm">Total products</p>
-            <p className="text-2xl font-semibold mt-1">{counts.total}</p>
+          <div className="rounded-2xl bg-white border border-gray-200 p-4">
+            <p className="text-gray-600 text-sm">Total products</p>
+            <p className="text-2xl font-semibold mt-1 text-gray-900">{counts.total}</p>
           </div>
-          <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p className="text-slate-300 text-sm">Pre workout</p>
-            <p className="text-2xl font-semibold mt-1">{counts.pre}</p>
+          <div className="rounded-2xl bg-white border border-gray-200 p-4">
+            <p className="text-gray-600 text-sm">Pre workout</p>
+            <p className="text-2xl font-semibold mt-1 text-gray-900">{counts.pre}</p>
           </div>
-          <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p className="text-slate-300 text-sm">Intra workout</p>
-            <p className="text-2xl font-semibold mt-1">{counts.intra}</p>
+          <div className="rounded-2xl bg-white border border-gray-200 p-4">
+            <p className="text-gray-600 text-sm">Intra workout</p>
+            <p className="text-2xl font-semibold mt-1 text-gray-900">{counts.intra}</p>
           </div>
-          <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p className="text-slate-300 text-sm">Out of stock</p>
-            <p className="text-2xl font-semibold mt-1">{counts.oos}</p>
+          <div className="rounded-2xl bg-white border border-gray-200 p-4">
+            <p className="text-gray-600 text-sm">Out of stock</p>
+            <p className="text-2xl font-semibold mt-1 text-gray-900">{counts.oos}</p>
           </div>
         </div>
 
@@ -151,7 +151,7 @@ export default function Supplements() {
               value={query}
               onChange={(e)=>setQuery(e.target.value)}
               placeholder="Search name, brand, flavor"
-              className="w-full md:w-96 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"
+              className="w-full md:w-96 px-4 py-2 rounded-xl bg-white border border-gray-300 text-gray-900 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
         </div>
@@ -160,27 +160,27 @@ export default function Supplements() {
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {list.map(p => (
             <li key={p.id} className="group">
-              <div className="rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg backdrop-blur">
+              <div className="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-lg">
                 <div className="relative">
                   <img src={p.image} alt={`${p.name}`} className="h-48 w-full object-cover" loading="lazy" />
-                  <div className="absolute top-2 left-2 text-xs px-2 py-1 rounded-full bg-black/60 border border-white/10">{p.category}</div>
+                  <div className="absolute top-2 left-2 text-xs px-2 py-1 rounded-full bg-white/80 text-gray-900 border border-gray-300">{p.category}</div>
                   {p.stock === 0 && (
-                    <div className="absolute top-2 right-2 text-xs px-2 py-1 rounded-full bg-red-600/80">Out of stock</div>
+                    <div className="absolute top-2 right-2 text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of stock</div>
                   )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold leading-tight">{p.name}</h3>
-                  <p className="text-xs text-slate-300 mt-0.5">{p.brand} • {p.flavor}</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{p.brand} • {p.flavor}</p>
                   <div className="mt-2 flex items-center justify-between">
                     <Rating value={p.rating} />
-                    <span className="text-xs text-slate-300">{p.servings} servings</span>
+                    <span className="text-xs text-gray-600">{p.servings} servings</span>
                   </div>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-lg font-semibold">${p.price.toFixed(2)}</span>
                     <button
                       disabled={p.stock===0}
                       onClick={()=>alert(`Added ${p.name} to cart`)}
-                      className="px-3 py-2 text-sm rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-200 hover:bg-emerald-500/30 disabled:opacity-50"
+                      className="px-3 py-2 text-sm rounded-lg bg-emerald-500 border border-emerald-600 text-white hover:bg-emerald-600 disabled:opacity-50"
                     >
                       Add to cart
                     </button>
@@ -192,10 +192,10 @@ export default function Supplements() {
         </ul>
 
         {list.length === 0 && (
-          <div className="text-center text-slate-300 mt-16">No products match your filters.</div>
+          <div className="text-center text-gray-600 mt-16">No products match your filters.</div>
         )}
 
-        <div className="mt-8 text-center text-xs text-slate-400">30 products</div>
+        <div className="mt-8 text-center text-xs text-gray-500">30 products</div>
       </div>
     </div>
    </Layout>

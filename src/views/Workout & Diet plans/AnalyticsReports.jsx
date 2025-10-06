@@ -59,7 +59,7 @@ import { cn } from "@/lib/utils";
  */
 
 const gradientBg =
-  "bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)]";
+  "bg-gradient-to-br from-gray-50 to-white";
 
 // Demo data
 const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
@@ -101,18 +101,17 @@ const cohorts = cohortMonths.map((m, r) => ({
 
 function Stat({ icon: Icon, title, value, delta, up = true }) {
   return (
-    <Card className="relative overflow-hidden border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
-      <div className="absolute inset-0 opacity-50 bg-gradient-to-br from-white/10 to-transparent" />
+    <Card className="relative overflow-hidden border border-gray-200 bg-white shadow-lg">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-slate-300">{title}</CardTitle>
-        <div className="p-2 rounded-xl bg-white/10">
-          <Icon className="h-5 w-5 text-white" />
+        <CardTitle className="text-sm font-medium text-slate-900">{title}</CardTitle>
+        <div className="p-2 rounded-xl bg-gray-100">
+          <Icon className="h-5 w-5 text-slate-700" />
         </div>
       </CardHeader>
       <CardContent>
         <div className="flex items-end gap-2">
-          <div className="text-3xl font-extrabold text-white tracking-tight">{value}</div>
-          <div className={cn("text-xs flex items-center", up ? "text-emerald-400" : "text-rose-400") }>
+          <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{value}</div>
+          <div className={cn("text-xs flex items-center", up ? "text-emerald-600" : "text-rose-600") }>
             {up ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />} {delta}
           </div>
         </div>
@@ -146,7 +145,7 @@ export default function AnalyticsReports() {
 
   return (
     <Layout>
-        <div className={cn("min-h-screen bg-slate-900 text-white", gradientBg)}>
+        <div className={cn("min-h-screen bg-white text-slate-900", gradientBg)}>
       <div className="mx-auto max-w-7xl px-6 py-10">
         {/* Header + Filters */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -155,16 +154,16 @@ export default function AnalyticsReports() {
               className="text-3xl md:text-4xl font-extrabold tracking-tight">
               Analytics & Reports
             </motion.h1>
-            <p className="text-slate-300 mt-2">One view for members, classes, revenue, and retention.</p>
+            <p className="text-slate-600 mt-2">One view for members, classes, revenue, and retention.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 w-full lg:w-auto">
             <div className="flex items-center gap-2 col-span-2 md:col-span-1">
               <Switch checked={contrast} onCheckedChange={setContrast} />
-              <span className="text-xs text-slate-300">High contrast</span>
+              <span className="text-xs text-slate-600">High contrast</span>
             </div>
             <Select value={range} onValueChange={setRange}>
-              <SelectTrigger className="bg-white/10 border-white/20"><SelectValue placeholder="Date range" /></SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/10">
+              <SelectTrigger className="bg-gray-100 border-gray-300"><SelectValue placeholder="Date range" /></SelectTrigger>
+              <SelectContent className="bg-white border-gray-200">
                 {[
                   "Last 30 days",
                   "Last 90 days",
@@ -174,20 +173,20 @@ export default function AnalyticsReports() {
               </SelectContent>
             </Select>
             <Select value={location} onValueChange={setLocation}>
-              <SelectTrigger className="bg-white/10 border-white/20"><SelectValue placeholder="Location" /></SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/10">
+              <SelectTrigger className="bg-gray-100 border-gray-300"><SelectValue placeholder="Location" /></SelectTrigger>
+              <SelectContent className="bg-white border-gray-200">
                 {["All","Jubilee Hills","Gachibowli","Kondapur"].map(v => <SelectItem key={v} value={v}>{v}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={trainer} onValueChange={setTrainer}>
-              <SelectTrigger className="bg-white/10 border-white/20"><SelectValue placeholder="Trainer" /></SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/10">
+              <SelectTrigger className="bg-gray-100 border-gray-300"><SelectValue placeholder="Trainer" /></SelectTrigger>
+              <SelectContent className="bg-white border-gray-200">
                 {["All","Aarav S.","Maya K.","Rohit P.","Karan B."].map(v => <SelectItem key={v} value={v}>{v}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={classType} onValueChange={setClassType}>
-              <SelectTrigger className="bg-white/10 border-white/20"><SelectValue placeholder="Class" /></SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/10">
+              <SelectTrigger className="bg-gray-100 border-gray-300"><SelectValue placeholder="Class" /></SelectTrigger>
+              <SelectContent className="bg-white border-gray-200">
                 {["All","HIIT","Spin","Yoga","Strength","Pilates"].map(v => <SelectItem key={v} value={v}>{v}</SelectItem>)}
               </SelectContent>
             </Select>
@@ -205,10 +204,10 @@ export default function AnalyticsReports() {
         {/* Charts Row 1 */}
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 mt-8">
           {/* Revenue trend */}
-          <Card className="lg:col-span-4 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="lg:col-span-4 bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Revenue trend</CardTitle>
-              <CardDescription className="text-slate-400">MRR and PT over time</CardDescription>
+              <CardDescription className="text-slate-500">MRR and PT over time</CardDescription>
             </CardHeader>
             <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
@@ -223,10 +222,10 @@ export default function AnalyticsReports() {
                       <stop offset="95%" stopColor="#38bdf8" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
-                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                  <XAxis dataKey="month" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="month" stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <YAxis stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
                   <Area type="monotone" dataKey="mrr" stroke="#34d399" fill="url(#g1)" strokeWidth={2} />
                   <Area type="monotone" dataKey="pt" stroke="#38bdf8" fill="url(#g2)" strokeWidth={2} />
                 </AreaChart>
@@ -235,19 +234,19 @@ export default function AnalyticsReports() {
           </Card>
 
           {/* Check-ins by hour */}
-          <Card className="lg:col-span-3 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="lg:col-span-3 bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Peak hours</CardTitle>
-              <CardDescription className="text-slate-400">Check-ins by hour</CardDescription>
+              <CardDescription className="text-slate-500">Check-ins by hour</CardDescription>
             </CardHeader>
             <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={checkinsByHour}>
-                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                  <XAxis dataKey="hour" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
-                  <Bar dataKey="checkins" radius={[6,6,0,0]} />
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="hour" stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <YAxis stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
+                  <Bar dataKey="checkins" radius={[6,6,0,0]} fill="#10b981" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -257,38 +256,38 @@ export default function AnalyticsReports() {
         {/* Charts Row 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 mt-8">
           {/* Funnel */}
-          <Card className="lg:col-span-3 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="lg:col-span-3 bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Membership funnel</CardTitle>
-              <CardDescription className="text-slate-400">From visit to paid</CardDescription>
+              <CardDescription className="text-slate-500">From visit to paid</CardDescription>
             </CardHeader>
             <CardContent className="h-72 flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={funnel} layout="vertical" margin={{ left: 40, right: 20 }}>
-                  <CartesianGrid horizontal={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                  <XAxis type="number" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <YAxis type="category" dataKey="stage" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
-                  <Bar dataKey="value" radius={[0,8,8,0]} />
+                  <CartesianGrid horizontal={false} strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis type="number" stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <YAxis type="category" dataKey="stage" stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
+                  <Bar dataKey="value" radius={[0,8,8,0]} fill="#3b82f6" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
 
           {/* Class fill rate */}
-          <Card className="lg:col-span-4 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="lg:col-span-4 bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Class fill rate</CardTitle>
-              <CardDescription className="text-slate-400">Seats taken by class</CardDescription>
+              <CardDescription className="text-slate-500">Seats taken by class</CardDescription>
             </CardHeader>
             <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={fillRate}>
-                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#ffffff22" />
-                  <XAxis dataKey="cls" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#94a3b8" tickLine={false} axisLine={false} domain={[0,100]} />
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
-                  <Bar dataKey="rate" radius={[8,8,0,0]} />
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="cls" stroke="#6b7280" tickLine={false} axisLine={false} />
+                  <YAxis stroke="#6b7280" tickLine={false} axisLine={false} domain={[0,100]} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
+                  <Bar dataKey="rate" radius={[8,8,0,0]} fill="#f59e0b" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -296,26 +295,26 @@ export default function AnalyticsReports() {
         </div>
 
         {/* Retention heat table */}
-        <Card className="mt-8 border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+        <Card className="mt-8 bg-white border border-gray-200 shadow-lg">
           <CardHeader>
             <CardTitle className="text-lg">Cohort retention</CardTitle>
-            <CardDescription className="text-slate-400">Percent of members active over months since signup</CardDescription>
+            <CardDescription className="text-slate-500">Percent of members active over months since signup</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr>
-                    <th className="p-2 text-xs font-semibold text-slate-300">Cohort</th>
+                    <th className="p-2 text-xs font-semibold text-slate-600">Cohort</th>
                     {Array.from({ length: 6 }, (_, i) => (
-                      <th key={i} className="p-2 text-xs font-semibold text-slate-300 text-center">M{i+1}</th>
+                      <th key={i} className="p-2 text-xs font-semibold text-slate-600 text-center">M{i+1}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {cohorts.map((row) => (
                     <tr key={row.cohort} className="align-middle">
-                      <td className="p-2 text-sm text-slate-200 whitespace-nowrap">{row.cohort} {new Date().getFullYear()}</td>
+                      <td className="p-2 text-sm text-slate-700 whitespace-nowrap">{row.cohort} {new Date().getFullYear()}</td>
                       {row.values.map((v, i) => (
                         <td key={i} className="p-1"><HeatCell v={v} /></td>
                       ))}
@@ -329,18 +328,18 @@ export default function AnalyticsReports() {
 
         {/* Top performers */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-          <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Top trainers</CardTitle>
-              <CardDescription className="text-slate-400">By sessions and revenue</CardDescription>
+              <CardDescription className="text-slate-500">By sessions and revenue</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="divide-y divide-white/10">
+              <div className="divide-y divide-gray-200">
                 {trainers.map((t) => (
                   <div key={t.name} className="py-3 flex items-center justify-between">
                     <div>
                       <div className="font-semibold">{t.name}</div>
-                      <div className="text-xs text-slate-400">{t.sessions} sessions • {t.rating}★</div>
+                      <div className="text-xs text-slate-500">{t.sessions} sessions • {t.rating}★</div>
                     </div>
                     <div className="text-sm">₹{t.revenue.toLocaleString()}</div>
                   </div>
@@ -349,10 +348,10 @@ export default function AnalyticsReports() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 bg-white/5 backdrop-blur-xl shadow-xl ring-1 ring-black/5">
+          <Card className="bg-white border border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">Top classes</CardTitle>
-              <CardDescription className="text-slate-400">By attendance</CardDescription>
+              <CardDescription className="text-slate-500">By attendance</CardDescription>
             </CardHeader>
             <CardContent className="h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -362,7 +361,7 @@ export default function AnalyticsReports() {
                       <Cell key={i} fill={i % 2 ? "#34d399" : "#38bdf8"} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #1f2937" }} labelStyle={{ color: "#e2e8f0" }} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -371,12 +370,12 @@ export default function AnalyticsReports() {
 
         {/* Export bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10">
-          <div className="text-slate-300">Tip: segment by location and class to spot demand pockets.</div>
+          <div className="text-slate-600">Tip: segment by location and class to spot demand pockets.</div>
           <div className="flex gap-3">
             <Button className="bg-gradient-to-r from-emerald-500 to-sky-500 hover:opacity-90 shadow-lg">
               <Download className="h-4 w-4 mr-2" /> Export CSV
             </Button>
-            <Button variant="outline" className="border-white/20 bg-white/5 hover:bg-white/10 text-white">
+            <Button variant="outline" className="border-gray-300 bg-white hover:bg-gray-50 text-slate-900">
               <CalendarRange className="h-4 w-4 mr-2" /> Schedule report
             </Button>
           </div>

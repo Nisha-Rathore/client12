@@ -1,5 +1,5 @@
 import { useState } from "react";
-import  Layout  from "../../components/Layout";
+import Layout from "../../components/Layout";
 
 export default function Trainer() {
   const [trainers, setTrainers] = useState([
@@ -8,16 +8,14 @@ export default function Trainer() {
       name: "John Carter",
       expertise: "Strength & Conditioning",
       experience: "5 Years",
-      image:
-        "https://randomuser.me/api/portraits/men/32.jpg",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
     },
     {
       id: 2,
       name: "Emily Smith",
       expertise: "Yoga & Flexibility",
       experience: "3 Years",
-      image:
-        "https://randomuser.me/api/portraits/women/45.jpg",
+      image: "https://randomuser.me/api/portraits/women/45.jpg",
     },
   ]);
 
@@ -35,87 +33,83 @@ export default function Trainer() {
   const handleAddTrainer = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.expertise) return;
-
-    setTrainers([
-      ...trainers,
-      { id: Date.now(), ...formData },
-    ]);
+    setTrainers([...trainers, { id: Date.now(), ...formData }]);
     setFormData({ name: "", expertise: "", experience: "", image: "" });
   };
 
   return (
     <Layout>
-        <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-        Trainers Management
-      </h1>
-
-      {/* Trainer List */}
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6 mb-10">
-        {trainers.map((trainer) => (
-          <div
-            key={trainer.id}
-            className="bg-white shadow-lg rounded-2xl p-4 text-center hover:scale-105 transition"
-          >
-            <img
-              src={trainer.image || "https://via.placeholder.com/150"}
-              alt={trainer.name}
-              className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h2 className="text-xl font-semibold">{trainer.name}</h2>
-            <p className="text-gray-600">{trainer.expertise}</p>
-            <p className="text-gray-500 text-sm">
-              {trainer.experience || "N/A"} Experience
-            </p>
+      <div className="min-h-screen bg-white p-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="font-bold text-4xl text-gray-900 drop-shadow mb-8 text-center">
+            Trainers Management
+          </h1>
+          {/* Trainer List */}
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-10 mb-14">
+            {trainers.map((trainer) => (
+              <div
+                key={trainer.id}
+                className="bg-gray-50 border border-gray-300 shadow-xl rounded-2xl p-6 text-center hover:scale-105 transition transform duration-200"
+              >
+                <img
+                  src={trainer.image || "https://via.placeholder.com/150"}
+                  alt={trainer.name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-gray-300 shadow-gray-200"
+                />
+                <h2 className="text-xl font-bold text-gray-900">{trainer.name}</h2>
+                <p className="text-gray-700 text-lg">{trainer.expertise}</p>
+                <p className="text-gray-500 mt-2 text-sm">
+                  {trainer.experience || "N/A"} Experience
+                </p>
+              </div>
+            ))}
           </div>
-        ))}
+          {/* Add Trainer Form */}
+          <div className="bg-gray-50 rounded-2xl shadow-lg px-8 py-10 border border-gray-300 max-w-xl mx-auto">
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Add New Trainer</h2>
+            <form onSubmit={handleAddTrainer} className="space-y-5">
+              <input
+                type="text"
+                name="name"
+                placeholder="Trainer Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-400"
+              />
+              <input
+                type="text"
+                name="expertise"
+                placeholder="Expertise (e.g. Cardio, Yoga)"
+                value={formData.expertise}
+                onChange={handleChange}
+                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-400"
+              />
+              <input
+                type="text"
+                name="experience"
+                placeholder="Experience (e.g. 4 Years)"
+                value={formData.experience}
+                onChange={handleChange}
+                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-400"
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={formData.image}
+                onChange={handleChange}
+                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-400"
+              />
+              <button
+                type="submit"
+                className="w-full bg-green-500 text-white font-semibold p-3 rounded-lg shadow-lg hover:bg-green-600 transition transform"
+              >
+                Add Trainer
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-
-      {/* Add Trainer Form */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 max-w-lg mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Add New Trainer</h2>
-        <form onSubmit={handleAddTrainer} className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Trainer Name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="text"
-            name="expertise"
-            placeholder="Expertise (e.g. Cardio, Yoga)"
-            value={formData.expertise}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="text"
-            name="experience"
-            placeholder="Experience (e.g. 4 Years)"
-            value={formData.experience}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-          <input
-            type="text"
-            name="image"
-            placeholder="Image URL"
-            value={formData.image}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-          />
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Add Trainer
-          </button>
-        </form>
-      </div>
-    </div>
     </Layout>
-    );
+  );
 }

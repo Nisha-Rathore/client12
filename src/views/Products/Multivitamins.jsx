@@ -290,7 +290,7 @@ const PRODUCTS=[
 
 function Badge({ children }) {
   return (
-    <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/10 ring-1 ring-white/10">
+    <span className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-gray-100 ring-1 ring-gray-300">
       {children}
     </span>
   );
@@ -327,27 +327,27 @@ export default function MultivitaminsPage() {
 
   return (
    <Layout>
-     <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_30%_-10%,#0f172a_20%,#020617_60%)] text-zinc-100">
+     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white text-gray-900">
       <div className="mx-auto max-w-7xl px-4 md:px-8 py-6 md:py-10">
         {/* Header */}
         <header className="mb-6">
           <h1 className="text-3xl md:text-5xl font-black tracking-tight">
             Multivitamins & Minerals
           </h1>
-          <p className="text-zinc-400 mt-1">
+          <p className="text-gray-600 mt-1">
             Explore essential nutrients for performance, immunity, and recovery.
           </p>
         </header>
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
-          <div className="flex gap-2 bg-zinc-900 p-1 rounded-xl ring-1 ring-white/10 w-fit">
+          <div className="flex gap-2 bg-gray-100 p-1 rounded-xl ring-1 ring-gray-300 w-fit">
             {CATEGORIES.map((c) => (
               <button
                 key={c}
                 onClick={() => setTab(c)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
-                  tab === c ? "bg-indigo-600" : "hover:bg-zinc-800"
+                  tab === c ? "bg-emerald-500" : "hover:bg-gray-200"
                 }`}
               >
                 {c}
@@ -360,19 +360,19 @@ export default function MultivitaminsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search products"
-              className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               <option value="popular">Sort by popular</option>
               <option value="priceLow">Price: Low to High</option>
               <option value="priceHigh">Price: High to Low</option>
               <option value="rating">Top rated</option>
             </select>
-            <button className="bg-zinc-900 ring-1 ring-white/10 rounded-lg px-4 py-2 text-sm hover:bg-zinc-800">
+            <button className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-200">
               Export list
             </button>
           </div>
@@ -383,7 +383,7 @@ export default function MultivitaminsPage() {
           {list.map((p) => (
             <div
               key={p.id}
-              className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900 ring-1 ring-white/10 hover:ring-indigo-500/60 transition shadow-lg hover:shadow-indigo-900/30"
+              className="group rounded-2xl overflow-hidden bg-white ring-1 ring-gray-200 hover:ring-emerald-500/60 transition shadow-lg hover:shadow-emerald-500/30"
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -403,7 +403,7 @@ export default function MultivitaminsPage() {
                     <h3 className="font-bold text-lg leading-tight">
                       {p.name}
                     </h3>
-                    <div className="text-xs text-zinc-400">
+                    <div className="text-xs text-gray-600">
                       {p.category} · {p.form}
                     </div>
                   </div>
@@ -411,44 +411,44 @@ export default function MultivitaminsPage() {
                     <div className="text-sm">
                       <Rating value={p.rating} />
                     </div>
-                    <div className="text-[11px] text-zinc-400">
+                    <div className="text-[11px] text-gray-600">
                       {p.reviews} reviews
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
-                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Servings</div>
-                    <div className="font-semibold">{p.servings}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Servings</div>
+                    <div className="font-semibold text-gray-900">{p.servings}</div>
                   </div>
-                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Nutrients</div>
-                    <div className="font-semibold">{p.nutrients}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Nutrients</div>
+                    <div className="font-semibold text-gray-900">{p.nutrients}</div>
                   </div>
-                  <div className="rounded-lg bg-zinc-950/40 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Form</div>
-                    <div className="font-semibold">{p.form}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Form</div>
+                    <div className="font-semibold text-gray-900">{p.form}</div>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-extrabold">
+                    <div className="text-2xl font-extrabold text-gray-900">
                       ₹{p.price.toLocaleString()}
                     </div>
-                    <div className="text-xs text-zinc-400 line-through">
+                    <div className="text-xs text-gray-600 line-through">
                       ₹{p.mrp.toLocaleString()}
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setQuick(p)}
-                      className="px-3 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-sm"
+                      className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm text-gray-900"
                     >
                       View
                     </button>
-                    <button className="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold text-sm">
+                    <button className="px-3 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 font-semibold text-sm text-white">
                       Add
                     </button>
                   </div>
@@ -468,22 +468,22 @@ export default function MultivitaminsPage() {
           }`}
         />
         <div
-          className={`absolute right-0 top-0 h-full w-full sm:w-[32rem] bg-zinc-950 ring-1 ring-white/10 transition-transform ${
+          className={`absolute right-0 top-0 h-full w-full sm:w-[32rem] bg-white ring-1 ring-gray-200 transition-transform ${
             quick ? "translate-x-0" : "translate-x-full"
           }`}
         >
           {quick && (
             <div className="h-full flex flex-col">
-              <div className="p-4 flex items-center justify-between border-b border-white/10">
+              <div className="p-4 flex items-center justify-between border-b border-gray-200">
                 <div>
-                  <div className="text-xs text-zinc-400">
+                  <div className="text-xs text-gray-600">
                     {quick.category} · {quick.form}
                   </div>
-                  <h3 className="text-xl font-bold">{quick.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900">{quick.name}</h3>
                 </div>
                 <button
                   onClick={() => setQuick(null)}
-                  className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700"
+                  className="px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-900"
                 >
                   Close
                 </button>
@@ -493,27 +493,27 @@ export default function MultivitaminsPage() {
                 <img
                   src={quick.image}
                   alt={quick.name}
-                  className="w-full h-56 object-cover rounded-xl ring-1 ring-white/10"
+                  className="w-full h-56 object-cover rounded-xl ring-1 ring-gray-200"
                 />
 
                 <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
-                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Servings</div>
-                    <div className="font-semibold">{quick.servings}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Servings</div>
+                    <div className="font-semibold text-gray-900">{quick.servings}</div>
                   </div>
-                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Nutrients</div>
-                    <div className="font-semibold">{quick.nutrients}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Nutrients</div>
+                    <div className="font-semibold text-gray-900">{quick.nutrients}</div>
                   </div>
-                  <div className="rounded-lg bg-zinc-900 ring-1 ring-white/10 p-2">
-                    <div className="text-zinc-300">Form</div>
-                    <div className="font-semibold">{quick.form}</div>
+                  <div className="rounded-lg bg-gray-100 ring-1 ring-gray-300 p-2">
+                    <div className="text-gray-700">Form</div>
+                    <div className="font-semibold text-gray-900">{quick.form}</div>
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-zinc-900 ring-1 ring-white/10 p-4">
-                  <h4 className="font-semibold mb-2">Highlights</h4>
-                  <ul className="text-sm text-zinc-300 list-disc list-inside space-y-1">
+                <div className="rounded-xl bg-gray-100 ring-1 ring-gray-300 p-4">
+                  <h4 className="font-semibold mb-2 text-gray-900">Highlights</h4>
+                  <ul className="text-sm text-gray-700 list-disc list-inside space-y-1">
                     <li>Essential daily micronutrients</li>
                     <li>Boosts immunity and recovery</li>
                     <li>Batch tested and clean label</li>
@@ -521,20 +521,20 @@ export default function MultivitaminsPage() {
                 </div>
               </div>
 
-              <div className="mt-auto p-4 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-auto p-4 border-t border-gray-200 flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-extrabold">
+                  <div className="text-2xl font-extrabold text-gray-900">
                     ₹{quick.price.toLocaleString()}
                   </div>
-                  <div className="text-xs text-zinc-400 line-through">
+                  <div className="text-xs text-gray-600 line-through">
                     ₹{quick.mrp.toLocaleString()}
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700">
+                  <button className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-900">
                     Add to wishlist
                   </button>
-                  <button className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold">
+                  <button className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 font-semibold text-white">
                     Add to cart
                   </button>
                 </div>

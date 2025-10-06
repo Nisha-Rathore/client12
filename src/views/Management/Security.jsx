@@ -50,12 +50,12 @@ const securityFeatures = [
 const Security = () => {
   return (
     <Layout>
-        <section className="min-h-screen bg-gray-900 text-white py-16 px-6">
+        <section className="min-h-screen bg-white text-gray-900 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center mb-14">
-        <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+        <h1 className="text-4xl font-extrabold mb-4 text-gray-900">
           Security at Our Gym Management System
         </h1>
-        <p className="text-gray-300 text-lg">
+        <p className="text-gray-600 text-lg">
           We prioritize your privacy and data protection with advanced security practices and
           trusted technologies.
         </p>
@@ -65,19 +65,19 @@ const Security = () => {
         {securityFeatures.map((feature) => (
           <div
             key={feature.id}
-            className="bg-gray-800 hover:bg-gray-700 transition-all duration-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl"
+            className="bg-gray-50 hover:bg-gray-100 transition-all duration-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-300"
           >
             <div className="flex items-center gap-4 mb-4">
               {feature.icon}
-              <h3 className="text-xl font-semibold">{feature.title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
             </div>
-            <p className="text-gray-400">{feature.description}</p>
+            <p className="text-gray-500">{feature.description}</p>
           </div>
         ))}
       </div>
 
       <div className="text-center mt-16">
-        <button className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform">
+        <button className="bg-green-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform hover:bg-green-600">
           Learn More About Our Security
         </button>
       </div>

@@ -163,7 +163,7 @@ export default function WorkoutRoutines() {
 
   return (
    <Layout>
-     <div className="p-6 max-w-6xl mx-auto">
+     <div className="p-6 max-w-6xl mx-auto bg-white text-gray-900 min-h-screen">
       <header className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-extrabold">Workout Routines</h1>
