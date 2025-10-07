@@ -42,14 +42,14 @@ export default function Trainer() {
       <div className="min-h-screen bg-white p-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="font-bold text-4xl text-gray-900 drop-shadow mb-8 text-center">
-            Trainers Management
+            Trainers <span className="text-teal-500"> Management </span>
           </h1>
           {/* Trainer List */}
           <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-10 mb-14">
             {trainers.map((trainer) => (
               <div
                 key={trainer.id}
-                className="bg-gray-50 border border-gray-300 shadow-xl rounded-2xl p-6 text-center hover:scale-105 transition transform duration-200"
+                className="bg-teal-50 border border-teal-100 shadow-xl rounded-2xl p-6 text-center hover:scale-105 transition transform duration-200"
               >
                 <img
                   src={trainer.image || "https://via.placeholder.com/150"}
@@ -102,7 +102,7 @@ export default function Trainer() {
               />
               <button
                 type="submit"
-                className="w-full bg-green-500 text-white font-semibold p-3 rounded-lg shadow-lg hover:bg-green-600 transition transform"
+                className="w-full bg-teal-500 text-gray-50 font-semibold p-3 rounded-lg shadow-lg hover:bg-teal-200 hover:text-teal-800 hover:border-gray-500 transition transform"
               >
                 Add Trainer
               </button>

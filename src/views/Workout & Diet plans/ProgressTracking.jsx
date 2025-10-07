@@ -158,7 +158,7 @@ function QuickLog({ onAdd }) {
         </Field>
         <div className="flex items-end">
           <Button onClick={() => onAdd({ day, workouts, calories })}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-sky-500 hover:opacity-90 shadow-lg">
+                  className="w-full border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 hover:opacity-90 shadow-lg">
             <Plus className="h-4 w-4 mr-2" /> Add
           </Button>
         </div>
@@ -202,7 +202,7 @@ function GoalsEditor({ goals, setGoals }) {
             </div>
           ))}
         </div>
-        <Button className="w-full mt-6 bg-gray-100 hover:bg-gray-200">
+        <Button className="w-full mt-6  border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600">
           <Save className="h-4 w-4 mr-2" /> Save goals
         </Button>
       </CardContent>
@@ -240,7 +240,7 @@ export default function ProgressTracking() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <motion.h1 initial="hidden" animate="show" variants={headerVariants} className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              Progress tracker
+              Progress <span className="text-teal-500"> tracker </span>
             </motion.h1>
             <p className="text-gray-600 mt-2">Live goals, real-time logs, clean visuals.</p>
           </div>
@@ -259,7 +259,7 @@ export default function ProgressTracking() {
                 <SelectItem value="90d">Last 90 days</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="bg-green-500 hover:bg-green-600 shadow-lg text-white">
+            <Button className=" border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 shadow-lg">
               <Calendar className="h-4 w-4 mr-2" /> Export
             </Button>
           </div>
@@ -270,7 +270,7 @@ export default function ProgressTracking() {
           <StatCard icon={Activity} title="Active days" value={`${activeDays}/7`} sub="This week" burst={emphasis && activeDays >= 5} />
           <StatCard icon={Flame} title="Calories burned" value={`${calories}`} sub="Estimated total" burst={emphasis && calories > 2500} />
           <StatCard icon={TrendingUp} title="Workouts" value={`${volume}`} sub="Sessions logged" burst={emphasis && volume >= 6} />
-          <StatCard icon={Trophy} title="Personal bests" value={`${prs.length}`} sub="Major lifts" />
+          <StatCard icon={Trophy} title="Personal bests" value={`${prs.length}`} sub="Major lifts" burst={emphasis && volume >= 4}/>
         </div>
 
         {/* Quick log + Goals */}
@@ -306,15 +306,15 @@ export default function ProgressTracking() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
           <Card className="col-span-2 border-0 bg-gray-50 backdrop-blur-xl shadow-xl ring-1 ring-gray-300">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-900">Personal Records</CardTitle>
+              <CardTitle className="text-lg text-gray-900 bg-teal-50 border-teal">Personal Records</CardTitle>
               <CardDescription className="text-gray-700">Tap to edit values</CardDescription>
             </CardHeader>
             <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={prs} barSize={28}>
-                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#9ca3af" />
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#9cadafff" />
                   <XAxis dataKey="lift" stroke="#4b5563" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#4b5563" tickLine={false} axisLine={false} />
+                  <YAxis stroke="#4b6263ff" tickLine={false} axisLine={false} />
                   <Tooltip contentStyle={{ background: "#f9fafb", border: "1px solid #d1d5db" }} labelStyle={{ color: "#374151" }} />
                   <Bar dataKey="kg" radius={[8,8,0,0]} onClick={(d) => {
                     const name = d && d.activeLabel;
@@ -393,10 +393,10 @@ export default function ProgressTracking() {
             Tip: log workouts right after you finish. Small habits compound.
           </div>
           <div className="flex gap-3">
-            <Button className="bg-gradient-to-r from-emerald-500 to-sky-500 hover:opacity-90 shadow-lg">
+            <Button className=" hover:opacity-90 shadow-lg  border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600">
               <Dumbbell className="h-4 w-4 mr-2" /> Log workout
             </Button>
-            <Button variant="outline" className="border-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-900">
+            <Button variant="outline" className="  hover:opacity-90 shadow-lg border-gray-100 bg-teal-500 text-teal-500 font-semibold hover:bg-teal-200 hover:text-teal-600">
               <Trophy className="h-4 w-4 mr-2" /> Add PR
             </Button>
           </div>

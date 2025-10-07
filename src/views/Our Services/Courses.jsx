@@ -46,7 +46,7 @@ const Courses = () => {
         <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
-          Our <span className="text-red-500">Gym Courses</span>
+          Our <span className="text-teal-500">Gym Courses</span>
         </h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -69,7 +69,7 @@ const Courses = () => {
                   <span>Level: <span className="font-semibold text-gray-700">{course.level}</span></span>
                   <span>Duration: <span className="font-semibold text-gray-700">{course.duration}</span></span>
                 </div>
-                <button className="mt-5 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xl transition duration-200">
+                <button className="mt-5 w-full border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 font-semibold py-2 rounded-xl transition duration-200">
                   Enroll Now
                 </button>
               </div>

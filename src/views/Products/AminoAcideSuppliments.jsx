@@ -371,7 +371,7 @@ export default function AminoAcidSupplements() {
 
       <div className="mx-auto max-w-7xl px-4 md:px-8 py-6 md:py-10">
         <header className="mb-6">
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight">Amino Acid Supplements</h1>
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight">Amino Acid <span className="text-teal-500"> Supplements </span></h1>
           <p className="text-gray-600 mt-1">Bold cards. Smooth filters. Clean visuals like your dashboard.</p>
         </header>
 
@@ -379,7 +379,7 @@ export default function AminoAcidSupplements() {
         <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
           <div className="flex gap-2 bg-gray-100 p-1 rounded-xl ring-1 ring-gray-300 w-fit">
             {CATEGORIES.map(c => (
-              <button key={c} onClick={() => setTab(c)} className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${tab === c ? "bg-emerald-500" : "hover:bg-gray-200"}`}>{c}</button>
+              <button key={c} onClick={() => setTab(c)} className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${tab === c ? "bg-teal-500 text-white" : "hover:bg-gray-200"}`}>{c}</button>
             ))}
           </div>
           <div className="md:ml-auto grid grid-cols-1 sm:grid-cols-3 gap-3 w-full md:w-auto">
@@ -390,7 +390,7 @@ export default function AminoAcidSupplements() {
               <option value="priceHigh">Price: High to Low</option>
               <option value="rating">Top rated</option>
             </select>
-            <button className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-200">Export list</button>
+            <button className="bg-teal-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-200">Export list</button>
           </div>
         </div>
 
@@ -426,8 +426,8 @@ export default function AminoAcidSupplements() {
                     <div className="text-xs text-gray-600 line-through">₹{p.mrp.toLocaleString()}</div>
                   </div>
                   <div className="flex gap-2">
-                    <button onClick={() => setQuick(p)} className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm text-gray-900">View</button>
-                    <button className="px-3 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 font-semibold text-sm text-white">Add</button>
+                    <button onClick={() => setQuick(p)} className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-teal-200 text-sm text-teal-900">View</button>
+                    <button className="px-3 py-2 rounded-lg border-gray-100 bg-teal-500 text-gray-100 font-semibold hover text-sm hover:bg-teal-200 hover:text-teal-600">Add</button>
                   </div>
                 </div>
               </div>
@@ -476,7 +476,7 @@ export default function AminoAcidSupplements() {
                 </div>
                 <div className="flex gap-2">
                   <button className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-900">Add to wishlist</button>
-                  <button className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 font-semibold text-white">Add to cart</button>
+                  <button className="px-4 py-2 rounded-lg border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600">Add to cart</button>
                 </div>
               </div>
             </div>

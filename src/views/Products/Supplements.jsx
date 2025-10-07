@@ -44,7 +44,7 @@ const CategoryPill = ({ value, active, onClick }) => (
   <button
     onClick={onClick}
     className={`px-4 py-2 rounded-xl text-sm font-medium border transition ${
-      active ? "bg-emerald-500 text-white border-emerald-600" : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
+      active ? "border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600" : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
     }`}
   >
     {value}
@@ -99,7 +99,7 @@ export default function Supplements() {
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Products</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-teal-500">Products</h1>
             <p className="text-gray-600 text-sm mt-1">Pre, Intra, and Post workout supplements</p>
           </div>
           <div className="flex gap-2">
@@ -115,7 +115,7 @@ export default function Supplements() {
               <option value="rating">Top Rated</option>
               <option value="stock">Stock: High to Low</option>
             </select>
-            <button onClick={()=>window.print()} className="px-3 py-2 rounded-lg bg-emerald-500 border border-emerald-600 text-white text-sm hover:bg-emerald-600">Export</button>
+            <button onClick={()=>window.print()} className="px-3 py-2 rounded-lg border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 text-sm hover:bg-emerald-600">Export</button>
           </div>
         </div>
 
@@ -180,7 +180,7 @@ export default function Supplements() {
                     <button
                       disabled={p.stock===0}
                       onClick={()=>alert(`Added ${p.name} to cart`)}
-                      className="px-3 py-2 text-sm rounded-lg bg-emerald-500 border border-emerald-600 text-white hover:bg-emerald-600 disabled:opacity-50"
+                      className="px-3 py-2 text-sm rounded-lg border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 disabled:opacity-50"
                     >
                       Add to cart
                     </button>

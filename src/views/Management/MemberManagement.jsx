@@ -32,7 +32,7 @@ export default function Member() {
       <div className="min-h-screen bg-white text-gray-900 py-10 px-4">
         <div className="mx-auto max-w-5xl">
           {/* Title */}
-          <h1 className="text-3xl font-extrabold mb-3 text-gray-900 tracking-tight">Member management</h1>
+          <h1 className="text-3xl font-extrabold mb-3 text-gray-900 tracking-tight">Member<span className="text-teal-500">  management</span></h1>
           <p className="text-gray-600 text-base mb-8">Add, search and manage gym members</p>
           
           {/* Add Member Form */}
@@ -44,19 +44,19 @@ export default function Member() {
                 placeholder="Full Name"
                 value={newMember.name}
                 onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 placeholder:text-gray-400 focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="bg-white border border-gray-300 text-black rounded-xl px-4 py-2 placeholder:text-gray-500 focus:ring-2 focus:ring-teal-200 focus:outline-none"
               />
               <input
                 type="email"
                 placeholder="Email"
                 value={newMember.email}
                 onChange={(e) => setNewMember({ ...newMember, email: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 placeholder:text-gray-400 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 placeholder:text-gray-400 focus:ring-2 focus:ring-teal-200 focus:outline-none"
               />
               <select
                 value={newMember.plan}
                 onChange={(e) => setNewMember({ ...newMember, plan: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:outline-none"
               >
                 <option>Basic</option>
                 <option>Silver</option>
@@ -64,7 +64,7 @@ export default function Member() {
               </select>
               <button
                 onClick={addMember}
-                className="rounded-xl border border-green-400 bg-green-100 text-green-900 px-4 py-2 font-semibold hover:bg-green-200 hover:text-green-950 transition disabled:opacity-50"
+                className="rounded-xl border border-teal-500 bg-teal-200 text-green-900 px-4 py-2 font-semibold hover:bg-teal-300 hover:text-teal-950 transition disabled:opacity-50"
               >
                 Add
               </button>
@@ -85,12 +85,12 @@ export default function Member() {
           {/* Members Table */}
           <div className="overflow-x-auto">
             <table className="w-full rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-300">
-              <thead className="bg-gray-100">
+              <thead className="bg-teal-500">
                 <tr>
-                  <th className="px-5 py-3 text-left text-gray-700 font-semibold">Name</th>
-                  <th className="px-5 py-3 text-left text-gray-700 font-semibold">Email</th>
-                  <th className="px-5 py-3 text-left text-gray-700 font-semibold">Plan</th>
-                  <th className="px-5 py-3 text-left text-gray-700 font-semibold">Actions</th>
+                  <th className="px-5 py-3 text-left text-gray-100 font-semibold">Name</th>
+                  <th className="px-5 py-3 text-left text-gray-100 font-semibold">Email</th>
+                  <th className="px-5 py-3 text-left text-gray-100 font-semibold">Plan</th>
+                  <th className="px-5 py-3 text-left text-gray-100 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>

@@ -29,13 +29,13 @@ export default function DietPlan() {
     <Layout>
         <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Custom Diet Plans 🍽️
+        Custom <span className="text-teal-500"> Diet Plans </span>🍽️
       </h1>
 
       {/* Dropdown to select goal */}
       <div className="mb-6">
         <select
-          className="p-3 rounded-lg border border-gray-400 shadow-md focus:outline-none"
+          className="p-3 rounded-lg border border-teal-400 bg-teal-100 shadow-md focus:outline-none"
           value={goal}
           onChange={(e) => setGoal(e.target.value)}
         >
@@ -50,9 +50,9 @@ export default function DietPlan() {
         {dietPlans[goal].map((plan, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-lg p-5 hover:shadow-xl transition"
+            className="bg-teal-50 border-teal-100 rounded-2xl shadow-lg p-5 hover:shadow-xl transition"
           >
-            <h2 className="text-xl font-semibold text-indigo-600">
+            <h2 className="text-xl font-semibold text-teal-600">
               {plan.meal}
             </h2>
             <p className="text-gray-700 mt-2">{plan.items}</p>

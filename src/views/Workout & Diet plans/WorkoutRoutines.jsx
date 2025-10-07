@@ -166,19 +166,19 @@ export default function WorkoutRoutines() {
      <div className="p-6 max-w-6xl mx-auto bg-white text-gray-900 min-h-screen">
       <header className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-extrabold">Workout Routines</h1>
+          <h1 className="text-2xl font-extrabold">Workout <span className="text-teal-500">  Routines </span></h1>
           <p className="text-sm text-slate-500">Dynamic, filterable routines for your gym members</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search routines..."
-            className="px-3 py-2 rounded-lg border w-56 focus:outline-none"
+            className="px-3 py-2 rounded-lg border w-56 focus:outline-none "
           />
 
-          <select className="px-2 py-2 rounded-lg border" value={goalFilter} onChange={(e) => setGoalFilter(e.target.value)}>
+          <select className="px-2 py-2 rounded-lg border " value={goalFilter} onChange={(e) => setGoalFilter(e.target.value)}>
             <option>All</option>
             <option>Strength</option>
             <option>Muscle</option>
@@ -196,7 +196,7 @@ export default function WorkoutRoutines() {
             <option>Advanced</option>
           </select>
 
-          <button onClick={openCreate} className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow">+ New</button>
+          <button onClick={openCreate} className="px-4 py-2  border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 rounded-lg shadow">+ New</button>
         </div>
       </header>
 
@@ -210,7 +210,7 @@ export default function WorkoutRoutines() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
-                className="p-4 rounded-2xl border bg-white shadow-sm mb-3"
+                className="p-4 rounded-2xl border bg-teal-50 shadow-sm mb-3 border-teal-100"
               >
                 <div className="flex justify-between items-start gap-4">
                   <div>
@@ -219,8 +219,8 @@ export default function WorkoutRoutines() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <button onClick={() => { setSelectedRoutine(r); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="px-2 py-1 border rounded">View</button>
-                    <button onClick={() => openEdit(r)} className="px-2 py-1 border rounded">Edit</button>
+                    <button onClick={() => { setSelectedRoutine(r); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="px-2 py-1 border rounded bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">View</button>
+                    <button onClick={() => openEdit(r)} className="px-2 py-1 border rounded bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">Edit</button>
                     <button onClick={() => deleteRoutine(r.id)} className="px-2 py-1 rounded bg-red-50 text-red-600">Delete</button>
                   </div>
                 </div>
@@ -239,8 +239,8 @@ export default function WorkoutRoutines() {
                 </div>
 
                 <div className="mt-3 flex gap-2">
-                  <button onClick={() => exportCSV(r)} className="px-3 py-1 rounded border">Export CSV</button>
-                  <button onClick={() => { navigator.clipboard.writeText(JSON.stringify(r)); alert('Copied JSON to clipboard'); }} className="px-3 py-1 rounded border">Copy JSON</button>
+                  <button onClick={() => exportCSV(r)} className="px-3 py-1 rounded border bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">Export CSV</button>
+                  <button onClick={() => { navigator.clipboard.writeText(JSON.stringify(r)); alert('Copied JSON to clipboard'); }} className="px-3 py-1 rounded border bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">Copy JSON</button>
                 </div>
               </motion.div>
             ))}
@@ -252,7 +252,7 @@ export default function WorkoutRoutines() {
         </section>
 
         <aside className="space-y-4">
-          <div className="p-4 rounded-2xl border bg-white">
+          <div className="p-4 rounded-2xl border bg-teal-50 border-teal-100">
             <h4 className="font-bold">Routine Details</h4>
             {!selectedRoutine ? (
               <div className="text-sm text-slate-500 mt-3">Select a routine to view full breakdown.</div>
@@ -261,7 +261,7 @@ export default function WorkoutRoutines() {
                 <div className="font-semibold">{selectedRoutine.name}</div>
                 <div className="text-slate-500">{selectedRoutine.goal} • {selectedRoutine.difficulty}</div>
 
-                <div className="mt-2 space-y-2">
+                <div className="mt-2 space-y-2 bg-white border-teal-100">
                   {selectedRoutine.days.map((d, i) => (
                     <div key={i} className="p-2 border rounded">
                       <div className="font-medium">{d.day}</div>
@@ -278,8 +278,8 @@ export default function WorkoutRoutines() {
                 </div>
 
                 <div className="mt-3 flex gap-2">
-                  <button onClick={() => openEdit(selectedRoutine)} className="px-3 py-1 rounded border">Edit</button>
-                  <button onClick={() => exportCSV(selectedRoutine)} className="px-3 py-1 rounded border">Export CSV</button>
+                  <button onClick={() => openEdit(selectedRoutine)} className="px-3 py-1 rounded border bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">Edit</button>
+                  <button onClick={() => exportCSV(selectedRoutine)} className="px-3 py-1 rounded border bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800">Export CSV</button>
                 </div>
               </div>
             )}
@@ -288,19 +288,19 @@ export default function WorkoutRoutines() {
           <div className="p-4 rounded-2xl border bg-white">
             <h4 className="font-bold">Quick Stats</h4>
             <div className="mt-3 grid grid-cols-2 gap-2">
-              <div className="p-2 rounded bg-slate-50 text-sm">
+              <div className="p-2 rounded bg-slate-50 text-sm bg-teal-50">
                 <div className="font-semibold">Routines</div>
                 <div className="text-slate-500">{routines.length}</div>
               </div>
 
-              <div className="p-2 rounded bg-slate-50 text-sm">
-                <div className="font-semibold">Avg Days</div>
+              <div className="p-2 rounded bg-slate-50 text-sm bg-teal-50">
+                <div className="font-semibold ">Avg Days</div>
                 <div className="text-slate-500">{routines.length ? (routines.reduce((s, r) => s + (r.days?.length || 0), 0) / routines.length).toFixed(1) : 0}</div>
               </div>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl border bg-white">
+          <div className="p-4 rounded-2xl border bg-teal-50">
             <h4 className="font-bold">Tips</h4>
             <ul className="list-disc list-inside text-sm text-slate-600 mt-2">
               <li>Keep routines focused: 3–5 prime movements per day.</li>
@@ -333,7 +333,7 @@ export default function WorkoutRoutines() {
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3">
-                <input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} placeholder="Routine name" className="p-2 border rounded" />
+                <input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} placeholder="Routine name" className="p-2 border rounded " />
                 <select value={form.goal} onChange={(e) => setForm((f) => ({ ...f, goal: e.target.value }))} className="p-2 border rounded">
                   <option>General</option>
                   <option>Strength</option>
@@ -385,7 +385,7 @@ export default function WorkoutRoutines() {
 
               <div className="mt-4 flex justify-end gap-2">
                 <button type="button" onClick={() => setFormOpen(false)} className="px-4 py-2 rounded border">Cancel</button>
-                <button type="submit" className="px-4 py-2 rounded bg-indigo-600 text-white">Save</button>
+                <button type="submit" className="px-4 py-2 rounded  border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 ">Save</button>
               </div>
             </motion.form>
           </motion.div>

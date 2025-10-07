@@ -152,7 +152,7 @@ export default function AnalyticsReports() {
           <div>
             <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              Analytics & Reports
+              Analytics & <span className="text-teal-500"> Reports </span>
             </motion.h1>
             <p className="text-slate-600 mt-2">One view for members, classes, revenue, and retention.</p>
           </div>

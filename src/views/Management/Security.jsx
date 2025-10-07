@@ -53,7 +53,7 @@ const Security = () => {
         <section className="min-h-screen bg-white text-gray-900 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center mb-14">
         <h1 className="text-4xl font-extrabold mb-4 text-gray-900">
-          Security at Our Gym Management System
+          Security at Our <span className="text-teal-500"> Gym Management System </span>
         </h1>
         <p className="text-gray-600 text-lg">
           We prioritize your privacy and data protection with advanced security practices and
@@ -65,7 +65,7 @@ const Security = () => {
         {securityFeatures.map((feature) => (
           <div
             key={feature.id}
-            className="bg-gray-50 hover:bg-gray-100 transition-all duration-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-300"
+            className="bg-teal-50 hover:bg-teal-100 transition-all duration-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-teal-300"
           >
             <div className="flex items-center gap-4 mb-4">
               {feature.icon}
@@ -77,7 +77,7 @@ const Security = () => {
       </div>
 
       <div className="text-center mt-16">
-        <button className="bg-green-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform hover:bg-green-600">
+        <button className=" border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600  py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform ">
           Learn More About Our Security
         </button>
       </div>

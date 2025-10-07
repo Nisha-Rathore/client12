@@ -57,7 +57,7 @@ const FranchiseMembership = () => {
         <section className="w-full bg-white text-slate-900 py-16 px-6 md:px-20">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-bold text-b mb-3">
-          Franchise & Membership
+          Franchise & <span className="text-teal-500"> Membership </span>
         </h2>
         <p className="text-slate-600 max-w-2xl mx-auto">
           Whether you want to start your own gym or join our fitness community,
@@ -71,7 +71,7 @@ const FranchiseMembership = () => {
           onClick={() => setActiveTab("franchise")}
           className={`px-6 py-2 mx-2 rounded-full transition-all duration-300 ${
             activeTab === "franchise"
-              ? "bg-yellow-400 text-black font-semibold"
+              ? "bg-teal-500 text-white font-semibold"
               : "bg-gray-100 hover:bg-gray-200 text-slate-900"
           }`}
         >
@@ -81,7 +81,7 @@ const FranchiseMembership = () => {
           onClick={() => setActiveTab("membership")}
           className={`px-6 py-2 mx-2 rounded-full transition-all duration-300 ${
             activeTab === "membership"
-              ? "bg-yellow-400 text-black font-semibold"
+              ? "bg-teal-500 text-white font-semibold"
               : "bg-gray-100 hover:bg-gray-200 text-slate-900"
           }`}
         >
@@ -97,7 +97,7 @@ const FranchiseMembership = () => {
               key={index}
               className="bg-white border border-gray-200 p-6 rounded-2xl shadow-lg hover:-translate-y-2 transition-transform duration-300"
             >
-              <h3 className="text-2xl font-bold text-yellow-600 mb-2">
+              <h3 className="text-2xl font-bold text-teal-500 mb-2">
                 {item.title}
               </h3>
               <p className="text-slate-600 mb-4">{item.desc}</p>
@@ -121,7 +121,7 @@ const FranchiseMembership = () => {
               key={index}
               className="bg-white border border-gray-200 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
             >
-              <h3 className="text-2xl font-bold text-yellow-600 mb-2">
+              <h3 className="text-2xl font-bold text-teal-500 mb-2">
                 {plan.name}
               </h3>
               <p className="text-3xl font-semibold mb-4">{plan.price}</p>
@@ -130,7 +130,7 @@ const FranchiseMembership = () => {
                   <li key={i}>• {benefit}</li>
                 ))}
               </ul>
-              <button className="bg-yellow-400 text-black font-semibold px-5 py-2 rounded-full hover:bg-yellow-300 transition">
+              <button className="bg-teal-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-teal-200 hover:text-teal-600 transition">
                 Join Now
               </button>
             </div>

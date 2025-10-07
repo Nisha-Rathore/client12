@@ -332,7 +332,7 @@ export default function MultivitaminsPage() {
         {/* Header */}
         <header className="mb-6">
           <h1 className="text-3xl md:text-5xl font-black tracking-tight">
-            Multivitamins & Minerals
+            Multivitamins & <span className="text-teal-500"> Minerals </span>
           </h1>
           <p className="text-gray-600 mt-1">
             Explore essential nutrients for performance, immunity, and recovery.
@@ -347,7 +347,7 @@ export default function MultivitaminsPage() {
                 key={c}
                 onClick={() => setTab(c)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
-                  tab === c ? "bg-emerald-500" : "hover:bg-gray-200"
+                  tab === c ? "bg-teal-500 text-white" : "hover:bg-gray-200"
                 }`}
               >
                 {c}
@@ -360,19 +360,19 @@ export default function MultivitaminsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search products"
-              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               <option value="popular">Sort by popular</option>
               <option value="priceLow">Price: Low to High</option>
               <option value="priceHigh">Price: High to Low</option>
               <option value="rating">Top rated</option>
             </select>
-            <button className="bg-gray-100 ring-1 ring-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-200">
+            <button className="bg-teal-100 ring-1 ring-teal-300 rounded-lg px-4 py-2 text-sm hover:bg-teal-200">
               Export list
             </button>
           </div>
@@ -383,7 +383,7 @@ export default function MultivitaminsPage() {
           {list.map((p) => (
             <div
               key={p.id}
-              className="group rounded-2xl overflow-hidden bg-white ring-1 ring-gray-200 hover:ring-emerald-500/60 transition shadow-lg hover:shadow-emerald-500/30"
+              className="group rounded-2xl overflow-hidden bg-white ring-1 ring-gray-200 hover:ring-teal-500/60 transition shadow-lg hover:shadow-teal-500/30"
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -444,7 +444,7 @@ export default function MultivitaminsPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => setQuick(p)}
-                      className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm text-gray-900"
+                      className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-teal-100 text-sm text-teal-800"
                     >
                       View
                     </button>
@@ -483,7 +483,7 @@ export default function MultivitaminsPage() {
                 </div>
                 <button
                   onClick={() => setQuick(null)}
-                  className="px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-900"
+                  className="px-3 py-1 rounded-lg bg-gray-100 hover:bg-teal-200 text-teal-900"
                 >
                   Close
                 </button>
@@ -531,10 +531,10 @@ export default function MultivitaminsPage() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-900">
+                  <button className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-teal-200 text-teal-900">
                     Add to wishlist
                   </button>
-                  <button className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 font-semibold text-white">
+                  <button className="px-4 py-2 rounded-lg border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 font-semibold ">
                     Add to cart
                   </button>
                 </div>

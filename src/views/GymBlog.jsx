@@ -135,29 +135,29 @@ export default function GymBlog() {
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
 
-  const gradient = highContrast ? "from-slate-900 via-slate-900 to-slate-900" : "from-slate-950 via-slate-900 to-slate-950";
+  const gradient = highContrast ? "from-teal-200 via-teal-300 to-teal-200" : "from-teal-50 via-teal-100 to-teal-50";
 
   return (
    <Layout>
-     <div className={`min-h-screen w-full bg-gradient-to-b from-[#0b1120] via-[#10172a] to-[#0b1120] text-zinc-100`}>
+     <div className={`min-h-screen w-full bg-gray-50 text-gray-900`}>
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight">Gym Blog</h1>
-            <p className="mt-1 text-sm text-slate-300">Fresh workouts, real nutrition, sharp recovery tips. Clean visuals. Quick reads.</p>
+            <p className="mt-1 text-sm text-gray-600">Fresh workouts, real nutrition, sharp recovery tips. Clean visuals. Quick reads.</p>
           </div>
           <div className="flex items-center gap-3">
-            <label className="flex items-center gap-2 text-xs">
+            <label className="flex items-center gap-2 text-xs text-gray-700">
               <span>High contrast</span>
               <input type="checkbox" checked={highContrast} onChange={e=>setHighContrast(e.target.checked)} />
             </label>
-            <select value={range} onChange={e=>setRange(e.target.value)} className="rounded-xl bg-slate-800/70 px-3 py-2 text-xs ring-1 ring-white/10 focus:outline-none">
+            <select value={range} onChange={e=>setRange(e.target.value)} className="rounded-xl bg-white px-3 py-2 text-xs border border-gray-300 focus:outline-none">
               <option value="7">Last 7 days</option>
               <option value="30">Last 30 days</option>
               <option value="90">Last 90 days</option>
             </select>
-            <button className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 hover:brightness-110">Export</button>
+            <button className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-teal-50 shadow-lg shadow-teal-500/30 hover:brightness-110">Export</button>
           </div>
         </div>
 
@@ -165,19 +165,19 @@ export default function GymBlog() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {posts.filter(p=>p.featured).slice(0,2).map(p => (
-              <article key={p.id} className="group relative overflow-hidden rounded-2xl border border-emerald-400/10 bg-slate-800/60 hover:border-emerald-400/40">
+              <article key={p.id} className="group relative overflow-hidden rounded-2xl border border-teal-200/50 bg-white hover:border-teal-300 shadow-sm">
                 <div className="aspect-[16/9] w-full overflow-hidden">
                   <img src={p.cover} alt="cover" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <div className="p-4">
                   <div className="mb-1 flex items-center gap-2 text-xs">
-                    <span className="rounded bg-emerald-500/20 px-2 py-1 text-emerald-300">Featured</span>
-                    <span className="rounded bg-slate-700/60 px-2 py-1">{p.category}</span>
-                    <span className="text-slate-400">{p.time}</span>
+                    <span className="rounded bg-teal-500/20 px-2 py-1 text-teal-700">Featured</span>
+                    <span className="rounded bg-gray-100 px-2 py-1 text-gray-700">{p.category}</span>
+                    <span className="text-gray-500">{p.time}</span>
                   </div>
                   <h3 className="text-lg font-semibold leading-tight">{p.title}</h3>
-                  <p className="mt-1 line-clamp-2 text-sm text-slate-300">{p.excerpt}</p>
-                  <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
+                  <p className="mt-1 line-clamp-2 text-sm text-gray-600">{p.excerpt}</p>
+                  <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
                     <span>By {p.author}</span>
                     <div className="flex items-center gap-3">
                       <span>👁 {p.stat.views}</span>
@@ -190,49 +190,49 @@ export default function GymBlog() {
             ))}
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-5">
+          <div className="rounded-2xl border border-gray-300 bg-white p-5 shadow-sm">
             <h3 className="text-lg font-semibold">Subscribe</h3>
-            <p className="mt-1 text-sm text-slate-300">One weekly email. New workouts, real food ideas, and member stories.</p>
+            <p className="mt-1 text-sm text-gray-600">One weekly email. New workouts, real food ideas, and member stories.</p>
             <div className="mt-3 flex gap-2">
-              <input placeholder="Your email" className="w-full rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10 focus:outline-none" />
-              <button className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-cyan-950 hover:brightness-110">Join</button>
+              <input placeholder="Your email" className="w-full rounded-xl bg-gray-100 px-3 py-2 text-sm border border-gray-300 focus:outline-none" />
+              <button className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-teal-50 hover:brightness-110">Join</button>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs">
-              <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
+              <div className="rounded-xl border border-gray-300 bg-gray-100 p-3">
                 <div className="text-2xl font-bold">48%</div>
-                <div className="text-slate-400">Open rate</div>
+                <div className="text-gray-600">Open rate</div>
               </div>
-              <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
+              <div className="rounded-xl border border-gray-300 bg-gray-100 p-3">
                 <div className="text-2xl font-bold">5.7k</div>
-                <div className="text-slate-400">Clicks</div>
+                <div className="text-gray-600">Clicks</div>
               </div>
-              <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
+              <div className="rounded-xl border border-gray-300 bg-gray-100 p-3">
                 <div className="text-2xl font-bold">0.3%</div>
-                <div className="text-slate-400">Unsubs</div>
+                <div className="text-gray-600">Unsubs</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="mt-6 rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+        <div className="mt-6 rounded-2xl border border-gray-300 bg-white p-4 shadow-sm">
           <div className="grid items-center gap-3 md:grid-cols-3">
             <div className="flex flex-wrap gap-2">
               {categories.map(c => (
-                <button key={c.key} onClick={()=>{ setCategory(c.key); setPage(1); }} className={`rounded-xl px-3 py-2 text-sm ring-1 ring-white/10 ${category===c.key?"bg-emerald-500 text-emerald-950 font-semibold shadow-lg shadow-emerald-500/30":"bg-slate-900/70 text-slate-200"}`}>{c.label}</button>
+                <button key={c.key} onClick={()=>{ setCategory(c.key); setPage(1); }} className={`rounded-xl px-3 py-2 text-sm ring-1 ring-gray-300 ${category===c.key?"bg-teal-500 text-teal-50 font-semibold shadow-lg shadow-teal-500/30":"bg-gray-100 text-gray-700"}`}>{c.label}</button>
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
-              <button onClick={()=>{ setTagFilter("all"); setPage(1); }} className={`rounded-xl px-3 py-2 text-xs ring-1 ring-white/10 ${tagFilter==="all"?"bg-cyan-400 text-cyan-950 font-semibold":"bg-slate-900/70"}`}>All tags</button>
+              <button onClick={()=>{ setTagFilter("all"); setPage(1); }} className={`rounded-xl px-3 py-2 text-xs ring-1 ring-gray-300 ${tagFilter==="all"?"bg-teal-500 text-teal-50 font-semibold":"bg-gray-100 text-gray-700"}`}>All tags</button>
               <div className="flex gap-2 overflow-auto">
                 {tags.map(t => (
-                  <button key={t} onClick={()=>{ setTagFilter(t); setPage(1); }} className={`whitespace-nowrap rounded-xl px-3 py-2 text-xs ring-1 ring-white/10 ${tagFilter===t?"bg-cyan-400 text-cyan-950 font-semibold":"bg-slate-900/70 text-slate-200"}`}>#{t}</button>
+                  <button key={t} onClick={()=>{ setTagFilter(t); setPage(1); }} className={`whitespace-nowrap rounded-xl px-3 py-2 text-xs ring-1 ring-gray-300 ${tagFilter===t?"bg-teal-500 text-teal-50 font-semibold":"bg-gray-100 text-gray-700"}`}>#{t}</button>
                 ))}
               </div>
             </div>
             <div className="flex items-center justify-end gap-2">
-              <input value={query} onChange={e=>{ setQuery(e.target.value); setPage(1); }} placeholder="Search posts" className="w-full rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10 focus:outline-none md:w-64" />
-              <button className="rounded-xl bg-slate-700 px-4 py-2 text-sm">Clear</button>
+              <input value={query} onChange={e=>{ setQuery(e.target.value); setPage(1); }} placeholder="Search posts" className="w-full rounded-xl bg-gray-100 px-3 py-2 text-sm border border-gray-300 focus:outline-none md:w-64" />
+              <button className="rounded-xl bg-gray-200 px-4 py-2 text-sm text-gray-700">Clear</button>
             </div>
           </div>
         </div>
@@ -240,18 +240,18 @@ export default function GymBlog() {
         {/* Posts grid */}
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {paged.map(p => (
-            <article key={p.id} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-800/60 hover:border-emerald-400/40">
+            <article key={p.id} className="group relative overflow-hidden rounded-2xl border border-teal-200/50 bg-white hover:border-teal-300 shadow-sm">
               <div className="aspect-[16/9] w-full overflow-hidden">
                 <img src={p.cover} alt="cover" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div className="p-4">
                 <div className="mb-1 flex items-center gap-2 text-xs">
-                  <span className="rounded bg-slate-700/60 px-2 py-1">{p.category}</span>
-                  <span className="text-slate-400">{p.time}</span>
+                  <span className="rounded bg-gray-100 px-2 py-1 text-gray-700">{p.category}</span>
+                  <span className="text-gray-500">{p.time}</span>
                 </div>
                 <h3 className="text-lg font-semibold leading-tight">{p.title}</h3>
-                <p className="mt-1 line-clamp-2 text-sm text-slate-300">{p.excerpt}</p>
-                <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
+                <p className="mt-1 line-clamp-2 text-sm text-gray-600">{p.excerpt}</p>
+                <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
                   <span>By {p.author}</span>
                   <div className="flex items-center gap-3">
                     <span>👁 {p.stat.views}</span>
@@ -266,29 +266,29 @@ export default function GymBlog() {
 
         {/* Pagination */}
         <div className="mt-6 flex items-center justify-between">
-          <div className="text-sm text-slate-400">Showing {(page-1)*pageSize+1}-{Math.min(page*pageSize, filtered.length)} of {filtered.length}</div>
+          <div className="text-sm text-gray-600">Showing {(page-1)*pageSize+1}-{Math.min(page*pageSize, filtered.length)} of {filtered.length}</div>
           <div className="flex items-center gap-2">
-            <button onClick={()=>setPage(p=>Math.max(1, p-1))} className="rounded-xl bg-slate-700 px-3 py-2 text-sm disabled:opacity-50" disabled={page===1}>Prev</button>
-            <div className="rounded-xl bg-slate-800/60 px-3 py-2 text-sm">Page {page} of {totalPages}</div>
-            <button onClick={()=>setPage(p=>Math.min(totalPages, p+1))} className="rounded-xl bg-slate-700 px-3 py-2 text-sm disabled:opacity-50" disabled={page===totalPages}>Next</button>
+            <button onClick={()=>setPage(p=>Math.max(1, p-1))} className="rounded-xl bg-gray-200 px-3 py-2 text-sm text-gray-700 disabled:opacity-50" disabled={page===1}>Prev</button>
+            <div className="rounded-xl bg-gray-100 px-3 py-2 text-sm text-gray-700">Page {page} of {totalPages}</div>
+            <button onClick={()=>setPage(p=>Math.min(totalPages, p+1))} className="rounded-xl bg-gray-200 px-3 py-2 text-sm text-gray-700 disabled:opacity-50" disabled={page===totalPages}>Next</button>
           </div>
         </div>
 
         {/* Sidebar strip: editors pick scroller */}
-        <div className="mt-8 rounded-2xl border border-white/10 bg-slate-800/60 p-4">
+        <div className="mt-8 rounded-2xl border border-gray-300 bg-white p-4 shadow-sm">
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-lg font-semibold">Editor picks</h3>
-            <a href="#" className="text-sm text-cyan-300 hover:underline">View all</a>
+            <a href="#" className="text-sm text-teal-500 hover:underline">View all</a>
           </div>
           <div className="no-scrollbar flex gap-4 overflow-x-auto">
             {posts.slice(0,6).map(p => (
-              <div key={p.id} className="min-w-[260px] overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60">
+              <div key={p.id} className="min-w-[260px] overflow-hidden rounded-2xl border border-gray-300 bg-gray-100">
                 <div className="h-28 w-full overflow-hidden">
                   <img src={p.cover} alt="cover" className="h-full w-full object-cover" />
                 </div>
                 <div className="p-3">
                   <p className="line-clamp-2 text-sm font-semibold">{p.title}</p>
-                  <p className="mt-1 line-clamp-2 text-xs text-slate-400">{p.excerpt}</p>
+                  <p className="mt-1 line-clamp-2 text-xs text-gray-600">{p.excerpt}</p>
                 </div>
               </div>
             ))}
@@ -297,18 +297,18 @@ export default function GymBlog() {
 
         {/* Write a post CTA */}
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-tr from-emerald-600/40 via-emerald-500/20 to-cyan-500/20 p-6 lg:col-span-2">
+          <div className="rounded-2xl border border-gray-300 bg-white p-6 lg:col-span-2 shadow-sm">
             <h3 className="text-xl font-semibold">Got a tip or a story</h3>
-            <p className="mt-1 text-sm text-slate-200">Share your routine, a quick recipe, or your first PR. We review every post.</p>
+            <p className="mt-1 text-sm text-gray-600">Share your routine, a quick recipe, or your first PR. We review every post.</p>
             <div className="mt-3 flex gap-2">
-              <input placeholder="Title" className="w-full rounded-xl bg-slate-900/70 px-3 py-2 text-sm ring-1 ring-white/10 focus:outline-none" />
-              <button className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 hover:brightness-110">Start draft</button>
+              <input placeholder="Title" className="w-full rounded-xl bg-gray-100 px-3 py-2 text-sm border border-gray-300 focus:outline-none" />
+              <button className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-teal-50 hover:brightness-110">Start draft</button>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-slate-800/60 p-5">
+          <div className="rounded-2xl border border-gray-300 bg-white p-5 shadow-sm">
             <h3 className="text-lg font-semibold">House rules</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-600">
               <li>Real results. Real names. No spam.</li>
               <li>Be clear. Be kind. Cite sources when you can.</li>
               <li>Opt out any time. Privacy first.</li>
@@ -316,7 +316,7 @@ export default function GymBlog() {
           </div>
         </div>
 
-        <footer className="mt-10 border-t border-white/10 py-6 text-center text-xs text-slate-500">© {new Date().getFullYear()} IronBase Gym. All rights reserved.</footer>
+        <footer className="mt-10 border-t border-gray-300 py-6 text-center text-xs text-gray-600">© {new Date().getFullYear()} IronBase Gym. All rights reserved.</footer>
       </div>
 
       <style>{`

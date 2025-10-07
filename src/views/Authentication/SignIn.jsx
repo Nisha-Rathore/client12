@@ -39,9 +39,9 @@ export default function SignInGym() {
           <div className="grid h-9 w-9 place-items-center rounded-xl bg-gray-100 ring-1 ring-gray-300">
             <Dumbbell className="h-5 w-5 text-teal-600" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">GymOS</span>
+          <span className="text-lg font-bold tracking-tight text-slate-900">GymMS</span>
         </div>
-        <a href="#pricing" className="rounded-lg bg-gray-100 px-3 py-1.5 text-sm text-slate-900 ring-1 ring-gray-300 hover:bg-gray-200">Pricing</a>
+        <a href="#pricing" className="rounded-lg bg-teal-500 px-3 py-1.5 text-sm text-white ring-1 ring-gray-300 hover:bg-teal-200 hover:text-teal-800">Pricing</a>
       </div>
 
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pt-6 md:grid-cols-2">
@@ -51,7 +51,7 @@ export default function SignInGym() {
             <ShieldCheck className="h-3.5 w-3.5" /> SSO ready • MFA supported
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl">
-            Sign in and run your gym with confidence
+            Sign in and run your gym <span className="text-teal-500">with confidence </span>
           </h1>
           <p className="mt-3 max-w-xl text-sm text-slate-600">
             One login for classes, members, billing, and door access. Fast. Secure. Always on.
@@ -162,8 +162,8 @@ export default function SignInGym() {
       {/* Bottom highlights */}
       <div className="mx-auto mt-14 grid max-w-7xl gap-4 px-6 md:grid-cols-3">
         {["99.9% uptime","Bank-grade encryption","Passkeys and MFA"].map((k) => (
-          <div key={k} className="rounded-2xl bg-white border border-gray-200 p-4 shadow-lg">
-            <p className="text-sm font-semibold text-slate-900">{k}</p>
+          <div key={k} className="rounded-2xl bg-teal-50 border border-teal-200 p-4 shadow-lg">
+            <p className="text-sm font-semibold text-teal-900">{k}</p>
             <p className="mt-1 text-xs text-slate-600">Your data and access are protected across every location.</p>
           </div>
         ))}

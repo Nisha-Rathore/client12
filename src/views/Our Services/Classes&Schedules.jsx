@@ -56,7 +56,7 @@ const ClassesSchedule = () => {
       <section className="bg-gray-50 py-12 px-6 md:px-16">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-extrabold text-gray-800 mb-3">
-          Gym Classes & Schedules
+          Gym <span className="text-teal-500">Classes & Schedules</span>
         </h2>
         <p className="text-gray-600">
           Choose your favorite class and stay fit with our professional trainers.
@@ -92,7 +92,7 @@ const ClassesSchedule = () => {
 
       {/* Schedule Table */}
       <div className="mt-16 bg-white rounded-2xl shadow-lg overflow-hidden">
-        <h3 className="text-3xl font-semibold text-center bg-indigo-600 text-white py-4">
+        <h3 className="text-3xl font-semibold text-center border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 py-4">
           Weekly Schedule
         </h3>
         <table className="w-full text-left text-gray-700">

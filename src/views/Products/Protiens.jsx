@@ -80,7 +80,7 @@ export default function ProteinProductsPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-          Protein Store
+          Protein <span className="text-teal-500">Store</span>
         </h1>
         <p className="text-gray-600 mt-1">
           Explore our premium selection of protein powders for your fitness goals.
@@ -108,7 +108,7 @@ export default function ProteinProductsPage() {
           </select>
         </div>
 
-        <button className="bg-indigo-600 hover:bg-indigo-500 transition px-5 py-2 rounded-lg font-semibold">
+        <button className="border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 transition px-5 py-2 rounded-lg font-semibold">
           Add New Product
         </button>
       </div>
@@ -140,10 +140,10 @@ export default function ProteinProductsPage() {
               <div className="flex items-center justify-between mt-2">
                 <div className="text-xl font-extrabold text-gray-900">₹{product.price}</div>
                 <div className="flex gap-2">
-                  <button className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-3 py-1 rounded-lg font-semibold transition">
+                  <button className="border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 text-sm px-3 py-1 rounded-lg font-semibold transition">
                     Add
                   </button>
-                  <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm px-3 py-1 rounded-lg transition">
+                  <button className="border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600 text-sm px-3 py-1 rounded-lg transition">
                     View
                   </button>
                 </div>
