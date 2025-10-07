@@ -78,7 +78,7 @@ export default function Member() {
               placeholder="Search members..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-1/3 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 placeholder:text-gray-400 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="w-full md:w-1/3 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2 placeholder:text-gray-400 focus:ring-2 focus:ring-teal-500 focus:outline-none"
             />
           </div>
           
@@ -96,7 +96,7 @@ export default function Member() {
               <tbody>
                 {filteredMembers.length > 0 ? (
                   filteredMembers.map((member) => (
-                    <tr key={member.id} className="border-t border-gray-200 hover:bg-green-100 transition">
+                    <tr key={member.id} className="border border-gray-200 hover:bg-green-100 transition">
                       <td className="px-5 py-3">{member.name}</td>
                       <td className="px-5 py-3">{member.email}</td>
                       <td className="px-5 py-3">
@@ -107,10 +107,10 @@ export default function Member() {
                           {member.plan}
                         </span>
                       </td>
-                      <td className="px-5 py-3">
+                      <td className="px-3 py-2">
                         <button
                           onClick={() => deleteMember(member.id)}
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition shadow"
+                          className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-xl transition shadow text-sm"
                         >
                           Delete
                         </button>

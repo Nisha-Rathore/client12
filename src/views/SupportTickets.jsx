@@ -84,7 +84,7 @@ export default function SupportTickets() {
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">Support Tickets</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight">Support <span className="text-teal-500">Tickets</span></h1>
             <p className="mt-1 text-sm text-slate-600">Fast triage, clean visuals, real time updates.</p>
           </div>
           <div className="flex items-center gap-3">
@@ -97,14 +97,14 @@ export default function SupportTickets() {
               <option value="30">Last 30 days</option>
               <option value="90">Last 90 days</option>
             </select>
-            <button onClick={()=>setComposeOpen(true)} className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-500/30 hover:brightness-110">New ticket</button>
+            <button onClick={()=>setComposeOpen(true)} className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-teal-500/30 hover:bg-teal-200 hover:text-teal-800 ">New ticket</button>
           </div>
         </div>
 
         {/* KPI cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map(s => (
-            <div key={s.label} className="rounded-2xl border border-gray-300 bg-white p-4 shadow">
+            <div key={s.label} className="rounded-2xl border border-teal-200 bg-white p-4 shadow">
               <div className="flex items-center justify-between">
                 <p className="text-xs uppercase tracking-wide text-gray-600">{s.label}</p>
                 <svg className="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12h3l3 7 4-14 3 7h5"/></svg>
@@ -118,17 +118,17 @@ export default function SupportTickets() {
         {/* Filters */}
         <div className="mt-6 rounded-2xl border border-gray-300 bg-white p-4 shadow">
           <div className="grid gap-3 md:grid-cols-6">
-            <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search tickets, members, assignees" className="md:col-span-2 rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm focus:outline-none" />
-            <select value={status} onChange={e=>setStatus(e.target.value)} className="rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm"><option value="all">All status</option><option>Open</option><option>Pending</option><option>Resolved</option></select>
-            <select value={priority} onChange={e=>setPriority(e.target.value)} className="rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm"><option value="all">All priority</option><option>Urgent</option><option>High</option><option>Medium</option><option>Low</option></select>
-            <select value={category} onChange={e=>setCategory(e.target.value)} className="rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm"><option value="all">All categories</option><option>Billing</option><option>App</option><option>Facilities</option><option>Training</option></select>
-            <select value={sort} onChange={e=>setSort(e.target.value)} className="rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm"><option value="updated-desc">Newest updated</option><option value="updated-asc">Oldest updated</option><option value="priority">Priority</option></select>
+            <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search tickets, members, assignees" className="md:col-span-2 rounded-xl bg-teal-50 border border-gray-300 px-3 py-2 text-sm focus:outline-none" />
+            <select value={status} onChange={e=>setStatus(e.target.value)} className="rounded-xl bg-teal-50 border border-gray-300 px-3 py-2 text-sm"><option value="all">All status</option><option>Open</option><option>Pending</option><option>Resolved</option></select>
+            <select value={priority} onChange={e=>setPriority(e.target.value)} className="rounded-xl bg-teal-50 border border-gray-300 px-3 py-2 text-sm"><option value="all">All priority</option><option>Urgent</option><option>High</option><option>Medium</option><option>Low</option></select>
+            <select value={category} onChange={e=>setCategory(e.target.value)} className="rounded-xl bg-teal-50 border border-gray-300 px-3 py-2 text-sm"><option value="all">All categories</option><option>Billing</option><option>App</option><option>Facilities</option><option>Training</option></select>
+            <select value={sort} onChange={e=>setSort(e.target.value)} className="rounded-xl bg-teal-50 border border-gray-300 px-3 py-2 text-sm"><option value="updated-desc">Newest updated</option><option value="updated-asc">Oldest updated</option><option value="priority">Priority</option></select>
           </div>
           {selected.length>0 && (
             <div className="mt-3 flex items-center justify-between rounded-xl bg-gray-100 px-3 py-2 text-sm">
               <div>{selected.length} selected</div>
               <div className="flex items-center gap-2">
-                <button onClick={()=>bulkUpdate('status','Resolved')} className="rounded-lg bg-green-500 px-3 py-1 text-white">Mark resolved</button>
+                <button onClick={()=>bulkUpdate('status','Resolved')} className="rounded-lg bg-teal-500 px-3 py-1 text-white">Mark resolved</button>
                 <button onClick={()=>bulkUpdate('assignee','—')} className="rounded-lg bg-gray-500 px-3 py-1 text-white">Unassign</button>
                 <button onClick={()=>setSelected([])} className="rounded-lg bg-gray-500 px-3 py-1 text-white">Clear</button>
               </div>
@@ -138,7 +138,7 @@ export default function SupportTickets() {
 
         {/* Table */}
         <div className="mt-6 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
-          <div className="grid grid-cols-12 gap-3 border-b border-gray-300 p-3 text-xs text-gray-600">
+          <div className="grid grid-cols-12 gap-3 border-b border-gray-300 p-3 text-xs text-teal-800">
             <div className="col-span-1">Select</div>
             <div className="col-span-2">Ticket</div>
             <div className="col-span-3">Subject</div>
@@ -169,7 +169,7 @@ export default function SupportTickets() {
                     t.priority==='Medium'?'bg-yellow-100 text-yellow-800':'bg-gray-100 text-gray-800'}`}>{t.priority}</span>
                 </div>
                 <div className="col-span-1">
-                  <span className={`rounded px-2 py-1 text-xs ${t.status==='Resolved'?'bg-green-100 text-green-800':t.status==='Pending'?'bg-blue-100 text-blue-800':'bg-indigo-100 text-indigo-800'}`}>{t.status}</span>
+                  <span className={`rounded px-2 py-1 text-xs ${t.status==='Resolved'?'bg-green-100 text-teal-800':t.status==='Pending'?'bg-blue-100 text-blue-800':'bg-indigo-100 text-indigo-800'}`}>{t.status}</span>
                 </div>
                 <div className="col-span-2 text-xs text-gray-600">{t.updated}</div>
               </li>
@@ -181,8 +181,8 @@ export default function SupportTickets() {
         <div className="mt-6 flex items-center justify-between text-sm">
           <div className="text-gray-600">{filtered.length} tickets</div>
           <div className="flex items-center gap-2">
-            <button className="rounded-xl bg-gray-200 px-3 py-2">Export</button>
-            <button className="rounded-xl bg-gray-200 px-3 py-2">Automation</button>
+            <button className="rounded-xl bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800 px-3 py-2">Export</button>
+            <button className="rounded-xl bg-teal-500 text-white hover:bg-teal-200 hover:text-teal-800 px-3 py-2">Automation</button>
           </div>
         </div>
       </div>

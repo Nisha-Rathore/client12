@@ -396,7 +396,7 @@ export default function ProgressTracking() {
             <Button className=" hover:opacity-90 shadow-lg  border-gray-100 bg-teal-500 text-gray-100 font-semibold hover:bg-teal-200 hover:text-teal-600">
               <Dumbbell className="h-4 w-4 mr-2" /> Log workout
             </Button>
-            <Button variant="outline" className="  hover:opacity-90 shadow-lg border-gray-100 bg-teal-500 text-teal-500 font-semibold hover:bg-teal-200 hover:text-teal-600">
+            <Button variant="outline" className="  hover:opacity-90 text-white shadow-lg border-gray-100 bg-teal-500  font-semibold hover:bg-teal-200 hover:text-teal-600">
               <Trophy className="h-4 w-4 mr-2" /> Add PR
             </Button>
           </div>

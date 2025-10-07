@@ -66,7 +66,7 @@ export default function Trainer() {
           </div>
           {/* Add Trainer Form */}
           <div className="bg-gray-50 rounded-2xl shadow-lg px-8 py-10 border border-gray-300 max-w-xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Add New Trainer</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center text-teal-500">Add New Trainer</h2>
             <form onSubmit={handleAddTrainer} className="space-y-5">
               <input
                 type="text"

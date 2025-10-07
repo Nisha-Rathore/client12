@@ -33,7 +33,7 @@ export default function GymBlog() {
       tags: ["strength", "beginners"],
       author: "Coach Maya",
       time: "6 min read",
-      cover: "https://images.unsplash.com/photo-1517341723568-d8e2f8d78ccf?q=80&w=1200&auto=format&fit=crop",
+      cover: <iframe width="560" height="315" src="https://www.youtube.com/embed/Eh5azwtC8lo?si=KWcuC8zhxTBQkN-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,
       stat: { views: 3100, likes: 420, comments: 32 },
       featured: true,
       date: "2025-10-02",
@@ -140,11 +140,11 @@ export default function GymBlog() {
   return (
    <Layout>
      <div className={`min-h-screen w-full bg-gray-50 text-gray-900`}>
-      <div className="mx-auto max-w-7xl px-4 py-6">
+      <div className="mx-auto max-w-5xl px-0 py-6">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">Gym Blog</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight">Gym <span className="text-teal-500">Blog </span></h1>
             <p className="mt-1 text-sm text-gray-600">Fresh workouts, real nutrition, sharp recovery tips. Clean visuals. Quick reads.</p>
           </div>
           <div className="flex items-center gap-3">

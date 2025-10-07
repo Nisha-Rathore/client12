@@ -17,7 +17,7 @@ export default function Settings() {
           {/* Header */}
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight">Settings</h1>
+              <h1 className="text-3xl font-extrabold tracking-tight"><span className="text-teal-500">Settings</span></h1>
               <p className="mt-1 text-sm text-slate-700">Manage your account, preferences, and club level controls.</p>
             </div>
             <div className="flex items-center gap-3">
@@ -30,7 +30,7 @@ export default function Settings() {
                 <option value="30">Last 30 days</option>
                 <option value="90">Last 90 days</option>
               </select>
-              <button className="rounded-xl bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow hover:brightness-110">Export</button>
+              <button className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-teal-200 hover:text-teal-600">Export</button>
             </div>
           </div>
 
@@ -50,7 +50,7 @@ export default function Settings() {
                   { id: "advanced", label: "Advanced" },
                 ].map(t => (
                   <li key={t.id}>
-                    <button onClick={()=>setActiveTab(t.id)} className={`w-full rounded-2xl border px-4 py-3 text-left text-sm transition ${activeTab===t.id?"border-green-400 bg-green-50 shadow":"border-gray-300 bg-white hover:border-green-300"}`}>{t.label}</button>
+                    <button onClick={()=>setActiveTab(t.id)} className={`w-full rounded-2xl border px-4 py-3 text-left text-sm transition ${activeTab===t.id?"border-teal-500 bg-teal-50 shadow":"border-gray-300 bg-white hover:border-teal-500"}`}>{t.label}</button>
                   </li>
                 ))}
               </ul>
@@ -92,10 +92,10 @@ function SaveBar({ onReset, onSave }) {
   return (
     <div className="mt-4 flex items-center justify-end gap-2">
       <button onClick={onReset} className="rounded-xl bg-gray-300 px-4 py-2 text-sm">Reset</button>
-      <button onClick={onSave} className="rounded-xl bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow">Save changes</button>
+      <button onClick={onSave} className="rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold hover:bg-teal-200 hover:text-teal-800 text-white shadow">Save changes</button>
     </div>
   );
-}
+}                 
 
 /* PROFILE */
 function ProfileTab() {
@@ -114,23 +114,23 @@ function ProfileTab() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
             <label className="text-xs text-gray-600">Full name</label>
-            <input value={name} onChange={e=>setName(e.target.value)} className="mt-1 w-full rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" />
+            <input value={name} onChange={e=>setName(e.target.value)} className="mt-1 w-full rounded-xl bg-teal-50 px-3 py-2 text-sm ring-1 ring-teal-500" />
           </div>
           <div>
             <label className="text-xs text-gray-600">Role</label>
-            <select value={role} onChange={e=>setRole(e.target.value)} className="mt-1 w-full rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300"><option>Admin</option><option>Manager</option><option>Trainer</option><option>Support</option></select>
+            <select value={role} onChange={e=>setRole(e.target.value)} className="mt-1 w-full rounded-xl bg-teal-50 px-3 py-2 text-sm ring-1 ring-teal-500"><option>Admin</option><option>Manager</option><option>Trainer</option><option>Support</option></select>
           </div>
           <div>
             <label className="text-xs text-gray-600">Email</label>
-            <input value={email} onChange={e=>setEmail(e.target.value)} className="mt-1 w-full rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" />
+            <input value={email} onChange={e=>setEmail(e.target.value)} className="mt-1 w-full rounded-xl bg-teal-50 px-3 py-2 text-sm ring-1 ring-teal-500" />
           </div>
           <div>
             <label className="text-xs text-gray-600">Phone</label>
-            <input value={phone} onChange={e=>setPhone(e.target.value)} className="mt-1 w-full rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" />
+            <input value={phone} onChange={e=>setPhone(e.target.value)} className="mt-1 w-full rounded-xl bg-teal-50 px-3 py-2 text-sm ring-1 ring-teal-500" />
           </div>
           <div className="md:col-span-2">
             <label className="text-xs text-gray-600">Bio</label>
-            <textarea value={bio} onChange={e=>setBio(e.target.value)} rows={3} className="mt-1 w-full rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" />
+            <textarea value={bio} onChange={e=>setBio(e.target.value)} rows={3} className="mt-1 w-full rounded-xl bg-teal-50 px-3 py-2 text-sm ring-1 ring-teal-500" />
           </div>
         </div>
         <SaveBar onReset={reset} onSave={save} />
@@ -146,7 +146,7 @@ function ProfileTab() {
             "Diet plans",
             "Trainer comments",
           ].map(key => (
-            <label key={key} className="flex items-center justify-between rounded-xl border border-gray-300 bg-gray-50 px-3 py-2">
+            <label key={key} className="flex items-center justify-between rounded-xl border border-teal-600 bg-teal-50 px-3 py-2">
               <span>{key}</span>
               <input type="checkbox" defaultChecked />
             </label>

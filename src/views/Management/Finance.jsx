@@ -99,16 +99,16 @@ const Finance = () => {
                     </td>
                     <td className="px-5 py-3 font-semibold">₹{t.amount}</td>
                     <td className="px-5 py-3">{t.description}</td>
-                    <td className="px-5 py-3 flex justify-center gap-2">
+                    <td className="px-4 py-2 flex justify-center gap-2">
                       <button
                         onClick={() => handleEdit(t)}
-                        className="px-4 py-2 bg-yellow-200 text-yellow-800 rounded-xl hover:bg-yellow-300 font-semibold transition"
+                        className="px-2 py-1 bg-yellow-200 text-yellow-800 rounded-xl hover:bg-yellow-300 text-sm transition"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(t.id)}
-                        className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl font-semibold transition "
+                        className="py-1 px-1 bg-red-500 text-sm hover:bg-red-600 text-white rounded-xl  transition "
                       >
                         Delete
                       </button>

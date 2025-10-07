@@ -60,7 +60,7 @@ export default function NotificationsAndCommunication() {
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">Notifications & Communication</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight">Notifications & <span className="text-teal-500"> Communication </span></h1>
             <p className="mt-1 text-sm text-gray-700">Live status, quick actions, and clean visuals.</p>
           </div>
           <div className="flex items-center gap-3">
@@ -73,14 +73,14 @@ export default function NotificationsAndCommunication() {
               <option value="30">Last 30 days</option>
               <option value="90">Last 90 days</option>
             </select>
-            <button className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Export</button>
+            <button className="rounded-xl bg-teal-500 hover:bg-teal-100 hover:text-teal-800 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Export</button>
           </div>
         </div>
 
         {/* KPI cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="rounded-2xl border border-gray-300/10 bg-white/50 p-4 backdrop-blur-md hover:border-blue-400/40">
+            <div key={s.label} className="rounded-2xl border border-teal-300 bg-white/50 p-4 backdrop-blur-md hover:border-teal-400/40">
               <div className="flex items-center justify-between">
                 <p className="text-xs uppercase tracking-wide text-gray-600">{s.label}</p>
                 <svg className="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12h3l3 7 4-14 3 7h5"/></svg>
@@ -100,17 +100,17 @@ export default function NotificationsAndCommunication() {
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Channel performance</h3>
                 <div className="flex items-center gap-2 text-xs text-gray-700">
-                  <span className="rounded bg-gray-200 px-2 py-1">Email</span>
-                  <span className="rounded bg-gray-200 px-2 py-1">SMS</span>
-                  <span className="rounded bg-gray-200 px-2 py-1">Push</span>
-                  <span className="rounded bg-gray-200 px-2 py-1">In‑app</span>
+                  <span className="rounded bg-teal-100 px-2 py-1">Email</span>
+                  <span className="rounded bg-teal-100 px-2 py-1">SMS</span>
+                  <span className="rounded bg-teal-100 px-2 py-1">Push</span>
+                  <span className="rounded bg-teal-100 px-2 py-1">In‑app</span>
                 </div>
               </div>
               {/* simple bars */}
               <div className="grid grid-cols-12 items-end gap-2 h-40">
                 {[48, 52, 61, 43, 70, 65, 58, 62, 73, 69, 76, 71].map((v, i) => (
                   <div key={i} className="group flex h-full items-end">
-                    <div style={{ height: `${v}%` }} className="w-full rounded-t-xl bg-blue-500/80 group-hover:bg-blue-400 transition-all"></div>
+                    <div style={{ height: `${v}%` }} className="w-full rounded-t-xl bg-teal-500 group-hover:bg-teal-200 transition-all"></div>
                   </div>
                 ))}
               </div>
@@ -130,7 +130,7 @@ export default function NotificationsAndCommunication() {
                 {filteredActivity.map((a) => (
                   <li key={a.id} className="flex items-center justify-between px-4 py-3 hover:bg-gray-200">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 text-white font-bold">{a.who.slice(0,1)}</div>
+                      <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-tr from-teal-500 to-teal-400 text-white font-bold">{a.who.slice(0,1)}</div>
                       <div>
                         <p className="text-sm"><span className="font-semibold">{a.who}</span> • {a.what}</p>
                         <p className="text-xs text-gray-600">{a.detail}</p>
@@ -149,7 +149,7 @@ export default function NotificationsAndCommunication() {
                 <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Title" />
                 <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Location or club" />
                 <input className="rounded-xl bg-gray-100 px-3 py-2 text-sm ring-1 ring-gray-300" placeholder="Starts at" />
-                <button className="rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:brightness-110">Publish</button>
+                <button className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-white hover:brightness-110">Publish</button>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function NotificationsAndCommunication() {
                 <div className="text-xs text-gray-600">Compliance: opt out links auto added for SMS and email.</div>
                 <div className="flex items-center gap-2">
                   <button onClick={()=>setPreviewOpen(true)} className="rounded-xl bg-gray-300 px-4 py-2 text-sm hover:brightness-110">Preview</button>
-                  <button onClick={sendNow} className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">{schedule ? "Schedule" : "Send now"}</button>
+                  <button onClick={sendNow} className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">{schedule ? "Schedule" : "Send now"}</button>
                 </div>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function NotificationsAndCommunication() {
                         <p className="text-sm font-semibold">{t.name}</p>
                         <p className="text-xs text-gray-600 line-clamp-2">{t.text}</p>
                       </div>
-                      <button onClick={()=>quickFill(t)} className="rounded-lg bg-cyan-500 px-3 py-1 text-xs font-semibold text-white hover:brightness-110">Use</button>
+                      <button onClick={()=>quickFill(t)} className="rounded-lg bg-teal-500 px-3 py-1 text-xs font-semibold text-white hover:brightness-110">Use</button>
                     </div>
                   </li>
                 ))}
@@ -238,7 +238,7 @@ export default function NotificationsAndCommunication() {
                 ].map((r)=> (
                   <div key={r.k} className="rounded-xl border border-gray-300/10 bg-gray-100 p-3">
                     <div className="text-xs text-gray-600">{r.k}</div>
-                    <div className={`text-base font-semibold ${r.v === "OK" ? "text-blue-500" : "text-yellow-500"}`}>{r.v}</div>
+                    <div className={`text-base font-semibold ${r.v === "OK" ? "text-teal-500" : "text-yellow-500"}`}>{r.v}</div>
                   </div>
                 ))}
               </div>
@@ -268,7 +268,7 @@ export default function NotificationsAndCommunication() {
             </div>
             <div className="mt-4 flex items-center justify-end gap-2">
               <button onClick={()=>setPreviewOpen(false)} className="rounded-xl bg-gray-300 px-4 py-2 text-sm">Edit</button>
-              <button onClick={()=>{ setPreviewOpen(false); sendNow(); }} className="rounded-xl bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Confirm send</button>
+              <button onClick={()=>{ setPreviewOpen(false); sendNow(); }} className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:brightness-110">Confirm send</button>
             </div>
           </div>
         </div>

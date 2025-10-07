@@ -6,7 +6,7 @@ import Footer from './layout/Footer'
 const Layout = ({children}) => {
   return (
     <div>
-         <div className="min-h-screen bg-slate-50 text-slate-900">
+         <div className="min-h-screen bg-teal-50 text-teal-900">
             <div className="flex">
              <Sidebar/>
              <main className="flex-1 p-6">

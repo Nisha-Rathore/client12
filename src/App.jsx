@@ -24,6 +24,7 @@ import Settings from './views/Settings'
 import LogoutScreen from './views/LogOut'
 import Security from './views/Management/Security'
 import Supplements from './views/Products/Supplements'
+import Dashboard from './views/Dashboard'
 
 
 
@@ -35,6 +36,7 @@ function App() {
       <div>
             <Routes>
               <Route path='/' element={<Home/>}></Route>
+              <Route path='/dashboard' element={<Dashboard/>}></Route>
               <Route path ="/members" element = {<MemberManagement/>}></Route>
               <Route path='/trainer' element={<Trainer/>}></Route>
               <Route path="/finance" element={<Finance/>}></Route>
