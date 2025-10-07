@@ -25,6 +25,7 @@ import LogoutScreen from './views/LogOut'
 import Security from './views/Management/Security'
 import Supplements from './views/Products/Supplements'
 import Dashboard from './views/Dashboard'
+import Page from './views/Page'
 
 
 
@@ -48,7 +49,6 @@ function App() {
               <Route path='/classes&schedules' element = {<ClassesSchedules/>}></Route>
               <Route path='/courses' element = {<Courses/>}></Route>
               <Route path='/franchiseMembership' element = {<FranchiseMembership/>}></Route>
-              <Route path='/security' element = {<Security/>}></Route>
               <Route path='/signUp' element = {<SignUpGym/>}></Route>
               <Route path='/signIn' element = {<SignInGym/>}></Route>
               <Route path='/forgotResetPassword' element = {<ForgotResetPasswordGym/>}></Route>
@@ -61,6 +61,7 @@ function App() {
                <Route path='/supportTickets' element = {<SupportTickets/>}></Route>
                <Route path='/settings' element = {<Settings/>}></Route>
                <Route path='/logOut' element = {<LogoutScreen/>}></Route>
+               <Route path='/page' element = {<Page/>}></Route>
             </Routes>
       
         

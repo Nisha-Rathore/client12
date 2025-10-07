@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Dumbbell, Mail, Lock, Eye, EyeOff, ShieldCheck, ArrowRight } from "lucide-react";
 
 
 export default function SignInGym() {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +25,7 @@ export default function SignInGym() {
       setLoading(false);
       // demo: simple check
       if (email.includes("@") && password.length >= 6) {
-        alert("Signed in. Replace alert with router navigation.");
+        navigate('/dashboard');
       } else {
         setError("Invalid credentials");
       }

@@ -268,6 +268,10 @@ const Sidebar = () => {
             <SlSettings size={18} />
             {sidebarOpen && <span>Settings</span>}
           </a></Link>
+           <Link to = "/page"><a className="flex items-center gap-3 p-2 rounded-lg hover:bg-teal-100 cursor-pointer text-sm" href="#">
+            <SlSettings size={18} />
+            {sidebarOpen && <span>Page</span>}
+          </a></Link>
         </nav>
 
         <div className="mt-auto p-3 flex-shrink-0">
